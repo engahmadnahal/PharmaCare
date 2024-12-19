@@ -1,0 +1,82 @@
+@extends('cms.parent')
+
+@section('page-name',__('cms.currency'))
+@section('main-page',__('cms.settings'))
+@section('sub-page',__('cms.currency'))
+@section('page-name-small',__('cms.update'))
+
+@section('styles')
+
+@endsection
+
+@section('content')
+<!--begin::Container-->
+<div class="row">
+    <div class="col-lg-12">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b example example-compact">
+            <div class="card-header">
+                <h3 class="card-title">{{__('cms.update')}}</h3>
+            </div>
+            <!--begin::Form-->
+            <form id="create-form">
+                <div class="card-body">
+
+
+                    <div class="form-group row mt-4">
+                        <label class="col-3 col-form-label">{{ __('cms.name_ar') }}:</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control" id="name_ar"
+                                placeholder="{{ __('cms.name_ar') }}" value="{{$data->name_ar}}"/>
+                            <span class="form-text text-muted">{{ __('cms.please_enter') }}
+                                {{ __('cms.name_ar') }}</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row mt-4">
+                        <label class="col-3 col-form-label">{{ __('cms.name_en') }}:</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control" id="name_en"
+                                placeholder="{{ __('cms.name_en') }}" value="{{$data->name_en}}"/>
+                            <span class="form-text text-muted">{{ __('cms.please_enter') }}
+                                {{ __('cms.name_en') }}</span>
+                        </div>
+                    </div>
+
+
+                  
+
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-3">
+
+                            </div>
+                            <div class="col-9">
+                                <button type="button" onclick="performEdit({{$data->id}})"
+                                    class="btn btn-primary mr-2">{{ __('cms.save') }}</button>
+                                <button type="reset" class="btn btn-secondary">{{ __('cms.cancel') }}</button>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+            <!--end::Form-->
+        </div>
+        <!--end::Card-->
+    </div>
+</div>
+<!--end::Container-->
+@endsection
+
+@section('scripts')
+<script>
+  
+    function performEdit(id){
+
+        let formData = new FormData();
+        formData.append('name_ar', document.getElementById('name_ar').value);
+            formData.append('name_en', document.getElementById('name_en').value);
+        formData.append('_method','put');
+        store('/cms/admin/currencies/'+id, formData, '/cms/admin/currencies');
+    }
+</script>
+@endsection
