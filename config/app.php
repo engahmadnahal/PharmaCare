@@ -221,7 +221,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        // 'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         // 'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class
         'Carbon' => Carbon::class,
         'RouteService' => RouteService::class
