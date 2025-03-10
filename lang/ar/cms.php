@@ -563,7 +563,10 @@ return [
     'provider_mobile' => 'هاتف مقدم الخدمة',
     'customer_mobile' => 'هاتف المستخدم',
     'doctor' => 'دكتور',
-    'pharm' => 'الصيدلية'
+    'pharm' => 'الصيدلية',
+    'doctors' => 'الاطباء',
+    'certificate' => 'الشهادة',
+    'pharmaceutical' => 'الصيدليات',
  
 
 ];

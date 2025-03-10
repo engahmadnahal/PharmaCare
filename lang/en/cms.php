@@ -532,7 +532,10 @@ return [
     'provider_mobile' => 'Provider Mobile',
     'customer_mobile' => 'Customer Mobile',
     'doctor' => 'Doctor',
-    'pharm' => 'Pharm'
+    'pharm' => 'Pharm',
+    'doctors' => 'Doctors',
+    'certificate' => 'Certificate',
+    'pharmaceutical' => 'Pharmaceutical'
 
 
 

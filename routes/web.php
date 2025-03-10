@@ -17,6 +17,8 @@ use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeleteAccountUserController;
 use App\Http\Controllers\DelivaryController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\FrameAlbumServiceController;
 use App\Http\Controllers\FramesOrAlbumController;
@@ -36,6 +38,7 @@ use App\Http\Controllers\PassportTypeController;
 use App\Http\Controllers\Payment\MastercardController;
 use App\Http\Controllers\PaymentGatWayController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PharmaceuticalController;
 use App\Http\Controllers\PostcardServiceController;
 use App\Http\Controllers\PosterprintServiceController;
 use App\Http\Controllers\PrivecyController;
@@ -79,13 +82,13 @@ Route::group([
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
 
-    Route::prefix('cms')->middleware('guest:admin,studio,studiobranch')->group(function () {
+    Route::prefix('cms')->middleware('guest:admin')->group(function () {
         Route::get('/', [AuthController::class, 'userType']);
         Route::get('{guard}/login', [AuthController::class, 'showLogin'])->name('cms.login');
         Route::post('login', [AuthController::class, 'login']);
     });
 
-    Route::prefix('email')->middleware(['auth:admin,studiobranch,studio'])->group(function () {
+    Route::prefix('email')->middleware(['auth:admin'])->group(function () {
         Route::get('verify', [VerifyEmailController::class, 'notice'])->name('verification.notice');
         Route::post('verification-notification', [VerifyEmailController::class, 'send'])->middleware(['throttle:6,1'])->name('verification.send');
         Route::get('verify/{id}/{hash}', [VerifyEmailController::class, 'verify'])->middleware(['signed'])->name('verification.verify');
@@ -98,7 +101,7 @@ Route::group([
         Route::post('/reset-password', [ResetPasswordController::class, 'updatePassword'])->name('password.update');
     });
 
-    Route::prefix('cms/admin/')->middleware(['auth:admin,studio,studiobranch', 'statusUser'])->group(function () {
+    Route::prefix('cms/admin/')->middleware(['auth:admin'])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('cms.dashboard');
         Route::get('/lang', [DashboardController::class, 'changeLanguage'])->name('cms.dashboard.language');
 
@@ -136,6 +139,19 @@ Route::group([
         //  * --------------------------------------------
         //  */
         Route::resource('regions', RegionController::class);
+        // /**
+        //  * --------------------------------------------
+        //  *  Doctor Route Controller
+        //  * --------------------------------------------
+        //  */
+        Route::resource('employees', EmployeeController::class);
+        // /**
+        //  * --------------------------------------------
+        //  *  Pharmaceutical Route Controller
+        //  * --------------------------------------------
+        //  */
+        Route::resource('pharmaceuticals', PharmaceuticalController::class);
+        
         // /**
         //  * --------------------------------------------
         //  *  Service Studio Route Controller

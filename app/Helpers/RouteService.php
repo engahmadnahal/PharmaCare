@@ -55,6 +55,21 @@ class RouteService
 
                             ],
                             [
+                                'title' => __('cms.employees'),
+                                'route' => route('employees.index'),
+                                'permission' => 'Read-Employee',
+                                'active' => request()->routeIs('employees.index'),
+
+                            ],
+                            [
+                                'title' => __('cms.pharmaceutical'),
+                                'route' => route('pharmaceuticals.index'),
+                                'permission' => 'Read-Pharma',
+                                'active' => request()->routeIs('pharmaceuticals.index'),
+
+                            ],
+                            
+                            [
                                 'title' => __('cms.users'),
                                 'route' => route('users.index'),
                                 'permission' => 'Read-User',

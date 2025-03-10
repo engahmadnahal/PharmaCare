@@ -18,8 +18,8 @@ return new class extends Migration
             $table->id();
             $table->string('mobile');
             $table->string('name');
+            $table->string('email');
             $table->string('message');
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

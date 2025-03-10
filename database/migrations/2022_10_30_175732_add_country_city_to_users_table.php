@@ -15,10 +15,10 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->foreignIdFor(Country::class)->nullable()->constrained()->cascadeOnDelete();
-        //     $table->foreignIdFor(City::class)->nullable()->constrained()->cascadeOnDelete();
-        // });
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignIdFor(Country::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(City::class)->nullable()->constrained()->cascadeOnDelete();
+        });
     }
 
     /**
@@ -28,9 +28,9 @@ return new class extends Migration
      */
     public function down()
     {
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->dropForeignIdFor(Country::class);
-        //     $table->dropForeignIdFor(City::class);
-        // });
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeignIdFor(Country::class);
+            $table->dropForeignIdFor(City::class);
+        });
     }
 };

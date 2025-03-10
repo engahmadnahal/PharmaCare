@@ -61,49 +61,10 @@ class PermissionSeeder extends Seeder
         // Permission::create(['name' => 'Read-Order', 'guard_name' => 'admin']);
         
 
-        
-
-
-        // Permission::create(['name' => 'OrderList-StudioBranch', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Block-StudioBranch', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Update-StudioBranch', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Read-StudioBranch', 'guard_name' => 'admin']);
-        
         // Permission::create(['name' => 'Create-Currency', 'guard_name' => 'admin']);
         // Permission::create(['name' => 'Read-Currency', 'guard_name' => 'admin']);
         // Permission::create(['name' => 'Update-Currency', 'guard_name' => 'admin']);
         // Permission::create(['name' => 'Delete-Currency', 'guard_name' => 'admin']);
-
-        // Permission::create(['name' => 'Create-SoftCopyService', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Read-SoftCopyService', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Update-SoftCopyService', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Delete-SoftCopyService', 'guard_name' => 'admin']);
-
-
-        // Permission::create(['name' => 'Create-BookingStudioService', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Read-BookingStudioService', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Update-BookingStudioService', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Delete-BookingStudioService', 'guard_name' => 'admin']);
-
-        // Permission::create(['name' => 'Create-FrameAlbum', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Read-FrameAlbum', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Update-FrameAlbum', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Delete-FrameAlbum', 'guard_name' => 'admin']);
-        
-        // Permission::create(['name' => 'Create-Passport', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Read-Passport', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Update-Passport', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Delete-Passport', 'guard_name' => 'admin']);
-
-        // Permission::create(['name' => 'Create-Poster', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Read-Poster', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Update-Poster', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Delete-Poster', 'guard_name' => 'admin']);
-
-        // Permission::create(['name' => 'Create-Postcard', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Read-Postcard', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Update-Postcard', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Delete-Postcard', 'guard_name' => 'admin']);
 
 
         // Permission::create(['name' => 'Create-Term', 'guard_name' => 'admin']);
@@ -115,34 +76,6 @@ class PermissionSeeder extends Seeder
         // Permission::create(['name' => 'Read-Privacy', 'guard_name' => 'admin']);
         // Permission::create(['name' => 'Update-Privacy', 'guard_name' => 'admin']);
         // Permission::create(['name' => 'Delete-Privacy', 'guard_name' => 'admin']);
-
-        // Permission::create(['name' => 'AcceptStudio', 'guard_name' => 'admin']);
-
-
-        // Permission::create(['name' => 'Create-Delivary', 'guard_name' => 'admin']);
-
-        // Permission::create(['name' => 'Read-Delivary', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Update-Delivary', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Delete-Delivary', 'guard_name' => 'admin']);
-
-
-        // Permission::create(['name' => 'Create-StoreHouse', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Read-StoreHouse', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Update-StoreHouse', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Delete-StoreHouse', 'guard_name' => 'admin']);
-
-        // Permission::create(['name' => 'Create-Studio', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Read-Studio', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Update-Studio', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Delete-Studio', 'guard_name' => 'admin']);
-
-        
-
-        // Permission::create(['name' => 'Create-ServiceStudio', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Read-ServiceStudio', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Update-ServiceStudio', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Delete-ServiceStudio', 'guard_name' => 'admin']);
-
 
         
 
@@ -180,13 +113,6 @@ class PermissionSeeder extends Seeder
         // Permission::create(['name' => 'Delete-City', 'guard_name' => 'admin']);
 
 
-
-        // Permission::create(['name' => 'Create-Ads', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Read-Ads', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Update-Ads', 'guard_name' => 'admin']);
-        // Permission::create(['name' => 'Delete-Ads', 'guard_name' => 'admin']);
-
-
         // Permission::create(['name' => 'Create-About', 'guard_name' => 'admin']);
         // Permission::create(['name' => 'Read-About', 'guard_name' => 'admin']);
         // Permission::create(['name' => 'Update-About', 'guard_name' => 'admin']);
@@ -212,18 +138,6 @@ class PermissionSeeder extends Seeder
         // Permission::create(['name' => 'Delete-Order', 'guard_name' => 'studio']);
         // Permission::create(['name' => 'Read-Order', 'guard_name' => 'studio']);
 
-        // Permission::create(['name' => 'Create-StudioBranch', 'guard_name' => 'studio']);
-        // Permission::create(['name' => 'Read-StudioBranch', 'guard_name' => 'studio']);
-        // Permission::create(['name' => 'Update-StudioBranch', 'guard_name' => 'studio']);
-        // Permission::create(['name' => 'Delete-StudioBranch', 'guard_name' => 'studio']);
-
-        // // // =========== Studio Branch
-
-        // Permission::create(['name' => 'Read-MyProducts', 'guard_name' => 'studiobranch']); //
-        // Permission::create(['name' => 'Read-Products', 'guard_name' => 'studiobranch']);
-        
-
-        // Permission::create(['name' => 'Change-StatusOrder', 'guard_name' => 'studiobranch']);//
         // Permission::create(['name' => 'Create-Order', 'guard_name' => 'studiobranch']);
         // Permission::create(['name' => 'Read-Order', 'guard_name' => 'studiobranch']);
         // Permission::create(['name' => 'Update-Order', 'guard_name' => 'studiobranch']);
@@ -231,18 +145,22 @@ class PermissionSeeder extends Seeder
 
         // Permission::create(['name' => 'Read-Delivary', 'guard_name' => 'studiobranch']);
 
-        // Permission::create(['name' => 'Create-BookingStudio', 'guard_name' => 'studiobranch']);
-        // Permission::create(['name' => 'Read-BookingStudio', 'guard_name' => 'studiobranch']);
-        // Permission::create(['name' => 'Update-BookingStudio', 'guard_name' => 'studiobranch']);
-        // Permission::create(['name' => 'Delete-BookingStudio', 'guard_name' => 'studiobranch']);
+        // Permission::create(['name' => 'Create-Report', 'guard_name' => 'admin']);
+        // Permission::create(['name' => 'Read-Report', 'guard_name' => 'admin']);
+        // Permission::create(['name' => 'Update-Report', 'guard_name' => 'admin']);
+        // Permission::create(['name' => 'Delete-Report', 'guard_name' => 'admin']);
 
-        // Permission::create(['name' => 'Read-ServicesBookinStudio', 'guard_name' => 'studiobranch']);
+        Permission::create(['name' => 'Create-Employee', 'guard_name' => 'admin']);
+        Permission::create(['name' => 'Read-Employee', 'guard_name' => 'admin']);
+        Permission::create(['name' => 'Update-Employee', 'guard_name' => 'admin']);
+        Permission::create(['name' => 'Delete-Employee', 'guard_name' => 'admin']);
 
-        Permission::create(['name' => 'Create-Report', 'guard_name' => 'admin']);
-        Permission::create(['name' => 'Read-Report', 'guard_name' => 'admin']);
-        Permission::create(['name' => 'Update-Report', 'guard_name' => 'admin']);
-        Permission::create(['name' => 'Delete-Report', 'guard_name' => 'admin']);
+        // Permission::create(['name' => 'Create-Pharma', 'guard_name' => 'admin']);
+        // Permission::create(['name' => 'Read-Pharma', 'guard_name' => 'admin']);
+        // Permission::create(['name' => 'Update-Pharma', 'guard_name' => 'admin']);
+        // Permission::create(['name' => 'Delete-Pharma', 'guard_name' => 'admin']);
 
+        
 
         $allAdminPer = Permission::where('guard_name', 'admin')->get();
         (Role::where('name','Super-Admin')->first())->givePermissionTo($allAdminPer);

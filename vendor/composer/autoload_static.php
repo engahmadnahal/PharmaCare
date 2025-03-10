@@ -405,8 +405,8 @@ class ComposerStaticInit34086acfb744749dacad1928b13c5b61
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -727,6 +727,7 @@ class ComposerStaticInit34086acfb744749dacad1928b13c5b61
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
         'App\\Http\\Controllers\\DeleteAccountUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/DeleteAccountUserController.php',
         'App\\Http\\Controllers\\DelivaryController' => __DIR__ . '/../..' . '/app/Http/Controllers/DelivaryController.php',
+        'App\\Http\\Controllers\\DoctorController' => __DIR__ . '/../..' . '/app/Http/Controllers/DoctorController.php',
         'App\\Http\\Controllers\\FaqsController' => __DIR__ . '/../..' . '/app/Http/Controllers/FaqsController.php',
         'App\\Http\\Controllers\\FrameAlbumServiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrameAlbumServiceController.php',
         'App\\Http\\Controllers\\FramesOrAlbumController' => __DIR__ . '/../..' . '/app/Http/Controllers/FramesOrAlbumController.php',
@@ -891,6 +892,7 @@ class ComposerStaticInit34086acfb744749dacad1928b13c5b61
         'App\\Models\\Currency' => __DIR__ . '/../..' . '/app/Models/Currency.php',
         'App\\Models\\DeleteAccountUser' => __DIR__ . '/../..' . '/app/Models/DeleteAccountUser.php',
         'App\\Models\\Delivary' => __DIR__ . '/../..' . '/app/Models/Delivary.php',
+        'App\\Models\\Doctor' => __DIR__ . '/../..' . '/app/Models/Doctor.php',
         'App\\Models\\Faqs' => __DIR__ . '/../..' . '/app/Models/Faqs.php',
         'App\\Models\\FrameAlbumBooking' => __DIR__ . '/../..' . '/app/Models/FrameAlbumBooking.php',
         'App\\Models\\FrameAlbumRate' => __DIR__ . '/../..' . '/app/Models/FrameAlbumRate.php',
@@ -922,6 +924,7 @@ class ComposerStaticInit34086acfb744749dacad1928b13c5b61
         'App\\Models\\PasswordResetUser' => __DIR__ . '/../..' . '/app/Models/PasswordResetUser.php',
         'App\\Models\\PaymentGatWay' => __DIR__ . '/../..' . '/app/Models/PaymentGatWay.php',
         'App\\Models\\PaymentOrder' => __DIR__ . '/../..' . '/app/Models/PaymentOrder.php',
+        'App\\Models\\Pharmaceutical' => __DIR__ . '/../..' . '/app/Models/Pharmaceutical.php',
         'App\\Models\\PostcardBooking' => __DIR__ . '/../..' . '/app/Models/PostcardBooking.php',
         'App\\Models\\PostcardRate' => __DIR__ . '/../..' . '/app/Models/PostcardRate.php',
         'App\\Models\\PostcardService' => __DIR__ . '/../..' . '/app/Models/PostcardService.php',
