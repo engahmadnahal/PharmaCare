@@ -88,11 +88,6 @@ Route::group([
         Route::post('login', [AuthController::class, 'login']);
     });
 
-    Route::prefix('email')->middleware(['auth:admin'])->group(function () {
-        Route::get('verify', [VerifyEmailController::class, 'notice'])->name('verification.notice');
-        Route::post('verification-notification', [VerifyEmailController::class, 'send'])->middleware(['throttle:6,1'])->name('verification.send');
-        Route::get('verify/{id}/{hash}', [VerifyEmailController::class, 'verify'])->middleware(['signed'])->name('verification.verify');
-    });
 
     Route::middleware('guest')->group(function () {
         Route::get('/forgot-password', [ResetPasswordController::class, 'requestPasswordReset'])->name('password.request');
@@ -154,49 +149,11 @@ Route::group([
         
         // /**
         //  * --------------------------------------------
-        //  *  Service Studio Route Controller
-        //  * --------------------------------------------
-        //  */
-        Route::resource('service_studios', ServiceStudioController::class);
-
-        // /**
-        //  * --------------------------------------------
         //  *  Contact Us Route Controller
         //  * --------------------------------------------
         //  */
-        Route::post('contact_us/status/change', [ContactUsController::class, 'changeStatus']);
         Route::get('contact_us/{status?}', [ContactUsController::class, 'index'])->name('contact_us.index');
-        // Route::resource('contact_us', ContactUsController::class);
 
-        // /**
-        //  * --------------------------------------------
-        //  *  Service Studio Booking Route Controller
-        //  * --------------------------------------------
-        //  */
-
-
-
-        Route::get('services_booking_studios/services', [ServicesBookingStudioController::class, 'services'])->name('services_booking_studios.services');
-        Route::post('services_booking_studios/{studio_branch}/servcies', [ServicesBookingStudioController::class, 'setServices'])->name('services_booking_studios.set_services');
-        Route::resource('services_booking_studios', ServicesBookingStudioController::class);
-
-        /**
-         * --------------------------------------------
-         *  Store House Route Controller
-         * --------------------------------------------
-         */
-        Route::resource('store_houses', StoreHouseController::class);
-        /**
-         * --------------------------------------------
-         *  Store House Route Controller
-         * --------------------------------------------
-         */
-        Route::resource('delete_account_users', DeleteAccountUserController::class);
-        /**
-         * --------------------------------------------
-         *  Store House Route Controller
-         * --------------------------------------------
-         */
         Route::post('users/block', [UserController::class, 'blockUser']);
         Route::resource('users', UserController::class);
 
@@ -213,58 +170,13 @@ Route::group([
          *  Products Route Controller
          * --------------------------------------------
          */
-        Route::get('products/{product}/distribution', [ProductController::class, 'distribution'])->name('products.distribution');
-        Route::get('products/me', [ProductController::class, 'studioProduct'])->name('products.studio');
-        Route::post('products/{product}/distribution', [ProductController::class, 'distributionToStudio']);
-        Route::resource('products', ProductController::class);
-        /**
-         * --------------------------------------------
-         *  Privecy Route Controller
-         * --------------------------------------------
-         */
+        // Route::get('products/{product}/distribution', [ProductController::class, 'distribution'])->name('products.distribution');
+        // Route::get('products/me', [ProductController::class, 'studioProduct'])->name('products.studio');
+        // Route::post('products/{product}/distribution', [ProductController::class, 'distributionToStudio']);
+        // Route::resource('products', ProductController::class);
+        
 
-        Route::resource('studios', StudioController::class);
-        /**
-         * --------------------------------------------
-         *  Studio Branches Route Controller
-         * --------------------------------------------
-         */
-        Route::get('studios/{studio_branch}/servcies', [StudioBranchController::class, 'showServices'])->name('studios.show_services');
-        Route::post('studios/{studio_branch}/servcies', [StudioBranchController::class, 'setServices'])->name('studios.set_services');
-        Route::post('studios/block', [StudioBranchController::class, 'blockStudio'])->name('studios.block');
-        Route::resource('studio_branches', StudioBranchController::class);
-
-        /**
-         * --------------------------------------------
-         *   Delivary Route Controller
-         * --------------------------------------------
-         */
-        Route::resource('delivaries', DelivaryController::class);
-        /**
-         * --------------------------------------------
-         *   Payment gat ways Controller
-         * --------------------------------------------
-         */
-        Route::resource('payment_gat_ways', PaymentGatWayController::class);
-
-        //  /**
-        //  * --------------------------------------------
-        //  *  Privecy Route Controller
-        //  * --------------------------------------------
-        //  */
-        Route::resource('privecies', PrivecyController::class);
-        //  /**
-        //  * --------------------------------------------
-        //  *  TermUser Route Controller
-        //  * --------------------------------------------
-        //  */
-        Route::controller(TermUserController::class)->group(function () {
-            Route::get('term_users', 'index')->name('term_users.index');
-            Route::get('term_users/create', 'create')->name('term_users.create');
-            Route::get('term_users/{term_user}/edit', 'edit')->name('term_users.edit');
-            Route::post('term_users', 'store');
-            Route::put('term_users/{term_user}', 'update');
-        });
+        
         /**
          * --------------------------------------------
          *  AboutUs Route Controller
@@ -278,89 +190,6 @@ Route::group([
             Route::put('about_us/{about_us}', 'update')->name('about_us.update');
         });
 
-        /**
-         * --------------------------------------------
-         *  FAQS Route Controller
-         * --------------------------------------------
-         */
-        Route::controller(FaqsController::class)->group(function () {
-            Route::get('faqs', 'index')->name('faqs.index');
-            Route::get('faqs/create', 'create')->name('faqs.create');
-            Route::get('faqs/{faqs}/edit', 'edit')->name('faqs.edit');
-            Route::post('faqs', 'store')->name('faqs.store');
-            Route::put('faqs/{faqs}', 'update')->name('faqs.update');
-            Route::delete('faqs/{faqs}', 'destroy')->name('faqs.destroy');
-        });
-
-        /**
-         * --------------------------------------------
-         *  Request Accept Studio Route Controller
-         * --------------------------------------------
-         */
-        Route::controller(RequestAcceptStudioController::class)->group(function () {
-            Route::get('request-studio', 'index')->name('request-studio.index');
-            Route::get('request-studio/{id}', 'show')->name('request-studio.show');
-            Route::post('request-studio/{id}/accept', 'accept')->name('request-studio.accept');
-            Route::post('request-studio/{id}/inaccept', 'inAccept')->name('request-studio.inAccept');
-        });
-
-        /**
-         * --------------------------------------------
-         *  Postcard Service Route Controller
-         * --------------------------------------------
-         */
-        Route::resource('postcard_services', PostcardServiceController::class);
-        Route::resource('option_postcard_services', OptionPostcardServiceController::class);
-        Route::resource('sub_option_postcard_services', SubOptionPostcardServiceController::class);
-        /**
-         * --------------------------------------------
-         *  Poster Printing Route Controller
-         * --------------------------------------------
-         */
-        Route::resource('posterprint_services', PosterprintServiceController::class);
-        Route::resource('option_posterprint_services', OptionPosterprintServiceController::class);
-        Route::resource('sub_option_posterprint_services', SubOptionPosterprintServiceController::class);
-        Route::resource('packge_poster_services', PackgePosterServiceController::class);
-
-        /**
-         * --------------------------------------------
-         *  Passport Route Controller
-         * --------------------------------------------
-         */
-        Route::get('passport_types/{passport_type}/countries', [PassportTypeController::class, 'showCountries'])->name('passport_types.show_countries');
-        Route::post('passport_types/{passport_type}/countries', [PassportTypeController::class, 'setCountries'])->name('passport_types.set_countries');
-        Route::resource('passport_types', PassportTypeController::class);
-        Route::resource('passport_options', PassportOptionController::class);
-        Route::resource('passport_services', PassportServiceController::class);
-        Route::resource('passport_countries', PassportCountryController::class);
-        /**
-         * --------------------------------------------
-         *  Frame&Album Route Controller
-         * --------------------------------------------
-         */
-        Route::resource('frame_album_services', FrameAlbumServiceController::class);
-        Route::resource('option_frame_album_services', OptionFrameAlbumServiceController::class);
-        Route::resource('frames_or_albums', FramesOrAlbumController::class);
-        Route::resource('frames_sizes', FramesSizeController::class);
-        Route::resource('album_sizes', AlbumSizeController::class);
-        Route::resource('qs_frames_albums', QsFramesAlbumController::class);
-
-        /**
-         * --------------------------------------------
-         *  Booking Studio Services  Route Controller
-         * --------------------------------------------
-         */
-
-        Route::resource('booking_studio_services', BookingStudioServiceController::class);
-
-        /**
-         * --------------------------------------------
-         *  SoftCopy Services  Route Controller
-         * --------------------------------------------
-         */
-
-        Route::resource('soft_copy_services', SoftCopyServiceController::class);
-
 
         /**
          * --------------------------------------------
@@ -370,15 +199,7 @@ Route::group([
 
         Route::resource('currencies', CurrencyController::class);
 
-        /**
-         * --------------------------------------------
-         *  Qs Order Route Controller
-         * --------------------------------------------
-         */
-
-        Route::resource('qs_date_orders', QsDateOrderController::class);
-        Route::resource('qs_general_orders', QsGeneralOrderController::class);
-        Route::resource('order_statuses', OrderStatusController::class);
+      
 
         /**
          * --------------------------------------------
@@ -387,29 +208,9 @@ Route::group([
          */
 
         // Route::resource('owner_studios',OwnerStudioController::class);
-        /**
-         * --------------------------------------------
-         *  Order Studio Route Controller
-         * --------------------------------------------
-         */
-        Route::get('order_studios/{type}/{id}/order/{orderId}/detials', [OrderStudioController::class, 'detials'])->name('order_studios.detials');
-        Route::get('order_studios/{type}/booking/{bookingId}/user/{userId}/order/{orderId}/download', [OrderStudioController::class, 'download'])->name('order_studios.download');
-        Route::get('order_studios/user/{userId}/order/{orderId}/download', [OrderStudioController::class, 'downloadAll'])->name('order_studios.download.all');
-        Route::post('order_studios/send-to-studio', [OrderStudioController::class, 'sendToStudio'])->name('order_studios.sendToStudio');
-        Route::resource('order_studios', OrderStudioController::class);
+        
 
-        /**
-         * --------------------------------------------
-         *  Currency  Route Controller
-         * --------------------------------------------
-         */
-
-        Route::get('ads', [AdsController::class, 'index'])->name('ads.index');
-        Route::get('ads/create', [AdsController::class, 'create'])->name('ads.create');
-        Route::post('ads', [AdsController::class, 'store'])->name('ads.store');
-        Route::get('ads/{ads}/edit', [AdsController::class, 'edit'])->name('ads.edit');
-        Route::put('ads/{ads}', [AdsController::class, 'update'])->name('ads.update');
-        Route::delete('ads/{ads}', [AdsController::class, 'destroy'])->name('ads.destroy');
+       
 
         /**
          * --------------------------------------------
@@ -472,14 +273,7 @@ Route::group([
 
         
 
-        Route::resource('notification_fcm_users', NotificationFcmUserController::class);
-
-        /**
-         * --------------------------------------------
-         * Promo Code Route Controller
-         * --------------------------------------------
-         */
-        Route::resource('promo_codes', PromoCodeController::class);
+   
     });
 });
 
@@ -514,11 +308,4 @@ Route::group(
         });
     }
 );
-
-
-// Route::get('/auth/{provider}/callback', [AuthSocialController::class, 'callback'])->name('auth.social.callback');
-// Route::get('/auth/{provider}/redirect', [AuthSocialController::class, 'redirect'])->name('auth.social.redirect');
-
-
-Route::get('/mastercard/callback/handle', [MastercardController::class,'handlePayment'])->name('mastercard.returnUrl');
 

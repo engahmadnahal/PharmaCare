@@ -314,55 +314,5 @@
     </div>
     <!--end::Body-->
 
-
-
-
-    <div class="row">
-        <div class="col-xl-6">
-            <!--begin::Charts Widget 3-->
-            <div class="card card-custom ">
-                <!--begin::Header-->
-                <div class="card-header h-auto border-0">
-                    <div class="card-title py-5">
-                        <h3 class="card-label">
-                            <span class="d-block text-dark font-weight-bolder">{{__('cms.users')}}</span>
-                        </h3>
-                    </div>
-                 
-                </div>
-                <!--end::Header-->
-                <!--begin::Body-->
-                <div class="card-body">
-                    <div id="kt_charts_user"></div>
-                </div>
-                <!--end::Body-->
-            </div>
-            <!--end::Charts Widget 3-->
-        </div>
-
-        <div class="col-xl-6">
-            <!--begin::Charts Widget 3-->
-            <div class="card card-custom ">
-                <!--begin::Header-->
-                <div class="card-header h-auto border-0">
-                    <div class="card-title py-5">
-                        <h3 class="card-label">
-                            <span class="d-block text-dark font-weight-bolder">{{__('cms.orders')}}</span>
-                        </h3>
-                    </div>
-                 
-                </div>
-                <!--end::Header-->
-                <!--begin::Body-->
-                <div class="card-body">
-                    <div id="kt_charts_orders"></div>
-                </div>
-                <!--end::Body-->
-            </div>
-            <!--end::Charts Widget 3-->
-        </div>
-
-
-    </div>
 </div>
 <!--end::Row-->

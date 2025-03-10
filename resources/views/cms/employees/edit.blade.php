@@ -46,8 +46,8 @@
                     <div class="form-group row mt-4">
                         <label class="col-3 col-form-label">{{__('cms.full_name')}}:</label>
                         <div class="col-9">
-                            <input type="text" class="form-control" id="name" value="{{$admin->name}}"
-                                placeholder="Enter full name"  value="{{$admin->name}}"/>
+                            <input type="text" class="form-control" id="name" value="{{$data->name}}"
+                                placeholder="Enter full name"  value="{{$data->name}}"/>
                             <span class="form-text text-muted">{{__('cms.please_enter')}} {{__('cms.full_name')}}</span>
                         </div>
                     </div>
@@ -56,14 +56,14 @@
                         <label class="col-3 col-form-label">{{__('cms.mobile')}}:</label>
                         <div class="col-9">
                             <input type="number" class="form-control" id="mobile"
-                                placeholder="{{__('cms.mobile')}}" value="{{$admin->mobile}}" />
+                                placeholder="{{__('cms.mobile')}}" value="{{$data->mobile}}" />
                             <span class="form-text text-muted">{{__('cms.please_enter')}} {{__('cms.mobile')}}</span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-3 col-form-label">{{__('cms.email')}}:</label>
                         <div class="col-9">
-                            <input type="email" class="form-control" id="email" placeholder="{{__('cms.email')}}" value="{{$admin->email}}" />
+                            <input type="email" class="form-control" id="email" placeholder="{{__('cms.email')}}" value="{{$data->email}}" />
                             <span class="form-text text-muted">{{__('cms.please_enter')}} {{__('cms.email')}}</span>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                         <label class="col-3 col-form-label">{{__('cms.address')}}:</label>
                         <div class="col-9">
                             <input type="text" class="form-control" id="address"
-                                placeholder="{{__('cms.address')}}" value="{{$admin->address}}"/>
+                                placeholder="{{__('cms.address')}}" value="{{$data->address}}"/>
                             <span class="form-text text-muted">{{__('cms.please_enter')}} {{__('cms.address')}}</span>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                         <label class="col-3 col-form-label">{{__('cms.national_id')}}:</label>
                         <div class="col-9">
                             <input type="number" class="form-control" id="national_id"
-                                placeholder="{{__('cms.national_id')}}" value="{{$admin->national_id}}"/>
+                                placeholder="{{__('cms.national_id')}}" value="{{$data->national_id}}"/>
                             <span class="form-text text-muted">{{__('cms.please_enter')}} {{__('cms.national_id')}}</span>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                         <label class="col-12 col-form-label">{{ __('cms.image') }}:</label>
                         <div class="col-9">
                             <div class="image-input image-input-empty image-input-outline" id="kt_image_6"
-                                style="background-image: url({{ Storage::url($admin->avater) }})">
+                                style="background-image: url({{ Storage::url($data->avater) }})">
                                 <div class="image-input-wrapper"></div>
     
                                 <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
@@ -120,7 +120,7 @@
                         <div class="col-3">
                             <span class="switch switch-outline switch-icon switch-success">
                                 <label>
-                                    <input type="checkbox" @checked($admin->active)
+                                    <input type="checkbox" @checked($data->active)
                                     id="active">
                                     <span></span>
                                 </label>
@@ -134,7 +134,7 @@
 
                         </div>
                         <div class="col-9">
-                            <button type="button" onclick="performEdit('{{$admin->id}}')"
+                            <button type="button" onclick="performEdit('{{$data->id}}')"
                                 class="btn btn-primary mr-2">{{__('cms.update')}}</button>
                             <button type="reset" class="btn btn-secondary">{{__('cms.cancel')}}</button>
                         </div>

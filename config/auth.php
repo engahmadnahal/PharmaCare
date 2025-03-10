@@ -44,22 +44,12 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'studio' => [
+        'employee' => [
             'driver' => 'session',
-            'provider' => 'studios',
+            'provider' => 'employees',
         ],
 
-        'studiobranch' => [
-            'driver' => 'session',
-            'provider' => 'studiobranchs',
-        ],
 
-        
-        'owner' => [
-            'driver' => 'session',
-            'provider' => 'owners',
-        ],
-        
         'user-api' => [
             'driver' => 'passport',
             'provider' => 'users'
@@ -84,17 +74,13 @@ return [
     */
 
     'providers' => [
-        
-        'studios' => [
+
+        'employees' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Studio::class,
+            'model' => App\Models\Employee::class,
         ],
 
-        'studiobranchs' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\StudioBranch::class,
-        ],
-        
+
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
@@ -103,15 +89,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
-        'owners' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\OwnerStudio::class,
-        ],
-        
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+
     ],
 
     /*
@@ -136,22 +114,16 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        
+
         'admin' => [
             'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
-        'owner' => [
-            'provider' => 'owners',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
-        
-        
-        
+    
+
+
     ],
 
     /*

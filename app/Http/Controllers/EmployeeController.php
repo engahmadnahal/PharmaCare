@@ -7,6 +7,7 @@ use App\Helpers\Messages;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Employee;
+use App\Models\Pharmaceutical;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -33,12 +34,10 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $roles = Role::where('guard_name', 'admin')->get();
-        $countries = Country::where('active', true)->get();
-        $cities = City::where('active', true)->get();
-        $regions = Region::where('active', true)->get();
+        $roles = Role::where('guard_name', 'employee')->get();
+        $pharmaceuticals = Pharmaceutical::where('active', true)->get();
 
-        return view('cms.employees.create', ['roles' => $roles, 'countries' => $countries, 'cities' => $cities, 'regions' => $regions]);
+        return view('cms.employees.create', ['roles' => $roles, 'pharmaceuticals' => $pharmaceuticals]);
     }
 
     /**
@@ -53,9 +52,6 @@ class EmployeeController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:doctors,email',
             'mobile' => 'required|string|unique:doctors,mobile',
-            'country_id' => 'required|integer|countries,id',
-            'city_id' => 'required|integer|cities,id',
-            'region_id' => 'required|integer|regions,id',
             'address' => 'required|string|max:255',
             'avater' => 'required|image|mimes:png,jpg',
             'national_id' => 'required|string|unique:doctors,national_id',
@@ -63,29 +59,26 @@ class EmployeeController extends Controller
             'dob' => 'required|date',
             'role_id' => 'required|integer|exists:roles,id',
         ]);
-        if (!$validator->fails()) {
-            $role =  Role::findOrFail($request->get('role_id'));
-            $employee = new Employee();
-            $employee->name = $request->input('name');
-            $employee->country_id = $request->input('country_id');
-            $employee->city_id = $request->input('city_id');
-            $employee->region_id = $request->input('region_id');
-            $employee->dob = $request->input('dob');
-            $employee->email = $request->input('email');
-            $employee->mobile = $request->input('mobile');
-            $employee->address = $request->input('address');
-            $employee->avater = $this->uploadFile($request->file('avater'));
-            $employee->certificate = $this->uploadFile($request->file('certificate'));
-            $employee->national_id = $request->input('national_id');
-            $employee->password = Hash::make('password');
-            $isSave = $employee->save();
-            if ($isSave) {
-                $employee->assignRole($role);
-            }
-            return ControllersService::generateProcessResponse($isSave, 'CREATE');
-        } else {
+        if ($validator->fails()) {
             return response()->json(['message' => $validator->getMessageBag()->first()], Response::HTTP_BAD_REQUEST);
         }
+
+        $employee = new Employee();
+        $employee->name = $request->input('name');
+        $employee->dob = $request->input('dob');
+        $employee->email = $request->input('email');
+        $employee->mobile = $request->input('mobile');
+        $employee->address = $request->input('address');
+        $employee->avater = $this->uploadFile($request->file('avater'));
+        $employee->certificate = $this->uploadFile($request->file('certificate'));
+        $employee->national_id = $request->input('national_id');
+        $employee->password = Hash::make('password');
+        $isSave = $employee->save();
+        if ($isSave) {
+            $role =  Role::findOrFail($request->get('role_id'));
+            $employee->assignRole($role);
+        }
+        return ControllersService::generateProcessResponse($isSave, 'CREATE');
     }
 
     /**
@@ -107,13 +100,11 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        $roles = Role::where('guard_name', 'admin')->get();
+        $roles = Role::where('guard_name', 'employee')->get();
         $assignedRole = $employee->roles()->first();
-        $countries = Country::where('active', true)->get();
-        $cities = City::where('active', true)->get();
-        $regions = Region::where('active', true)->get();
 
-        return view('cms.employees.edit', ['admin' => $employee, 'roles' => $roles, 'assignedRole' => $assignedRole, 'countries' => $countries, 'cities' => $cities, 'regions' => $regions]);
+
+        return view('cms.employees.edit', ['data' => $employee, 'roles' => $roles, 'assignedRole' => $assignedRole]);
     }
 
     /**
@@ -126,9 +117,6 @@ class EmployeeController extends Controller
     public function update(Request $request, Employee $employee)
     {
         $validator = Validator($request->all(), [
-            'country_id' => 'required|integer|countries,id',
-            'city_id' => 'required|integer|cities,id',
-            'region_id' => 'required|integer|regions,id',
             'dob' => 'required|date',
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:employees,email,' . $employee->id,
@@ -146,11 +134,8 @@ class EmployeeController extends Controller
             $employee->email = $request->input('email');
             $employee->mobile = $request->input('mobile');
             $employee->address = $request->input('address');
-            $employee->country_id = $request->input('country_id');
-            $employee->city_id = $request->input('city_id');
-            $employee->region_id = $request->input('region_id');
             $employee->dob = $request->input('dob');
-            $employee->address = $request->input('national_id');
+            $employee->national_id = $request->input('national_id');
 
             if ($request->hasFile('avater')) {
                 $employee->avater = $this->uploadFile($request->file('avater'));

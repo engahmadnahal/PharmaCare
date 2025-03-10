@@ -568,5 +568,6 @@ return [
     'certificate' => 'الشهادة',
     'pharmaceutical' => 'الصيدليات',
  
+    'employees' => 'الموظفين',
 
 ];

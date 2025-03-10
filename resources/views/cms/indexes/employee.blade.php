@@ -159,7 +159,7 @@
                     </span>
                     <div class="text-success font-weight-bolder font-size-h6 mb-2 mt-5">
                         {{ __('cms.orders_today') }}
-                        ({{$todayOrder}} )
+                        ({{$todayOrder}} {{$currency}})
                     </div>
 
                 </div>
@@ -191,7 +191,7 @@
                     </span>
                     <div class="text-success font-weight-bolder font-size-h6 mb-2 mt-5">
                         {{ __('cms.orders_week') }}
-                        ({{$weekOrder}} )
+                        ({{$weekOrder}} {{$currency}})
                     </div>
 
                 </div>
@@ -223,7 +223,7 @@
                     </span>
                     <div class="text-success font-weight-bolder font-size-h6 mb-2 mt-5">
                         {{ __('cms.orders_month') }}
-                        ({{$monthOrder}} )
+                        ({{$monthOrder}} {{$currency}})
                     </div>
 
                 </div>
@@ -256,7 +256,7 @@
                     </span>
                     <div class="text-success font-weight-bolder font-size-h6 mb-2 mt-5">
                         {{ __('cms.total_order') }}
-                        ({{$totalOrder}} )
+                        ({{$totalOrder}} {{$currency}})
                     </div>
 
                 </div>
@@ -267,6 +267,62 @@
 
 
     </div>
+
+  
+    <!--begin::Header-->
+    <div class="card-header border-0 py-5">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label font-weight-bolder text-dark">{{__('cms.last_studio_register')}}</span>
+        </h3>
+
+    </div>
+    <!--end::Header-->
+    <!--begin::Body-->
+    <div class="card-body pt-0 pb-3">
+        <div class="tab-content">
+            <!--begin::Table-->
+            <div class="table-responsive">
+                <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
+                    <thead>
+                        <tr class="text-left text-uppercase">
+                            <th style="min-width: 250px" class="pl-7">
+                                <span class="text-dark-75">{{__('cms.full_name')}}</span>
+                            </th>
+                        <th style="min-width: 150px">{{__('cms.mobile')}}</th>
+                        <th style="min-width: 150px">{{__('cms.email')}}</th>
+                        <th style="min-width: 130px">{{__('cms.account_status')}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- @foreach ($lastStudios as $std)
+                        <tr>
+                            <td class="pl-0">
+                                <a href="#"
+                                    class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">{{$std->name}}</a>
+                            </td>
+                            <td>
+                                <span
+                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$std->mobile}}</span>
+                            </td>
+                            <td>
+                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$std->email}}</span>
+                            </td>
+                           
+                            <td>
+                                <span
+                                    class="label label-lg @if($std->active) label-light-success @else label-light-danger @endif label-inline">{{$std->active_key}}</span>
+                            </td>
+    
+                        </tr>
+                        @endforeach -->
+
+                    </tbody>
+                </table>
+            </div>
+            <!--end::Table-->
+        </div>
+    </div>
+    <!--end::Body-->
 
 
 

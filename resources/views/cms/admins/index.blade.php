@@ -19,7 +19,7 @@
             <span class="text-muted mt-3 font-weight-bold font-size-sm"></span>
         </h3>
         <div class="card-toolbar">
-            <a href="{{route('doctors.create')}}"
+            <a href="{{route('employees.create')}}"
                 class="btn btn-info font-weight-bolder font-size-sm mr-2">{{__('cms.create')}}</a>
             
 
@@ -62,7 +62,7 @@
 
                         <td class="pr-0 text-right">
                             @can('Update-Admin')
-                            <a href="{{route('doctors.edit',$admin->id)}}"
+                            <a href="{{route('employeesedit',$admin->id)}}"
                                 class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                                 <span class="svg-icon svg-icon-md svg-icon-primary">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->

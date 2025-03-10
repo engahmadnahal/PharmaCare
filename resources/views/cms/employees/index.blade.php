@@ -19,9 +19,9 @@
             <span class="text-muted mt-3 font-weight-bold font-size-sm"></span>
         </h3>
         <div class="card-toolbar">
-            <a href="{{route('doctors.create')}}"
+            <a href="{{route('employees.create')}}"
                 class="btn btn-info font-weight-bolder font-size-sm mr-2">{{__('cms.create')}}</a>
-            
+
 
         </div>
     </div>
@@ -36,7 +36,7 @@
                         <th style="min-width: 120px">{{__('cms.full_name')}}</th>
                         <th style="min-width: 150px">{{__('cms.mobile')}}</th>
                         <th style="min-width: 150px">{{__('cms.email')}}</th>
-                        <th style="min-width: 130px">{{__('cms.account_status')}}</th>
+                        <th style="min-width: 130px">{{__('cms.pharmaceutical')}}</th>
                         <th class="pr-0 text-right" style="min-width: 160px">{{__('cms.actions')}}</th>
                     </tr>
                 </thead>
@@ -54,15 +54,15 @@
                         <td>
                             <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$admin->email}}</span>
                         </td>
-                       
+
                         <td>
                             <span
-                                class="label label-lg @if($admin->active) label-light-success @else label-light-danger @endif label-inline">{{$admin->active_key}}</span>
+                                class="label label-lg  label-light-success label-inline">{{$admin->pharmaceutical?->name}}</span>
                         </td>
 
                         <td class="pr-0 text-right">
                             @can('Update-Admin')
-                            <a href="{{route('doctors.edit',$admin->id)}}"
+                            <a href="{{route('employeesedit',$admin->id)}}"
                                 class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                                 <span class="svg-icon svg-icon-md svg-icon-primary">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->
@@ -120,7 +120,7 @@
 @section('scripts')
 <script src="{{asset('assets/js/pages/widgets.js')}}"></script>
 <script>
-    function performDestroy(id,reference) {
+    function performDestroy(id, reference) {
         confirmDestroy('/cms/admin/doctors', id, reference);
     }
 </script>

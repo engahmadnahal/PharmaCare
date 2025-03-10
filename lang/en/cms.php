@@ -535,8 +535,8 @@ return [
     'pharm' => 'Pharm',
     'doctors' => 'Doctors',
     'certificate' => 'Certificate',
-    'pharmaceutical' => 'Pharmaceutical'
-
+    'pharmaceutical' => 'Pharmaceutical',
+    'employees' => 'Employees',
 
 
 
