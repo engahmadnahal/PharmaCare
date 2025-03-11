@@ -1,8 +1,8 @@
 @extends('cms.parent')
 
-@section('page-name',__('cms.doctors'))
-@section('main-page',__('cms.hr'))
-@section('sub-page',__('cms.doctors'))
+@section('page-name',__('cms.pharmaceuticals'))
+@section('main-page',__('cms.pharm'))
+@section('sub-page',__('cms.pharmaceuticals'))
 @section('page-name-small',__('cms.create'))
 
 @section('styles')
@@ -27,108 +27,144 @@
             <!--begin::Form-->
             <form id="create-form">
                 <div class="card-body">
-                    <div class="form-group row mt-4">
-                        <label class="col-3 col-form-label">{{__('cms.role')}}:</label>
-                        <div class="col-lg-4 col-md-9 col-sm-12">
-                            <div class="dropdown bootstrap-select form-control dropup">
-                                <select class="form-control selectpicker" data-size="7" id="role_id"
-                                    title="{{__('cms.select_hint')}}" tabindex="null" data-live-search="true">
-                                    @foreach ($roles as $role)
-                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{__('cms.name_en')}}:</label>
+                                <input type="text" class="form-control" id="name_en" placeholder="{{__('cms.name_en')}}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{__('cms.name_ar')}}:</label>
+                                <input type="text" class="form-control" id="name_ar" placeholder="{{__('cms.name_ar')}}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>{{__('cms.email')}}:</label>
+                                <input type="email" class="form-control" id="email" placeholder="{{__('cms.email')}}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>{{__('cms.mobile')}}:</label>
+                                <input type="text" class="form-control" id="mobile" placeholder="{{__('cms.mobile')}}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>{{__('cms.phone')}}:</label>
+                                <input type="text" class="form-control" id="phone" placeholder="{{__('cms.phone')}}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{__('cms.commercial_register')}}:</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="commercial_register" accept="application/pdf">
+                                    <label class="custom-file-label" for="commercial_register">Choose file</label>
+                                    <small class="form-text text-muted">Only PDF files are allowed</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{__('cms.tax_number')}}:</label>
+                                <input type="text" class="form-control" id="tax_number" placeholder="{{__('cms.tax_number')}}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{__('cms.type')}}:</label>
+                                <select class="form-control" id="type">
+                                    <option value="{{\App\Enum\PharmType::PARTNER}}">{{__('cms.partner')}}</option>
+                                    <option value="{{\App\Enum\PharmType::BENEFICIARY}}">{{__('cms.beneficiary')}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{__('cms.has_branch')}}:</label>
+                                <select class="form-control" id="has_branch">
+                                    <option value="1">{{__('cms.yes')}}</option>
+                                    <option value="0">{{__('cms.no')}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>{{__('cms.country')}}:</label>
+                                <select class="form-control" id="country_id">
+                                    @foreach($countries as $country)
+                                        <option value="{{$country->id}}">{{$country->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <span class="form-text text-muted">{{__('cms.please_select')}} {{__('cms.role')}}</span>
                         </div>
-                    </div>
-                    <div class="form-group row mt-4">
-                        <label class="col-3 col-form-label">{{__('cms.full_name')}}:</label>
-                        <div class="col-9">
-                            <input type="text" class="form-control" id="name" placeholder="{{__('cms.full_name')}}" />
-                            <span class="form-text text-muted">{{__('cms.please_enter')}} {{__('cms.full_name')}}</span>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>{{__('cms.city')}}:</label>
+                                <select class="form-control" id="city_id">
+                                    @foreach($cities as $city)
+                                        <option value="{{$city->id}}">{{$city->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row mt-4">
-                        <label class="col-3 col-form-label">{{__('cms.mobile')}}:</label>
-                        <div class="col-9">
-                            <input type="number" class="form-control" id="mobile"
-                                placeholder="{{__('cms.mobile')}}" />
-                            <span class="form-text text-muted">{{__('cms.please_enter')}} {{__('cms.mobile')}}</span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-3 col-form-label">{{__('cms.email')}}:</label>
-                        <div class="col-9">
-                            <input type="email" class="form-control" id="email" placeholder="{{__('cms.email')}}" />
-                            <span class="form-text text-muted">{{__('cms.please_enter')}} {{__('cms.email')}}</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row mt-4">
-                        <label class="col-3 col-form-label">{{__('cms.address')}}:</label>
-                        <div class="col-9">
-                            <input type="text" class="form-control" id="address"
-                                placeholder="{{__('cms.address')}}" />
-                            <span class="form-text text-muted">{{__('cms.please_enter')}} {{__('cms.address')}}</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row mt-4">
-                        <label class="col-3 col-form-label">{{__('cms.national_id')}}:</label>
-                        <div class="col-9">
-                            <input type="number" class="form-control" id="national_id"
-                                placeholder="{{__('cms.national_id')}}" />
-                            <span class="form-text text-muted">{{__('cms.please_enter')}} {{__('cms.national_id')}}</span>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row mt-4">
-                        <label class="col-3 col-form-label">{{__('cms.password')}}:</label>
-                        <div class="col-9">
-                            <input type="text" class="form-control" id="password"
-                                placeholder="{{__('cms.password')}}" />
-                            <span class="form-text text-muted">{{__('cms.password')}} {{__('cms.password')}}</span>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group ">
-                        <label class="col-12 col-form-label">{{ __('cms.image') }}:</label>
-                        <div class="col-9">
-                            <div class="image-input image-input-empty image-input-outline" id="kt_image_6"
-                                style="background-image: url({{ asset('assets/media/users/blank.png') }})">
-                                <div class="image-input-wrapper"></div>
-    
-                                <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                    data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
-                                    <i class="fa fa-pen icon-sm text-muted"></i>
-                                    <input type="file" name="image" id="image" accept=".png, .jpg, .jpeg">
-                                    <input type="hidden" name="image">
-                                </label>
-    
-                                <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                    data-action="cancel" data-toggle="tooltip" title="" data-original-title="Cancel avatar">
-                                    <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                </span>
-    
-                                <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                    data-action="remove" data-toggle="tooltip" title="" data-original-title="Remove avatar">
-                                    <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                </span>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>{{__('cms.region')}}:</label>
+                                <select class="form-control" id="region_id">
+                                    @foreach($regions as $region)
+                                        <option value="{{$region->id}}">{{$region->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="form-group row">
-                        <label class="col-3 col-form-label">{{__('cms.account_status')}}</label>
-                        <div class="col-3">
-                            <span class="switch switch-outline switch-icon switch-success">
-                                <label>
-                                    <input type="checkbox" checked="checked" id="active">
-                                    <span></span>
-                                </label>
-                            </span>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>{{__('cms.address')}}:</label>
+                                <input type="text" class="form-control" id="address" placeholder="{{__('cms.address')}}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{__('cms.status')}}:</label>
+                                <select class="form-control" id="status">
+                                    <option value="1">{{__('cms.active')}}</option>
+                                    <option value="0">{{__('cms.inactive')}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{__('cms.parent')}}:</label>
+                                <select class="form-control" id="parent_id">
+                                    <option value="">{{__('cms.select_parent')}}</option>
+                                    @foreach($pharmaceuticals as $pharmaceutical)
+                                        <option value="{{$pharmaceutical->id}}">{{$pharmaceutical->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -157,19 +193,50 @@
 <script>
     var cover = new KTImageInput('kt_image_6');
     
+    // Add this to handle file input label
+    $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
+
     function performStore(){
-       
         let formData = new FormData();
-        formData.append('name',document.getElementById('name').value);
-        formData.append('email',document.getElementById('email').value);
-        formData.append('role_id',document.getElementById('role_id').value);
-        formData.append('address',document.getElementById('address').value);
-        formData.append('mobile',document.getElementById('mobile').value);
-        formData.append('password',document.getElementById('password').value);
-        formData.append('national_id',document.getElementById('national_id').value);
-        formData.append('avater',document.getElementById('image').files[0]);
-        formData.append('active',document.getElementById('active').checked);
-        store('/cms/admin/doctors',formData);
+        formData.append('name_en', document.getElementById('name_en').value);
+        formData.append('name_ar', document.getElementById('name_ar').value);
+        formData.append('email', document.getElementById('email').value);
+        formData.append('mobile', document.getElementById('mobile').value);
+        formData.append('phone', document.getElementById('phone').value);
+        formData.append('tax_number', document.getElementById('tax_number').value);
+        formData.append('type', document.getElementById('type').value);
+        formData.append('has_branch', document.getElementById('has_branch').value);
+        formData.append('country_id', document.getElementById('country_id').value);
+        formData.append('city_id', document.getElementById('city_id').value);
+        formData.append('region_id', document.getElementById('region_id').value);
+        formData.append('address', document.getElementById('address').value);
+        formData.append('status', document.getElementById('status').value);
+        
+        if (document.getElementById('parent_id').value) {
+            formData.append('parent_id', document.getElementById('parent_id').value);
+        }
+
+        // Handle file upload
+        const commercialRegister = document.getElementById('commercial_register').files[0];
+        if (commercialRegister) {
+            formData.append('commercial_register', commercialRegister);
+        }
+
+        axios.post('/cms/admin/pharmaceuticals', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(function (response) {
+            toastr.success(response.data.message);
+            window.location.href = '/cms/admin/pharmaceuticals';
+        })
+        .catch(function (error) {
+            toastr.error(error.response.data.message);
+        });
     }
 </script>
 @endsection

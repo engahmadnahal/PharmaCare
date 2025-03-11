@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ControllersService;
-use App\Helpers\Messages;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Pharmaceutical;
 use App\Models\Region;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
 
 class PharmaceuticalController extends Controller
@@ -35,7 +33,8 @@ class PharmaceuticalController extends Controller
         $countries = Country::where('active', true)->get();
         $cities = City::where('active', true)->get();
         $regions = Region::where('active', true)->get();
-        return view('cms.pharma.create', ['countries' => $countries, 'cities' => $cities, 'regions' => $regions]);
+        $pharmaceuticals = Pharmaceutical::where('status', true)->get();
+        return view('cms.pharma.create', ['countries' => $countries, 'cities' => $cities, 'regions' => $regions, 'pharmaceuticals' => $pharmaceuticals]);
     }
 
     /**
@@ -48,41 +47,46 @@ class PharmaceuticalController extends Controller
     {
 
         $validator = Validator($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:doctors,email',
-            'mobile' => 'required|string|unique:doctors,mobile',
-            'country_id' => 'required|integer|countries,id',
-            'city_id' => 'required|integer|cities,id',
-            'region_id' => 'required|integer|regions,id',
+            'name_en' => 'required|string|max:255',
+            'name_ar' => 'required|string|max:255',
+            'email' => 'required|email|unique:pharmaceuticals,email',
+            'mobile' => 'required|string|unique:pharmaceuticals,mobile',
+            'phone' => 'required|string|unique:pharmaceuticals,phone',
+            'commercial_register' => 'required|file|mimes:pdf',
+            'tax_number' => 'required|string',
+            'type' => 'required|string',
+            'has_branch' => 'required|boolean',
+            'country_id' => 'required|exists:countries,id',
+            'city_id' => 'required|exists:cities,id',
+            'region_id' => 'required|exists:regions,id',
             'address' => 'required|string|max:255',
-            'avater' => 'required|image|mimes:png,jpg',
-            'national_id' => 'required|string|unique:doctors,national_id',
-            'certificate' => 'required|file|mimes:pdf',
-            'dob' => 'required|date',
-            'role_id' => 'required|integer|exists:roles,id',
+            'status' => 'required|boolean',
+            'parent_id' => 'nullable|exists:pharmaceuticals,id'
         ]);
-        if (!$validator->fails()) {
-            $role =  Role::findOrFail($request->get('role_id'));
-            $pharmaceutical = new Pharmaceutical();
-            $pharmaceutical->name = $request->input('name');
-            $pharmaceutical->country_id = $request->input('country_id');
-            $pharmaceutical->city_id = $request->input('city_id');
-            $pharmaceutical->region_id = $request->input('region_id');
-            $pharmaceutical->dob = $request->input('dob');
-            $pharmaceutical->email = $request->input('email');
-            $pharmaceutical->mobile = $request->input('mobile');
-            $pharmaceutical->address = $request->input('address');
-            $pharmaceutical->avater = $this->uploadFile($request->file('avater'));
-            $pharmaceutical->certificate = $this->uploadFile($request->file('certificate'));
-            $pharmaceutical->national_id = $request->input('national_id');
-            $isSave = $pharmaceutical->save();
-            if ($isSave) {
-                $pharmaceutical->assignRole($role);
-            }
-            return ControllersService::generateProcessResponse($isSave, 'CREATE');
-        } else {
+
+        if ($validator->fails()) {
             return response()->json(['message' => $validator->getMessageBag()->first()], Response::HTTP_BAD_REQUEST);
         }
+
+        $pharmaceutical = new Pharmaceutical();
+        $pharmaceutical->name_en = $request->input('name_en');
+        $pharmaceutical->name_ar = $request->input('name_ar');
+        $pharmaceutical->email = $request->input('email');
+        $pharmaceutical->mobile = $request->input('mobile');
+        $pharmaceutical->phone = $request->input('phone');
+        $pharmaceutical->commercial_register = $this->uploadFile($request->file('commercial_register'), 'commercial_register');
+        $pharmaceutical->tax_number = $request->input('tax_number');
+        $pharmaceutical->type = $request->input('type');
+        $pharmaceutical->has_branch = $request->input('has_branch');
+        $pharmaceutical->country_id = $request->input('country_id');
+        $pharmaceutical->city_id = $request->input('city_id');
+        $pharmaceutical->region_id = $request->input('region_id');
+        $pharmaceutical->address = $request->input('address');
+        $pharmaceutical->status = $request->input('status');
+        $pharmaceutical->parent_id = $request->input('parent_id');
+
+        $isSave = $pharmaceutical->save();
+        return ControllersService::generateProcessResponse($isSave, 'CREATE');
     }
 
     /**
@@ -93,7 +97,8 @@ class PharmaceuticalController extends Controller
      */
     public function show(Pharmaceutical $pharmaceutical)
     {
-        //
+        
+        return view('cms.pharma.show', ['pharmaceutical' => $pharmaceutical]);
     }
 
     /**
@@ -107,8 +112,9 @@ class PharmaceuticalController extends Controller
         $countries = Country::where('active', true)->get();
         $cities = City::where('active', true)->get();
         $regions = Region::where('active', true)->get();
+        $pharmaceuticals = Pharmaceutical::where('status', true)->get();
 
-        return view('cms.pharma.edit', ['data' => $pharmaceutical,  'countries' => $countries, 'cities' => $cities, 'regions' => $regions]);
+        return view('cms.pharma.edit', ['pharmaceutical' => $pharmaceutical, 'pharmaceuticals' => $pharmaceuticals, 'countries' => $countries, 'cities' => $cities, 'regions' => $regions]);
     }
 
     /**
@@ -121,48 +127,47 @@ class PharmaceuticalController extends Controller
     public function update(Request $request, Pharmaceutical $pharmaceutical)
     {
         $validator = Validator($request->all(), [
-            'country_id' => 'required|integer|countries,id',
-            'city_id' => 'required|integer|cities,id',
-            'region_id' => 'required|integer|regions,id',
-            'dob' => 'required|date',
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:doctors,email,' . $pharmaceutical->id,
-            'mobile' => 'required|string|unique:doctors,mobile,' . $pharmaceutical->id,
+            'name_en' => 'required|string|max:255',
+            'name_ar' => 'required|string|max:255',
+            'email' => 'required|email|unique:pharmaceuticals,email,' . $pharmaceutical->id,
+            'mobile' => 'required|string|unique:pharmaceuticals,mobile,' . $pharmaceutical->id,
+            'phone' => 'required|string|unique:pharmaceuticals,phone,' . $pharmaceutical->id,
+            'commercial_register' => 'nullable|file|mimes:pdf',
+            'tax_number' => 'required|string',
+            'type' => 'required|string',
+            'has_branch' => 'required|boolean',
+            'country_id' => 'required|exists:countries,id',
+            'city_id' => 'required|exists:cities,id',
+            'region_id' => 'required|exists:regions,id',
             'address' => 'required|string|max:255',
-            'avater' => 'nullable|image|mimes:png,jpg',
-            'certificate' => 'nullable|file|mimes:pdf',
-            'national_id' => 'required|string|unique:doctors,national_id,' . $pharmaceutical->id,
-            'role_id' => 'required|integer|exists:roles,id',
+            'status' => 'required|boolean',
+            'parent_id' => 'nullable|exists:pharmaceuticals,id'
         ]);
-        if (!$validator->fails()) {
 
-
-            $pharmaceutical->name = $request->input('name');
-            $pharmaceutical->email = $request->input('email');
-            $pharmaceutical->mobile = $request->input('mobile');
-            $pharmaceutical->address = $request->input('address');
-            $pharmaceutical->country_id = $request->input('country_id');
-            $pharmaceutical->city_id = $request->input('city_id');
-            $pharmaceutical->region_id = $request->input('region_id');
-            $pharmaceutical->dob = $request->input('dob');
-            $pharmaceutical->address = $request->input('national_id');
-
-            if ($request->hasFile('avater')) {
-                $pharmaceutical->avater = $this->uploadFile($request->file('avater'));
-            }
-
-            if ($request->hasFile('certificate')) {
-                $pharmaceutical->certificate = $this->uploadFile($request->file('certificate'));
-            }
-            $isSave = $pharmaceutical->save();
-            if ($isSave) {
-                $role =  Role::findOrFail($request->get('role_id'));
-                $pharmaceutical->assignRole($role);
-            }
-            return ControllersService::generateProcessResponse($isSave, 'UPDATE');
-        } else {
-            return response()->json(['message' => $validator->getMessageBag()->first()], Response::HTTP_BAD_REQUEST);
+        if ($validator->fails()) {
+            return ControllersService::generateValidationErrorMessage($validator->getMessageBag()->first());
         }
+
+        $pharmaceutical->name_en = $request->input('name_en');
+        $pharmaceutical->name_ar = $request->input('name_ar');
+        $pharmaceutical->email = $request->input('email');
+        $pharmaceutical->mobile = $request->input('mobile');
+        $pharmaceutical->phone = $request->input('phone');
+        if ($request->hasFile('commercial_register')) {
+            $pharmaceutical->commercial_register = $this->uploadFile($request->file('commercial_register'), 'commercial_register');
+        }
+        $pharmaceutical->tax_number = $request->input('tax_number');
+        $pharmaceutical->type = $request->input('type');
+        $pharmaceutical->has_branch = $request->input('has_branch');
+        $pharmaceutical->country_id = $request->input('country_id');
+        $pharmaceutical->city_id = $request->input('city_id');
+        $pharmaceutical->region_id = $request->input('region_id');
+        $pharmaceutical->address = $request->input('address');
+        $pharmaceutical->status = $request->input('status');
+        $pharmaceutical->parent_id = $request->input('parent_id');
+
+        $isSave = $pharmaceutical->save();
+        return ControllersService::generateProcessResponse($isSave, 'UPDATE');
     }
 
     /**
@@ -174,10 +179,6 @@ class PharmaceuticalController extends Controller
     public function destroy(Pharmaceutical $pharmaceutical)
     {
         $deleted = $pharmaceutical->delete();
-
-        return response()->json([
-            'status' => $deleted,
-            'message' => Messages::getMessage('SUCCESS'),
-        ], Response::HTTP_OK);
+        return ControllersService::generateProcessResponse($deleted, 'DELETE');
     }
 }
