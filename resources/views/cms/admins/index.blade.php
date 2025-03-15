@@ -62,7 +62,7 @@
 
                         <td class="pr-0 text-right">
                             @can('Update-Admin')
-                            <a href="{{route('employeesedit',$admin->id)}}"
+                            <a href="{{route('admins.edit',$admin->id)}}"
                                 class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                                 <span class="svg-icon svg-icon-md svg-icon-primary">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->

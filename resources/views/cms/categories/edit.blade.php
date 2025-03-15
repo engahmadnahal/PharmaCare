@@ -1,202 +1,88 @@
 @extends('cms.parent')
 
-@section('page-name',__('cms.categories'))
-@section('main-page',__('cms.shop_content_management'))
-@section('sub-page',__('cms.categories'))
-@section('page-name-small',__('cms.update'))
+@section('page-name',__('cms.edit_category'))
+@section('main-page',__('cms.categories'))
+@section('sub-page',__('cms.edit'))
 
 @section('styles')
-
+<!-- No additional styles needed for this simple form -->
 @endsection
 
 @section('content')
-<!--begin::Container-->
-<div class="row">
-    <div class="col-lg-12">
-        <!--begin::Card-->
-        <div class="card card-custom gutter-b example example-compact">
-            <div class="card-header">
-                <h3 class="card-title"></h3>
-                {{-- <div class="card-toolbar">
-                    <div class="example-tools justify-content-center">
-                        <span class="example-toggle" data-toggle="tooltip" title="View code"></span>
-                        <span class="example-copy" data-toggle="tooltip" title="Copy code"></span>
-                    </div>
-                </div> --}}
-            </div>
-            <!--begin::Form-->
-            <form id="create-form">
-                <div class="card-body">
-                    <div class="form-group row mt-4">
-                        <label class="col-3 col-form-label">{{__('cms.language')}}:<span
-                                class="text-danger">*</span></label>
-                        <div class="col-lg-4 col-md-9 col-sm-12">
-                            <div class="dropdown bootstrap-select form-control dropup">
-                                <select class="form-control selectpicker" data-size="7" id="language"
-                                    title="Choose one of the following..." tabindex="null" data-live-search="true">
-                                    @foreach ($languages as $language)
-                                    <option value="{{$language->id}}" @selected($category->language_id ==
-                                        $language->id)>{{$language->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <span class="form-text text-muted">{{__('cms.please_select')}}
-                                {{__('cms.type')}}</span>
-                        </div>
-                    </div>
-                    <div class="separator separator-dashed my-10"></div>
-                    <div class="form-group row mt-4">
-                        <label class="col-3 col-form-label">{{__('cms.name')}}:</label>
-                        <div class="col-9">
-                            <input type="text" class="form-control" id="name" placeholder="{{__('cms.name')}}"
-                                value="{{$category->name}}" />
-                            <span class="form-text text-muted">{{__('cms.please_enter')}} {{__('cms.name')}}</span>
-                        </div>
-                    </div>
-                    <div class="separator separator-dashed my-10"></div>
-
-                    <div class="row">
-                        <div class="form-group col-3">
-                            <label class="col-3 col-form-label">{{__('cms.image')}}:</label>
-                            <div class="col-9">
-                                <div class="image-input image-input-empty image-input-outline" id="kt_image_5"
-                                    style="background-image: url(https://abraj.mr-dev.tech/assets/media/users/blank.png)">
-                                    <div class="image-input-wrapper"></div>
-
-                                    <label
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="change" data-toggle="tooltip" title=""
-                                        data-original-title="Change avatar">
-                                        <i class="fa fa-pen icon-sm text-muted"></i>
-                                        <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg">
-                                        <input type="hidden" name="profile_avatar_remove">
-                                    </label>
-
-                                    <span
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="cancel" data-toggle="tooltip" title=""
-                                        data-original-title="Cancel avatar">
-                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                    </span>
-
-                                    <span
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="remove" data-toggle="tooltip" title=""
-                                        data-original-title="Remove avatar">
-                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group col-3">
-                            <label class="col-3 col-form-label">{{__('cms.icon')}}:</label>
-                            <div class="col-9">
-                                <div class="image-input image-input-empty image-input-outline" id="kt_image_6"
-                                    style="background-image: url(https://abraj.mr-dev.tech/assets/media/users/blank.png)">
-                                    <div class="image-input-wrapper"></div>
-
-                                    <label
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="change" data-toggle="tooltip" title=""
-                                        data-original-title="Change avatar">
-                                        <i class="fa fa-pen icon-sm text-muted"></i>
-                                        <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg">
-                                        <input type="hidden" name="profile_avatar_remove">
-                                    </label>
-
-                                    <span
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="cancel" data-toggle="tooltip" title=""
-                                        data-original-title="Cancel avatar">
-                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                    </span>
-
-                                    <span
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="remove" data-toggle="tooltip" title=""
-                                        data-original-title="Remove avatar">
-                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="separator separator-dashed my-10"></div>
-                    <h3 class="text-dark font-weight-bold mb-10">{{__('cms.settings')}}</h3>
-                    <div class="form-group row">
-                        <label class="col-3 col-form-label">{{__('cms.active')}}</label>
-                        <div class="col-3">
-                            <span class="switch switch-outline switch-icon switch-success">
-                                <label>
-                                    <input type="checkbox" checked="checked" id="active">
-                                    <span></span>
-                                </label>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-3">
-
-                        </div>
-                        <div class="col-9">
-                            <button type="button" onclick="performEdit()"
-                                class="btn btn-primary mr-2">{{__('cms.save')}}</button>
-                            <button type="reset" class="btn btn-secondary">{{__('cms.cancel')}}</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <!--end::Form-->
-        </div>
-        <!--end::Card-->
+<div class="card card-custom">
+    <div class="card-header">
+        <h3 class="card-title">{{__('cms.edit_category')}}</h3>
     </div>
+
+    <form id="edit-form">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{__('cms.name_ar')}}:</label>
+                        <input type="text" class="form-control" id="name_ar" 
+                            value="{{$category->name_ar}}"
+                            placeholder="{{__('cms.enter_name_ar')}}"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{__('cms.name_en')}}:</label>
+                        <input type="text" class="form-control" id="name_en" 
+                            value="{{$category->name_en}}"
+                            placeholder="{{__('cms.enter_name_en')}}"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{__('cms.status')}}:</label>
+                        <div class="radio-inline">
+                            <label class="radio">
+                                <input type="radio" name="status" id="status_active" 
+                                    value="1" {{$category->status ? 'checked' : ''}}/>
+                                <span></span>
+                                {{__('cms.active')}}
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="status" id="status_inactive" 
+                                    value="0" {{!$category->status ? 'checked' : ''}}/>
+                                <span></span>
+                                {{__('cms.inactive')}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="button" onclick="performUpdate()" class="btn btn-primary mr-2">{{__('cms.save')}}</button>
+            <a href="{{route('categories.index')}}" class="btn btn-secondary">{{__('cms.cancel')}}</a>
+        </div>
+    </form>
 </div>
-<!--end::Container-->
 @endsection
-
 @section('scripts')
-{{-- <script>
-    var image = new KTImageInput('kt_image_5');
-    var icon = new KTImageInput('kt_image_6');
-    function performEdit(){
-        let formData = new FormData();
-        formData.append('_method', 'PUT');
-        formData.append('language',document.getElementById('language').value);
-        formData.append('name',document.getElementById('name').value);
-        formData.append('image',image.input.files[0]);
-        formData.append('icon',icon.input.files[0]);
-        console.log(formData.get('name'));
-        update('/cms/admin/categories/translations/{{$category->id}}', formData, '/cms/admin/categories');
-    }
-</script>
---}}
-
 <script>
-    var image = new KTImageInput('kt_image_5');
-    var icon = new KTImageInput('kt_image_6');
-
-    function performEdit(){
-            let formData = new FormData();
-            formData.append('name',document.getElementById('name').value);
-            formData.append('language',document.getElementById('language').value);
-            formData.append('active',document.getElementById('active').checked?1:0);
-            formData.append('image',image.input.files[0]);
-            formData.append('icon',icon.input.files[0]);
-            store('/cms/admin/categories/translations/{{$category->id}}', formData, '/cms/admin/categories');
-            }
-
-
-
-    // function performEdit(){
-    //     console.log(document.getElementById('language').value);
-    //     let data = {
-    //         language: document.getElementById('language').value,
-    //         name: document.getElementById('name').value,
-    //     }
-    //     update('/cms/admin/categories/translations/{{$category->id}}', data, '/cms/admin/categories');
-    // }
+function performUpdate() {
+    axios.put('/cms/admin/categories/{{$category->id}}', {
+        name_ar: document.getElementById('name_ar').value,
+        name_en: document.getElementById('name_en').value,
+        status: document.querySelector('input[name="status"]:checked').value
+    })
+    .then(function (response) {
+        toastr.success(response.data.message);
+        window.location.href = '/cms/admin/categories';
+    })
+    .catch(function (error) {
+        let errors = error.response.data.errors;
+        for (let key in errors) {
+            toastr.error(errors[key][0]);
+        }
+    });
+}
 </script>
 @endsection

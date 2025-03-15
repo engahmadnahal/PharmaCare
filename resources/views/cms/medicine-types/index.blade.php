@@ -1,8 +1,8 @@
 @extends('cms.parent')
 
-@section('page-name',__('cms.categories'))
+@section('page-name',__('cms.medicine_types'))
 @section('main-page',__('cms.shop_content_management'))
-@section('sub-page',__('cms.categories'))
+@section('sub-page',__('cms.medicine_types'))
 @section('page-name-small',__('cms.index'))
 
 @section('styles')
@@ -15,12 +15,12 @@
     <!--begin::Header-->
     <div class="card-header border-0 py-5">
         <h3 class="card-title align-items-start flex-column">
-            <span class="card-label font-weight-bolder text-dark">{{__('cms.categories')}}</span>
+            <span class="card-label font-weight-bolder text-dark">{{__('cms.medicine_types')}}</span>
             <span class="text-muted mt-3 font-weight-bold font-size-sm"></span>
         </h3>
         @can('Create-City')
         <div class="card-toolbar">
-            <a href="{{route('categories.create')}}"
+            <a href="{{route('medicine-types.create')}}"
                 class="btn btn-info font-weight-bolder font-size-sm mr-2">{{__('cms.create')}}</a>
         </div>
 
@@ -44,23 +44,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $category)
+                    @foreach ($data as $medicineType)
                     <tr>
                         <td class="pl-0">
-                            <span class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">{{$category->name_ar}}</span>
+                            <span class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">{{$medicineType->name_ar}}</span>
                         </td>
                         <td>
-                            <span class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">{{$category->name_en}}</span>
+                            <span class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">{{$medicineType->name_en}}</span>
                         </td>
                         <td>
-                            <span class="label label-lg @if($category->status) label-light-success @else label-light-warning @endif label-inline">
-                                {{$category->status ? __('cms.active') : __('cms.inactive')}}
+                            <span class="label label-lg @if($medicineType->status) label-light-success @else label-light-warning @endif label-inline">
+                                {{$medicineType->status ? __('cms.active') : __('cms.inactive')}}
                             </span>
                         </td>
                         @canany(['Update-Category','Delete-Category'])
                         <td class="pr-0 text-right">
                             @can('Update-Category')
-                            <a href="{{route('categories.edit', $category->id)}}" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                            <a href="{{route('medicine-types.edit', $medicineType->id)}}" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                                 <span class="svg-icon svg-icon-md svg-icon-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -73,7 +73,7 @@
                             </a>
                             @endcan
                             @can('Delete-Category')
-                            <a href="#" onclick="performCategoryDestroy('{{$category->id}}', this)" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                            <a href="#" onclick="performMedicineTypeDestroy('{{$medicineType->id}}', this)" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                                 <span class="svg-icon svg-icon-md svg-icon-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -102,11 +102,11 @@
 @section('scripts')
 <script src="{{asset('assets/js/pages/widgets.js')}}"></script>
 <script>
-    function performCategoryDestroy(id,reference) {
-        confirmDestroy('/cms/admin/categories', id, reference);
+    function performMedicineTypeDestroy(id,reference) {
+        confirmDestroy('/cms/admin/medicine-types', id, reference);
     }
     function performTranslationDestroy(id,reference) {
-        confirmDestroy('/cms/admin/categories/translations', id, reference);
+        confirmDestroy('/cms/admin/medicine-types/translations', id, reference);
     }
 </script>
 @endsection

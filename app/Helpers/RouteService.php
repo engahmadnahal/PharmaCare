@@ -99,6 +99,46 @@ class RouteService
             ],
 
 
+            "categories" => [
+                'permission_group' => [
+                    'Read-Category',
+                    'Create-Category',
+                    'Read-Category',
+                    'Create-Category',
+                ],
+                'route_group' => [
+                    [
+                        'groupTitle' => __('cms.categories'),
+                        'permissions' => [
+                            'Read-Category',
+                            'Create-Category',
+                            'Update-Category',
+                            'Delete-Category',
+                        ],
+                        'routes' => [
+                            [
+                                'title' => __('cms.categories'),
+                                'route' => route('categories.index'),
+                                'permission' => 'Read-Category',
+                                'active' => request()->routeIs('categories.index'),
+                            ],
+
+                            [
+                                'title' => __('cms.medicine_types'),
+                                'route' => route('medicine-types.index'),
+                                'permission' => 'Read-Category',
+                                'active' => request()->routeIs('medicine-types.index'),
+                            ],
+                            
+
+
+                        ],
+                    ],
+
+                ],
+            ],
+
+
             "order" => [
                 'permission_group' => [
                     'Read-OrderSoftcopy',

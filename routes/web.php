@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\AuthSocialController;
 use App\Http\Controllers\BookingStudioServiceController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CountryController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\FrameAlbumServiceController;
 use App\Http\Controllers\FramesOrAlbumController;
 use App\Http\Controllers\FramesSizeController;
+use App\Http\Controllers\MedicineTypeController;
 use App\Http\Controllers\NotificationFcmUserController;
 use App\Http\Controllers\OptionFrameAlbumServiceController;
 use App\Http\Controllers\OptionPostcardServiceController;
@@ -116,6 +118,14 @@ Route::group([
         //  * --------------------------------------------
         //  */
         Route::resource('admins', AdminController::class);
+
+        // /**
+        //  * --------------------------------------------
+        //  *  Category Route Controller
+        //  * --------------------------------------------
+        //  */
+        Route::resource('categories', CategoryController::class);
+        Route::resource('medicine-types', MedicineTypeController::class);
         // /**
         //  * --------------------------------------------
         //  *  Country Route Controller

@@ -91,12 +91,23 @@ class PermissionSeeder extends Seeder
         // Permission::create(['name' => 'Update-Pharma', 'guard_name' => 'admin']);
         // Permission::create(['name' => 'Delete-Pharma', 'guard_name' => 'admin']);
 
+        // Permission::create(['name' => 'Create-Category', 'guard_name' => 'admin']);
+        // Permission::create(['name' => 'Read-Category', 'guard_name' => 'admin']);
+        // Permission::create(['name' => 'Update-Category', 'guard_name' => 'admin']);
+        // Permission::create(['name' => 'Delete-Category', 'guard_name' => 'admin']);
+
 
 
         $allAdminPer = Permission::where('guard_name', 'admin')->get();
-        (Role::where('name', 'Super-Admin')->first())->givePermissionTo($allAdminPer);
+        $role = Role::where('name', 'Super-Admin')->first();
+        if ($role) {
+            $role->givePermissionTo($allAdminPer);
+        }
 
         $allEmployeePer = Permission::where('guard_name', 'employee')->get();
-        (Role::where('name', 'Employee')->first())->givePermissionTo($allEmployeePer);
+        $role = Role::where('name', 'Employee')->first();
+        if ($role) {
+            $role->givePermissionTo($allEmployeePer);
+        }
     }
 }

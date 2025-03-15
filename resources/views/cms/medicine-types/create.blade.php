@@ -1,7 +1,7 @@
 @extends('cms.parent')
 
-@section('page-name',__('cms.create_category'))
-@section('main-page',__('cms.categories'))
+@section('page-name',__('cms.create_medicine_type'))
+@section('main-page',__('cms.medicine_types'))
 @section('sub-page',__('cms.create'))
 
 @section('styles')
@@ -11,7 +11,7 @@
 @section('content')
 <div class="card card-custom">
     <div class="card-header">
-        <h3 class="card-title">{{__('cms.create_category')}}</h3>
+        <h3 class="card-title">{{__('cms.create_medicine_type')}}</h3>
     </div>
 
     <form id="create-form">
@@ -65,14 +65,14 @@
 @section('scripts')
 <script>
 function performStore() {
-    axios.post('/cms/admin/categories', {
+    axios.post('/cms/admin/medicine-types', {
         name_ar: document.getElementById('name_ar').value,
         name_en: document.getElementById('name_en').value,
         status: document.querySelector('input[name="status"]:checked').value
     })
     .then(function (response) {
         toastr.success(response.data.message);
-        window.location.href = '/cms/admin/categories';
+        window.location.href = '/cms/admin/medicine-types';
     })
     .catch(function (error) {
         if (error.response && error.response.data && error.response.data.message) {
