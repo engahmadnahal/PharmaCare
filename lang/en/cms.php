@@ -570,5 +570,27 @@ return [
     'success_update' => 'Pharmaceutical updated successfully',
     'error_update' => 'Error updating pharmaceutical',
     'current_file' => 'Current File',
+    'avater' => 'Avatar',
+
+    'create_employee' => 'Create Employee',
+    'employees' => 'Employees',
+    'enter_name' => 'Enter full name',
+    'enter_email' => 'Enter email address',
+    'enter_mobile' => 'Enter mobile number',
+    'enter_national_id' => 'Enter national ID',
+    'enter_address' => 'Enter address',
+    'avatar' => 'Profile Picture',
+    'certificate' => 'Certificate',
+    'choose_image' => 'Choose image',
+    'choose_file' => 'Choose file',
+    'allowed_files' => 'Allowed files',
+    'dob' => 'Date of Birth',
+    'role' => 'Role',
+    'select_role' => 'Select role',
+
+    'edit_employee' => 'Edit Employee',
+    'current_avatar' => 'Current Profile Picture',
+    'view_current_certificate' => 'View Current Certificate',
+    'update_success' => 'Employee updated successfully',
 
 ];

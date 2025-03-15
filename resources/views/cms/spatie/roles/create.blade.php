@@ -34,9 +34,7 @@
                                 <select class="form-control selectpicker" data-size="7" id="guard_name"
                                     title="{{__('cms.select_hint')}}" tabindex="null" data-live-search="true">
                                     <option value="admin">Admin</option>
-                                    <option value="studio">Studio</option>
-                                    <option value="studiobranch">Studio Branch</option>
-                                    {{-- <option value="user-api">User App</option> --}}
+                                    <option value="employee">Employee</option>
                                 </select>
                             </div>
                             <span class="form-text text-muted">{{__('cms.please_select')}} {{__('cms.category')}}</span>
@@ -73,7 +71,7 @@
 
 @section('scripts')
 <script>
-    function performStore(){
+    function performStore() {
         let data = {
             guard_name: document.getElementById('guard_name').value,
             name: document.getElementById('name').value,

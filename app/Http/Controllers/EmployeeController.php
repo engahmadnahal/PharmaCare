@@ -35,7 +35,7 @@ class EmployeeController extends Controller
     public function create()
     {
         $roles = Role::where('guard_name', 'employee')->get();
-        $pharmaceuticals = Pharmaceutical::where('active', true)->get();
+        $pharmaceuticals = Pharmaceutical::where('status', true)->get();
 
         return view('cms.employees.create', ['roles' => $roles, 'pharmaceuticals' => $pharmaceuticals]);
     }
@@ -50,11 +50,11 @@ class EmployeeController extends Controller
     {
         $validator = Validator($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:doctors,email',
-            'mobile' => 'required|string|unique:doctors,mobile',
+            'email' => 'required|email|unique:employees,email',
+            'mobile' => 'required|string|unique:employees,mobile',
             'address' => 'required|string|max:255',
             'avater' => 'required|image|mimes:png,jpg',
-            'national_id' => 'required|string|unique:doctors,national_id',
+            'national_id' => 'required|string|unique:employees,national_id',
             'certificate' => 'required|file|mimes:pdf',
             'dob' => 'required|date',
             'role_id' => 'required|integer|exists:roles,id',
@@ -104,7 +104,7 @@ class EmployeeController extends Controller
         $assignedRole = $employee->roles()->first();
 
 
-        return view('cms.employees.edit', ['data' => $employee, 'roles' => $roles, 'assignedRole' => $assignedRole]);
+        return view('cms.employees.edit', ['employee' => $employee, 'roles' => $roles, 'assignedRole' => $assignedRole]);
     }
 
     /**

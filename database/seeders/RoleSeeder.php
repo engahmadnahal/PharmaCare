@@ -15,13 +15,10 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        //
-        // $allStorePer = Permission::where('guard_name', 'store')->get();
         $allAdminPer = Permission::where('guard_name', 'admin')->get();
-        $allStudioPer = Permission::where('guard_name', 'studio')->get();
-        $allStudioBranchPer = Permission::where('guard_name', 'studiobranch')->get();
+        $allEmployeePer = Permission::where('guard_name', 'employee')->get();
+
         Role::create(['name' => 'Super-Admin', 'guard_name' => 'admin'])->givePermissionTo($allAdminPer);
-        Role::create(['name' => 'Studio', 'guard_name' => 'studio'])->givePermissionTo($allStudioPer);
-        Role::create(['name' => 'Studio-Branch', 'guard_name' => 'studiobranch'])->givePermissionTo($allStudioBranchPer);
+        Role::create(['name' => 'Employee', 'guard_name' => 'employee'])->givePermissionTo($allEmployeePer);
     }
 }

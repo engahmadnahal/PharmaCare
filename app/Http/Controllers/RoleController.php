@@ -9,10 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoleController extends Controller
 {
-    public function __construct()
-    {
-        // $this->authorizeResource(Role::class, 'role');
-    }
+    public function __construct() {}
 
     /**
      * Display a listing of the resource.
@@ -33,7 +30,6 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
         return response()->view('cms.spatie.roles.create');
     }
 
@@ -48,7 +44,7 @@ class RoleController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3|max:40',
-            'guard_name' => 'required|string|in:user-api,studio,admin,studiobranch',
+            'guard_name' => 'required|string|in:user-api,employee,admin',
         ]);
 
         if (!$validator->fails()) {
@@ -97,13 +93,11 @@ class RoleController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3|max:40',
-            // 'guard_name' => 'required|string',
         ]);
 
         if (!$validator->fails()) {
             $role = Role::findOrFail($id);
             $role->name = $request->get('name');
-            // $role->guard_name = 'admin';
             $isSaved = $role->save();
             return response()->json(['message' => $isSaved ? __('cms.create_success') : __('cms.create_failed')], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);
         } else {
