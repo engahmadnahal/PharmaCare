@@ -19,7 +19,7 @@
             <span class="text-muted mt-3 font-weight-bold font-size-sm"></span>
         </h3>
         <div class="card-toolbar">
-            <a href="{{route('employees.create')}}"
+            <a href="{{route('cms.employee.employees.create')}}"
                 class="btn btn-info font-weight-bolder font-size-sm mr-2">{{__('cms.create')}}</a>
 
 
@@ -74,7 +74,7 @@
                             @endif
                         </td>
                         <td class="pr-0 text-right">
-                            <a href="{{route('employees.edit',$employee->id)}}" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                            <a href="{{route('cms.employee.employees.edit',$employee->id)}}" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                                 <span class="svg-icon svg-icon-md svg-icon-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -112,7 +112,7 @@
 <script src="{{asset('assets/js/pages/widgets.js')}}"></script>
 <script>
     function performDestroy(id, reference) {
-        confirmDestroy('/cms/admin/employees', id, reference);
+        confirmDestroy('/cms/employee/employees', id, reference);
     }
 </script>
 @endsection

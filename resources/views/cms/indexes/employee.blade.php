@@ -282,42 +282,7 @@
         <div class="tab-content">
             <!--begin::Table-->
             <div class="table-responsive">
-                <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                    <thead>
-                        <tr class="text-left text-uppercase">
-                            <th style="min-width: 250px" class="pl-7">
-                                <span class="text-dark-75">{{__('cms.full_name')}}</span>
-                            </th>
-                        <th style="min-width: 150px">{{__('cms.mobile')}}</th>
-                        <th style="min-width: 150px">{{__('cms.email')}}</th>
-                        <th style="min-width: 130px">{{__('cms.account_status')}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- @foreach ($lastStudios as $std)
-                        <tr>
-                            <td class="pl-0">
-                                <a href="#"
-                                    class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">{{$std->name}}</a>
-                            </td>
-                            <td>
-                                <span
-                                    class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$std->mobile}}</span>
-                            </td>
-                            <td>
-                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$std->email}}</span>
-                            </td>
-                           
-                            <td>
-                                <span
-                                    class="label label-lg @if($std->active) label-light-success @else label-light-danger @endif label-inline">{{$std->active_key}}</span>
-                            </td>
-    
-                        </tr>
-                        @endforeach -->
-
-                    </tbody>
-                </table>
+               
             </div>
             <!--end::Table-->
         </div>

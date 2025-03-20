@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Employee;
 
 use App\Helpers\ControllersService;
 use App\Helpers\Messages;
-use App\Models\City;
-use App\Models\Country;
+use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\Pharmaceutical;
-use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -23,8 +21,11 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
-        return view('cms.employees.index', ['data' => $employees]);
+        $employees = Employee::where('pharmaceutical_id', auth('employee')->user()->pharmaceutical_id)
+            ->where('id', '!=', auth('employee')->user()->id)
+            ->get();
+
+        return view('cms.emp-employees.index', ['data' => $employees]);
     }
 
     /**
@@ -34,10 +35,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $roles = Role::where('guard_name', 'employee')->get();
-        $pharmaceuticals = Pharmaceutical::where('status', true)->get();
+        $roles = Role::where('guard_name', 'employee')->where('guard_id', auth('employee')->user()->id)->get();
 
-        return view('cms.employees.create', ['roles' => $roles, 'pharmaceuticals' => $pharmaceuticals]);
+        return view('cms.emp-employees.create', ['roles' => $roles]);
     }
 
     /**
@@ -58,10 +58,9 @@ class EmployeeController extends Controller
             'certificate' => 'required|file|mimes:pdf',
             'dob' => 'required|date',
             'role_id' => 'required|integer|exists:roles,id',
-            'pharmaceutical_id' => 'required|exists:pharmaceuticals,id',
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => $validator->getMessageBag()->first()], Response::HTTP_BAD_REQUEST);
+            return ControllersService::generateValidationErrorMessage($validator->getMessageBag()->first());
         }
 
         $employee = new Employee();
@@ -74,7 +73,7 @@ class EmployeeController extends Controller
         $employee->certificate = $this->uploadFile($request->file('certificate'));
         $employee->national_id = $request->input('national_id');
         $employee->password = Hash::make('password');
-        $employee->pharmaceutical_id = $request->input('pharmaceutical_id');
+        $employee->pharmaceutical_id = auth('employee')->user()->pharmaceutical_id;
         $isSave = $employee->save();
         if ($isSave) {
             $role =  Role::findOrFail($request->get('role_id'));
@@ -102,16 +101,10 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        $roles = Role::where('guard_name', 'employee')->get();
+        $roles = Role::where('guard_name', 'employee')->where('guard_id', auth('employee')->user()->id)->get();
         $assignedRole = $employee->roles()->first();
-        $pharmaceuticals = Pharmaceutical::where('status', true)->get();
 
-        return view('cms.employees.edit', [
-            'employee' => $employee, 
-            'roles' => $roles, 
-            'assignedRole' => $assignedRole,
-            'pharmaceuticals' => $pharmaceuticals
-        ]);
+        return view('cms.emp-employees.edit', ['employee' => $employee, 'roles' => $roles, 'assignedRole' => $assignedRole]);
     }
 
     /**
@@ -133,16 +126,15 @@ class EmployeeController extends Controller
             'certificate' => 'nullable|file|mimes:pdf',
             'national_id' => 'required|string|unique:employees,national_id,' . $employee->id,
             'role_id' => 'required|integer|exists:roles,id',
-            'pharmaceutical_id' => 'required|exists:pharmaceuticals,id',
         ]);
         if (!$validator->fails()) {
+
             $employee->name = $request->input('name');
             $employee->email = $request->input('email');
             $employee->mobile = $request->input('mobile');
             $employee->address = $request->input('address');
             $employee->dob = $request->input('dob');
             $employee->national_id = $request->input('national_id');
-            $employee->pharmaceutical_id = $request->input('pharmaceutical_id');
 
             if ($request->hasFile('avater')) {
                 $employee->avater = $this->uploadFile($request->file('avater'));

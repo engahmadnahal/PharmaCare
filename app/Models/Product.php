@@ -11,73 +11,68 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'num_items' => 'integer'
-    ];
-    public function name() : Attribute {
-        return new Attribute(get:fn() => App::getLocale() == 'ar' ? $this->name_ar : $this->name_en);
+
+    protected $guarded = [];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
-    public function description() : Attribute {
-        return new Attribute(get:fn() => App::getLocale() == 'ar' ? $this->description_ar : $this->description_en);
-    }
-
-
-    public function activeKey() : Attribute {
-        return new Attribute(get:fn() => $this->active ? __('cms.activate') : __('cms.unActive'));
-    }
-    
-    public function storehouse(){
-        return $this->belongsTo(StoreHouse::class,'store_house_id','id');
-    }
-
-    public function studioProduct(){
-        return $this->hasMany(StudioProduct::class,'product_id','id');
-    }
-    public function price(){
-        return $this->morphMany(PricingService::class,'object','object_type','object_id');
-    }
-
-    public function joomla(){
-        return $this->hasMany(JomlaPriceProduct::class,'product_id','id');
-    }
-
-    public function joomlaKey() : Attribute {
-        return new Attribute(function(){
-            return $this->joomla?->where('currency_id',auth()->user()?->currency?->id)->first()?->price ?? 0;
-        });
+    public function medicineType()
+    {
+        return $this->belongsTo(MedicineType::class);
     }
 
 
-    public function joomlaString() : Attribute {
-        return new Attribute(function(){
-            return $this->joomla?->where('currency_id',auth()->user()->currency->id)->first()?->price . " " . auth()->user()->currencyCode;
-        });
-    }
-    
-
-    public function priceCurrencyId() : Attribute {
-        return new Attribute(function(){
-            return $this->price?->where('currency_id',auth()->user()->currency)->first()?->currency->code ?? "";
-        });
+   
+    public function tradeName(): Attribute
+    {
+        return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->trade_name_ar : $this->trade_name_en);
     }
 
-    public function priceCurrencyCode() : Attribute {
-        return new Attribute(function(){
-            return $this->price?->where('currency_id',auth()->user()->currency)->first()?->currency->code ?? "";
-        });
+    public function scientificName(): Attribute
+    {
+        return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->scientific_name_ar : $this->scientific_name_en);
     }
 
-    public function priceKey() : Attribute {
-        return new Attribute(function(){
-            return $this->price?->where('currency_id',auth()->user()->currency)->first()?->price ?? 0;
-        });
+    public function drugDescription(): Attribute
+    {
+        return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->drug_description_ar : $this->drug_description_en);
     }
 
+    public function indicationsForUse(): Attribute
+    {
+        return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->indications_for_use_ar : $this->indications_for_use_en);
+    }
 
-    public function currencyKey() : Attribute {
-        return new Attribute(function(){
-            return $this->price?->where('currency_id',auth()->user()->currency)->first()?->currency->code ?? "";
-        });
+    public function recommendedDosage(): Attribute
+    {
+        return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->recommended_dosage_ar : $this->recommended_dosage_en);
+    }
+
+    public function howToUse(): Attribute
+    {
+        return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->how_to_use_ar : $this->how_to_use_en);
+    }
+
+    public function drugInteractions(): Attribute
+    {
+        return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->drug_interactions_ar : $this->drug_interactions_en);
+    }
+
+    public function sideEffects(): Attribute
+    {
+        return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->side_effects_ar : $this->side_effects_en);
+    }
+
+    public function alternativeMedicines(): Attribute
+    {
+        return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->alternative_medicines_ar : $this->alternative_medicines_en);
+    }
+
+    public function complementaryMedicines(): Attribute
+    {
+        return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->complementary_medicines_ar : $this->complementary_medicines_en);
     }
 }

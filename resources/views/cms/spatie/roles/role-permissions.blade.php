@@ -73,7 +73,11 @@
             role_id: roleId,
             permission_id: permissionId
         }
-        store('/cms/admin/permissions/role',data);
+        @if(isset($guard_name) && $guard_name == 'employee')
+        store('/cms/employee/permissions/role', data);
+        @else
+        store('/cms/admin/permissions/role', data);
+        @endif
     }
 </script>
 @endsection

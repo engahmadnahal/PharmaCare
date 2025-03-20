@@ -8,12 +8,14 @@ class RouteService
     {
         return [
             "roles_permissions" => [
-                'permission_group' => ['Read-Roles', 'Create-Role', 'Read-Permissions'],
+                'permission_group' => ['Read-Roles', 'Create-Role', 'Read-Permissions', 'Read-Employee-Role', 'Create-Employee-Role',],
                 'route_group' => [
                     [
                         'groupTitle' => __('cms.roles_permissions'),
-                        'permissions' => ['Read-Roles', 'Create-Role', 'Read-Permissions'],
+                        'permissions' => ['Read-Roles', 'Create-Role', 'Read-Permissions', 'Read-Employee-Role', 'Create-Employee-Role',],
                         'routes' => [
+
+                            // admin routes
                             [
                                 'title' => __('cms.roles'),
                                 'route' => route('roles.index'),
@@ -26,7 +28,15 @@ class RouteService
                                 'permission' => 'Read-Permissions',
                                 'active' => request()->routeIs('permissions.index'),
 
-                            ]
+                            ],
+
+                            // employee routes
+                            [
+                                'title' => __('cms.roles'),
+                                'route' => route('cms.employee.roles.index'),
+                                'permission' => 'Read-Employee-Role',
+                                'active' => request()->routeIs('cms.employee.roles.index'),
+                            ],
                         ],
                     ]
 
@@ -40,13 +50,12 @@ class RouteService
                     'Create-Admin',
                     'Read-Users',
                     'Create-User',
-                    'Read-Studio',
-                    'Create-Studio',
-                    'Read-StudioBranch',
-                    'Create-StudioBranch',
-                    'Create-Delivary',
-                    'Read-Delivary',
-                    'Read-User'
+                    'Read-User',
+                    'Read-Pharma',
+                    'Read-Employee',
+                    'Read-Employee-User',
+                    'Read-Employee-Employee',
+
                 ],
                 'route_group' => [
                     [
@@ -56,14 +65,12 @@ class RouteService
                             'Create-Admin',
                             'Read-Users',
                             'Create-User',
-                            'Read-Studio',
-                            'Create-Studio',
-                            'Read-StudioBranch',
-                            'Create-StudioBranch',
-                            'Create-Delivary',
-                            'Read-Delivary'
+                            'Read-Employee-User',
+                            'Read-Employee-Employee',
                         ],
                         'routes' => [
+
+                            // admin routes
                             [
                                 'title' => __('cms.admins'),
                                 'route' => route('admins.index'),
@@ -92,12 +99,95 @@ class RouteService
                                 'permission' => 'Read-User',
                                 'active' => request()->routeIs('users.index'),
 
+                            ],
+
+                            // employee routes
+
+                            [
+                                'title' => __('cms.users'),
+                                'route' => route('users.index'),
+                                'permission' => 'Read-Employee-User',
+                                'active' => request()->routeIs('users.index'),
+
+                            ],
+
+                            [
+                                'title' => __('cms.employees'),
+                                'route' => route('cms.employee.employees.index'),
+                                'permission' => 'Read-Employee-Employee',
+                                'active' => request()->routeIs('cms.employee.employees.index'),
+
                             ]
                         ],
                     ]
                 ],
             ],
 
+
+            "management" => [
+                'permission_group' => [
+                    'Read-Employee-Product',
+                    'Create-Employee-Product',
+                    'Read-Employee-Promocode',
+                    'Create-Employee-Promocode',
+                    'Read-Employee-Order',
+                    'Create-Employee-Order',
+
+                ],
+                'route_group' => [
+                    [
+                        'groupTitle' => __('cms.products'),
+                        'permissions' => [
+                            'Read-Employee-Product',
+                            'Create-Employee-Product',
+                        ],
+                        'routes' => [
+                            [
+                                'title' => __('cms.products'),
+                                'route' => route('cms.employee.products.index'),
+                                'permission' => 'Read-Employee-Product',
+                                'active' => request()->routeIs('cms.employee.products.index'),
+                            ],
+
+                        ],
+                    ],
+
+                    [
+                        'groupTitle' => __('cms.promocodes'),
+                        'permissions' => [
+                            'Read-Employee-Coupon',
+                            'Create-Employee-Coupon',
+                        ],
+                        'routes' => [
+                            [
+                                'title' => __('cms.promocodes'),
+                                'route' => route('cms.employee.coupons.index'),
+                                'permission' => 'Read-Employee-Coupon',
+                                'active' => request()->routeIs('cms.employee.coupons.index'),
+                            ],
+
+                        ],
+                    ],
+
+                    [
+                        'groupTitle' => __('cms.orders'),
+                        'permissions' => [
+                            'Read-Employee-Order',
+                            'Create-Employee-Order',
+                        ],
+                        'routes' => [
+                            [
+                                'title' => __('cms.orders'),
+                                'route' => '/',
+                                'permission' => 'Read-Employee-Order',
+                                'active' => false,
+                            ],
+
+                        ],
+                    ],
+
+                ],
+            ],
 
             "categories" => [
                 'permission_group' => [
@@ -129,7 +219,7 @@ class RouteService
                                 'permission' => 'Read-Category',
                                 'active' => request()->routeIs('medicine-types.index'),
                             ],
-                            
+
 
 
                         ],
@@ -180,114 +270,91 @@ class RouteService
 
             "settings" => [
                 'permission_group' => [
-                    'Read-Countries',
-                    'Create-Country',
-                    'Update-Country',
-                    'Delete-Country',
-                    'Read-Cities',
-                    'Create-City',
-                    'Update-City',
-                    'Delete-City',
-                    'Create-About',
-                    'Read-About',
-                    'Read-Currency',
-                    'Create-Currency'
+                    // 'Read-Countries',
+                    // 'Create-Country',
+                    // 'Update-Country',
+                    // 'Delete-Country',
+                    // 'Read-Cities',
+                    // 'Create-City',
+                    // 'Update-City',
+                    // 'Delete-City',
+                    // 'Read-Currency',
+                    // 'Create-Currency'
                 ],
                 'route_group' => [
 
-                    [
-                        'groupTitle' => __('cms.aboutus'),
-                        'permissions' => [
-                            'Read-About',
-                            'Create-About',
-                        ],
-                        'routes' => [
-                            [
-                                'title' => __('cms.index'),
-                                'route' => route('about_us.index'),
-                                'permission' => 'Read-About',
-                                'active' => request()->routeIs('about_us.index'),
 
-                            ],
+                    // [
+                    //     'groupTitle' => __('cms.currency'),
+                    //     'permissions' => [
+                    //         'Read-Currency',
+                    //         'Create-Currency',
+                    //     ],
+                    //     'routes' => [
+                    //         [
+                    //             'title' => __('cms.index'),
+                    //             'route' => route('currencies.index'),
+                    //             'permission' => 'Read-Currency',
+                    //             'active' => request()->routeIs('currencies.index'),
 
-                        ],
-                    ],
+                    //         ],
 
+                    //     ],
+                    // ],
 
+                    // [
+                    //     'groupTitle' => __('cms.countries'),
+                    //     'permissions' => [
+                    //         'Read-Countries',
+                    //         'Create-Country',
+                    //     ],
+                    //     'routes' => [
+                    //         [
+                    //             'title' => __('cms.index'),
+                    //             'route' => route('countries.index'),
+                    //             'permission' => 'Read-Countries',
+                    //             'active' => request()->routeIs('countries.index'),
 
-                    [
-                        'groupTitle' => __('cms.currency'),
-                        'permissions' => [
-                            'Read-Currency',
-                            'Create-Currency',
-                        ],
-                        'routes' => [
-                            [
-                                'title' => __('cms.index'),
-                                'route' => route('currencies.index'),
-                                'permission' => 'Read-Currency',
-                                'active' => request()->routeIs('currencies.index'),
+                    //         ],
 
-                            ],
+                    //     ],
+                    // ],
 
-                        ],
-                    ],
+                    // [
+                    //     'groupTitle' => __('cms.cities'),
+                    //     'permissions' => [
+                    //         'Read-Cities',
+                    //         'Create-City',
+                    //     ],
+                    //     'routes' => [
+                    //         [
+                    //             'title' => __('cms.index'),
+                    //             'route' => route('cities.index'),
+                    //             'permission' => 'Read-Cities',
+                    //             'active' => request()->routeIs('cities.index'),
 
+                    //         ],
 
-                    [
-                        'groupTitle' => __('cms.countries'),
-                        'permissions' => [
-                            'Read-Countries',
-                            'Create-Country',
-                        ],
-                        'routes' => [
-                            [
-                                'title' => __('cms.index'),
-                                'route' => route('countries.index'),
-                                'permission' => 'Read-Countries',
-                                'active' => request()->routeIs('countries.index'),
+                    //     ],
+                    // ],
 
-                            ],
+                    // [
+                    //     'groupTitle' => __('cms.regions'),
+                    //     'permissions' => [
+                    //         'Read-Regions',
+                    //         'Create-Region',
+                    //     ],
+                    //     'routes' => [
+                    //         [
+                    //             'title' => __('cms.index'),
+                    //             'route' => route('regions.index'),
+                    //             'permission' => 'Read-Regions',
+                    //             'active' => request()->routeIs('regions.index'),
 
-                        ],
-                    ],
+                    //         ],
 
-
-                    [
-                        'groupTitle' => __('cms.cities'),
-                        'permissions' => [
-                            'Read-Cities',
-                            'Create-City',
-                        ],
-                        'routes' => [
-                            [
-                                'title' => __('cms.index'),
-                                'route' => route('cities.index'),
-                                'permission' => 'Read-Cities',
-                                'active' => request()->routeIs('cities.index'),
-
-                            ],
-
-                        ],
-                    ],
-
-                    [
-                        'groupTitle' => __('cms.regions'),
-                        'permissions' => [
-                            'Read-Regions',
-                            'Create-Region',
-                        ],
-                        'routes' => [
-                            [
-                                'title' => __('cms.index'),
-                                'route' => route('regions.index'),
-                                'permission' => 'Read-Regions',
-                                'active' => request()->routeIs('regions.index'),
-
-                            ],
-
-                        ],
-                    ],
+                    //     ],
+                    // ],
 
                     [
                         'groupTitle' => __('cms.settings'),

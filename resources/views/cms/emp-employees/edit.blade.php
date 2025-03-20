@@ -117,23 +117,6 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>{{__('cms.pharmaceutical')}}:</label>
-                                <select class="form-control" id="pharmaceutical_id">
-                                    <option value="">{{__('cms.select_pharmaceutical')}}</option>
-                                    @foreach($pharmaceuticals as $pharmaceutical)
-                                        <option value="{{$pharmaceutical->id}}" 
-                                            {{$employee->pharmaceutical_id == $pharmaceutical->id ? 'selected' : ''}}>
-                                            {{$pharmaceutical->name}}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <label>{{__('cms.role')}}:</label>
                                 <select class="form-control" id="role_id">
                                     <option value="">{{__('cms.select_role')}}</option>
@@ -185,7 +168,6 @@ function performUpdate() {
     formData.append('national_id', document.getElementById('national_id').value);
     formData.append('dob', document.getElementById('dob').value);
     formData.append('role_id', document.getElementById('role_id').value);
-    formData.append('pharmaceutical_id', document.getElementById('pharmaceutical_id').value);
 
     // Handle optional file uploads
     const avatarFile = document.getElementById('avatar').files[0];
@@ -199,14 +181,14 @@ function performUpdate() {
         formData.append('certificate', certificateFile);
     }
 
-    axios.post('/cms/admin/employees/{{$employee->id}}', formData, {
+    axios.post('/cms/employee/employees/{{$employee->id}}', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     })
     .then(function (response) {
         toastr.success(response.data.message);
-        window.location.href = '/cms/admin/employees';
+        window.location.href = '/cms/employee/employees';
     })
     .catch(function (error) {
         let errors = error.response.data.errors;

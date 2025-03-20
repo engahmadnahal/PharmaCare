@@ -27,6 +27,7 @@
             <!--begin::Form-->
             <form id="create-form">
                 <div class="card-body">
+                    @if(!isset($guard_name))
                     <div class="form-group row">
                         <label class="col-3 col-form-label">{{__('cms.category')}}:</label>
                         <div class="col-lg-4 col-md-9 col-sm-12">
@@ -40,6 +41,7 @@
                             <span class="form-text text-muted">{{__('cms.please_select')}} {{__('cms.category')}}</span>
                         </div>
                     </div>
+                    @endif
                     <div class="form-group row mt-4">
                         <label class="col-3 col-form-label">{{__('cms.name')}}</label>
                         <div class="col-4">
@@ -73,10 +75,18 @@
 <script>
     function performStore() {
         let data = {
-            guard_name: document.getElementById('guard_name').value,
+            @if(isset($guard_name))
+                guard_name: '{{$guard_name}}',
+            @endif
             name: document.getElementById('name').value,
         }
-        store('/cms/admin/roles', data);
+
+
+        if (data.guard_name == 'admin') {
+            store('/cms/admin/roles', data);
+        } else {
+            store('/cms/employee/roles', data);
+        }
     }
 </script>
 @endsection

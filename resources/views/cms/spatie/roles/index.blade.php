@@ -18,10 +18,19 @@
             <span class="card-label font-weight-bolder text-dark">{{__('cms.roles')}}</span>
             <span class="text-muted mt-3 font-weight-bold font-size-sm">Manage Roles</span>
         </h3>
-        <div class="card-toolbar">
-            <a href="{{route('roles.create')}}"
-                class="btn btn-info font-weight-bolder font-size-sm">{{__('cms.create')}}</a>
-        </div>
+        @if(isset($guard_name) && $guard_name == 'employee')
+       
+       <div class="card-toolbar">
+           <a href="{{route('cms.employee.roles.create')}}"
+               class="btn btn-info font-weight-bolder font-size-sm">{{__('cms.create')}}</a>
+       </div>
+       @else
+       <div class="card-toolbar">
+           <a href="{{route('roles.create')}}"
+               class="btn btn-info font-weight-bolder font-size-sm">{{__('cms.create')}}</a>
+       </div>
+       
+       @endif
     </div>
     <!--end::Header-->
     <!--begin::Body-->
@@ -49,9 +58,17 @@
                                 class="text-dark-50 font-weight-bolder text-hover-primary font-size-lg">{{ucfirst($role->guard_name)}}</span>
                         </td> --}}
                         <td class="pr-0">
+                            @if(isset($guard_name) && $guard_name == 'employee')
+                            <a href="{{route('cms.employee.permissions.role.show',$role->id)}}"
+                                class="btn btn-light-primary font-weight-bolder font-size-sm">({{$role->permissions_count}})
+                                Permission/s</a>
+
+                            @else
+
                             <a href="{{route('role.show',$role->id)}}"
                                 class="btn btn-light-primary font-weight-bolder font-size-sm">({{$role->permissions_count}})
                                 Permission/s</a>
+                            @endif
                         </td>
                         <td class="pr-0 text-right">
                             <a href="{{route('roles.edit',$role->id)}}"
@@ -109,7 +126,7 @@
 @section('scripts')
 <script src="{{asset('assets/js/pages/widgets.js')}}"></script>
 <script>
-    function performDestroy(id,reference) {
+    function performDestroy(id, reference) {
         confirmDestroy('/cms/admin/roles', id, reference);
     }
 </script>

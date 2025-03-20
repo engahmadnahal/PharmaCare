@@ -15,46 +15,45 @@ class AuthController extends Controller
 {
     use CustomTrait;
 
-    public function userType(){
-        return view('cms.user_type');
-    }
+    
     public function showLogin(Request $request)
     {
 
         $request->merge(['guard' => $request->guard]);
+
         $validator = Validator($request->all(), [
-            'guard' => 'required|string|in:admin,studio,studiobranch'
+            'guard' => 'required|string|in:admin,employee'
         ]);
-        session()->put('guard', $request->input('guard'));
+
         if (!$validator->fails()) {
-            return response()->view('cms.auth.signin');
-        } else {
-            abort(404);
+            session()->put('guard', $request->input('guard'));
+            return response()->view('cms.auth.signin',['guard' => $request->input('guard')]);
         }
+
+        abort(404);
     }
 
 
     public function login(Request $request)
     {
         $validator = Validator($request->all(), [
-            'user_name' => 'nullable|string',
-            'email' => 'nullable|string',
+            'email' => 'required|string',
             'password' => 'required|string|min:3|max:10',
             'remember' => 'required|boolean',
         ]);
 
-        $guard = session('guard');
-        $credentials = ['email' => $request->get('email'), 'password' => $request->get('password')];
-        if (!$validator->fails()) {
-            if (Auth::guard($guard)->attempt($credentials, $request->get('remember'))) {
-                // Language::all();
-                return response()->json(['message' => 'Logged in successfully'], Response::HTTP_OK);
-            } else {
-                return response()->json(['message' => 'Error credentials, please try again'], Response::HTTP_BAD_REQUEST);
-            }
-        } else {
+        if ($validator->fails()) {
             return response()->json(['message' => $validator->getMessageBag()->first()], Response::HTTP_BAD_REQUEST);
         }
+
+        $guard = session('guard');
+        $credentials = ['email' => $request->get('email'), 'password' => $request->get('password')];
+
+        if (Auth::guard($guard)->attempt($credentials, $request->get('remember'))) {
+            return response()->json(['message' => 'Logged in successfully'], Response::HTTP_OK);
+        }
+
+        return response()->json(['message' => 'Error credentials, please try again'], Response::HTTP_BAD_REQUEST);
     }
 
     public function logout(Request $request)
@@ -98,7 +97,7 @@ class AuthController extends Controller
 
         if (auth('admin')->check()) {
             $user = auth('admin')->user();
-        }  else {
+        } else {
             return abort(404);
         }
         return response()->view('cms.auth.profile.personal-information', ['user' => $user]);
@@ -154,16 +153,19 @@ class AuthController extends Controller
 
 
 
-    public function profileStore(){
+    public function profileStore()
+    {
         return view('cms.auth.store-profile.profile');
     }
 
 
-    public function logoAndImage(){
-        return view('cms.auth.profile.store.image-cover',['user' => auth()->user()]);
+    public function logoAndImage()
+    {
+        return view('cms.auth.profile.store.image-cover', ['user' => auth()->user()]);
     }
 
-    public function storeImageAndCover(Request $request){
+    public function storeImageAndCover(Request $request)
+    {
         $validator = Validator($request->all(), [
             'logo' =>  ['nullable', 'image', 'mimes:jpg,png,jpeg,gif'],
             'cover' => ['nullable', 'image', 'mimes:jpg,png,jpeg,gif']
@@ -185,12 +187,14 @@ class AuthController extends Controller
         }
     }
 
-    public function showRegionInfo(){
+    public function showRegionInfo()
+    {
         $languages = Language::all();
-        return view('cms.auth.profile.store.region-info',['user' => auth()->user(),'languages' => $languages]);
+        return view('cms.auth.profile.store.region-info', ['user' => auth()->user(), 'languages' => $languages]);
     }
 
-    public function editRegionInfo(Request $request){
+    public function editRegionInfo(Request $request)
+    {
         $validator = Validator($request->all(), [
             'longitude' => 'required|string',
             'latitude' => 'required|string',
@@ -209,11 +213,10 @@ class AuthController extends Controller
             return ControllersService::generateValidationErrorMessage($validator->getMessageBag()->first());
         }
     }
-    
 
-    public function readNotification(){
+
+    public function readNotification()
+    {
         auth()->user()->unreadNotifications->markAsRead();
     }
-
-
 }

@@ -98,6 +98,40 @@ class PermissionSeeder extends Seeder
 
 
 
+        // Permission::create(['name' => 'Create-Employee-Product', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Read-Employee-Product', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Update-Employee-Product', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Delete-Employee-Product', 'guard_name' => 'employee']);
+
+        // Permission::create(['name' => 'Create-Employee-User', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Read-Employee-User', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Update-Employee-User', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Delete-Employee-User', 'guard_name' => 'employee']);
+
+        // Permission::create(['name' => 'Create-Employee-Employee', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Read-Employee-Employee', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Update-Employee-Employee', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Delete-Employee-Employee', 'guard_name' => 'employee']);
+
+        // Permission::create(['name' => 'Create-Employee-Role', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Read-Employee-Role', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Update-Employee-Role', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Delete-Employee-Role', 'guard_name' => 'employee']);
+
+        // Permission::create(['name' => 'Create-Employee-Order', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Read-Employee-Order', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Update-Employee-Order', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Delete-Employee-Order', 'guard_name' => 'employee']);
+
+
+        // Permission::create(['name' => 'Read-Employee-Analytics', 'guard_name' => 'employee']);
+
+        // Permission::create(['name' => 'Create-Employee-Coupon', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Read-Employee-Coupon', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Update-Employee-Coupon', 'guard_name' => 'employee']);
+        // Permission::create(['name' => 'Delete-Employee-Coupon', 'guard_name' => 'employee']);
+
+
         $allAdminPer = Permission::where('guard_name', 'admin')->get();
         $role = Role::where('name', 'Super-Admin')->first();
         if ($role) {

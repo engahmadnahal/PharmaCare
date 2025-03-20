@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Employee;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
 
-class RolePermissionController extends Controller
+class EmployeeRolePermissionController extends Controller
 {
 
-
-   
     /**
      * Store a newly created resource in storage.
      *
@@ -48,11 +47,14 @@ class RolePermissionController extends Controller
      */
     public function show($id)
     {
-        //
-        if(!auth()->user()->can('Update-Role')){
-            return abort(403,'unauthorized');
+        if (!auth()->user()->can('Update-Employee-Role')) {
+            return abort(403, 'unauthorized');
         }
+
         $role = Role::findOrFail($id);
+        if ($role->guard_id != auth()->user()->id) {
+            return abort(403, 'unauthorized');
+        }
         $rolePermissions = $role->permissions;
 
         $permissions = Permission::where('guard_name', $role->guard_name)->get();
@@ -65,7 +67,6 @@ class RolePermissionController extends Controller
                 }
             }
         }
-        return response()->view('cms.spatie.roles.role-permissions', ['role' => $role, 'permissions' => $permissions]);
+        return response()->view('cms.spatie.roles.role-permissions', ['role' => $role, 'permissions' => $permissions, 'guard_name' => $role->guard_name]);
     }
-
 }

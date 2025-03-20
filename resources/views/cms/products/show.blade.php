@@ -20,23 +20,17 @@
                 <!--begin: Pic-->
                 <div class="flex-shrink-0 mr-7 mt-lg-0 mt-3">
                     <div class="symbol symbol-50 symbol-lg-120">
-                        <img src="{{ Storage::url($data->image) }}" alt="image">
-                    </div>
-                    <div class="symbol symbol-50 symbol-lg-120 symbol-primary d-none">
-                        <span class="font-size-h3 symbol-label font-weight-boldest"></span>
+                        <img src="{{ Storage::url($data->image) }}" alt="product image">
                     </div>
                 </div>
                 <!--end::Pic-->
                 <!--begin::Info-->
                 <div class="flex-grow-1">
-                    <!--begin::Title-->
                     <div class="d-flex justify-content-between flex-wrap mt-1">
                         <div class="d-flex mr-3">
-                            <a href="#"
-                                class="text-dark-75 text-hover-primary font-size-h5 font-weight-bold mr-3">{{ $data->name }}</a>
-                            <a href="#">
-                                {{-- <i class="flaticon2-correct text-success font-size-h5"></i> --}}
-                            </a>
+                            <h3 class="text-dark-75 font-weight-bold mr-3">
+                                {{ App::getLocale() == 'ar' ? $data->trade_name_ar : $data->trade_name_en }}
+                            </h3>
                         </div>
                         <div class="my-lg-0 my-3">
                             {{ __('cms.craeted_at') }}
@@ -45,49 +39,278 @@
                             {{-- <a href="#" class="btn btn-sm btn-info font-weight-bolder text-uppercase">hire</a> --}}
                         </div>
                     </div>
-                    <!--end::Title-->
-                    <!--begin::Content-->
-                    <div class="d-flex flex-wrap justify-content-between mt-1">
-                        <div class="d-flex flex-column flex-grow-1 pr-8">
-                            <div class="d-flex flex-wrap mb-4">
-                                <a 
-                                    class="text-dark-50 text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                    {{ $data->amount }}</a>
-
-                               
-                            </div>
-                            <span class="font-weight-bold text-dark-50">.</span>
-                        </div>
-                        {{-- <div class="d-flex align-items-center w-25 flex-fill float-right mt-lg-12 mt-8">
-                            <span class="font-weight-bold text-dark-75">Progress</span>
-                            <div class="progress progress-xs mx-3 w-100">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 63%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <span class="font-weight-bolder text-dark">78%</span>
-                        </div> --}}
-                    </div>
-                    <!--end::Content-->
                 </div>
                 <!--end::Info-->
             </div>
             <!--end::Details-->
-            <div class="separator separator-solid"></div>
-            <!--begin::Items-->
-            <div class="d-flex align-items-center flex-wrap mt-8">
-                <div class="card-toolbar">
-                    <ul class="nav nav-pills nav-pills-sm nav-dark-75">
-                        <li class="nav-item">
-                            <a class="nav-link py-2 px-4 active" data-toggle="tab"
-                                href="#kt_tab_pane_11_1">{{ __('cms.studio') }}</a>
-                        </li>
-                        
-                        {{-- <li class="nav-item">
-                            <a class="nav-link py-2 px-4 active" data-toggle="tab" href="#kt_tab_pane_11_3">{{__('cms.')}}</a>
-                        </li> --}}
-                    </ul>
+            <div class="separator separator-solid mb-5"></div>
+            <!--begin::Product Details-->
+            <div class="row">
+                <!--begin::Basic Info-->
+                <div class="col-xl-6">
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header h-auto py-4">
+                            <div class="card-title">
+                                <h3 class="card-label">{{ __('cms.basic_information') }}</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.category') }}</label>
+                                    <p>{{ $data->category->name }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.medicine_type') }}</label>
+                                    <p>{{ $data->medicineType->name }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.barcode') }}</label>
+                                    <p>{{ $data->barcode }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.concentration') }}</label>
+                                    <p>{{ $data->concentration_value }} {{ $data->concentration_unit }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.weight') }}</label>
+                                    <p>{{ $data->weight }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.num_units_in_package') }}</label>
+                                    <p>{{ $data->num_units_in_package }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--begin::Names Section-->
+                <div class="col-xl-6">
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header h-auto py-4">
+                            <div class="card-title">
+                                <h3 class="card-label">{{ __('cms.names') }}</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.trade_name_ar') }}</label>
+                                    <p>{{ $data->trade_name_ar }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.trade_name_en') }}</label>
+                                    <p>{{ $data->trade_name_en }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.scientific_name_ar') }}</label>
+                                    <p>{{ $data->scientific_name_ar }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.scientific_name_en') }}</label>
+                                    <p>{{ $data->scientific_name_en }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!--begin::Items-->
+
+            <div class="row">
+                <!--begin::Descriptions Section-->
+                <div class="col-xl-12">
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header h-auto py-4">
+                            <div class="card-title">
+                                <h3 class="card-label">{{ __('cms.descriptions') }}</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.drug_description_ar') }}</label>
+                                    <p>{{ $data->drug_description_ar }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.drug_description_en') }}</label>
+                                    <p>{{ $data->drug_description_en }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.indications_for_use_ar') }}</label>
+                                    <p>{{ $data->indications_for_use_ar }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.indications_for_use_en') }}</label>
+                                    <p>{{ $data->indications_for_use_en }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!--begin::Usage Information-->
+                <div class="col-xl-12">
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header h-auto py-4">
+                            <div class="card-title">
+                                <h3 class="card-label">{{ __('cms.usage_information') }}</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.recommended_dosage_ar') }}</label>
+                                    <p>{{ $data->recommended_dosage_ar }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.recommended_dosage_en') }}</label>
+                                    <p>{{ $data->recommended_dosage_en }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.how_to_use_ar') }}</label>
+                                    <p>{{ $data->how_to_use_ar }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.how_to_use_en') }}</label>
+                                    <p>{{ $data->how_to_use_en }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!--begin::Medical Information-->
+                <div class="col-xl-12">
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header h-auto py-4">
+                            <div class="card-title">
+                                <h3 class="card-label">{{ __('cms.medical_information') }}</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.drug_interactions_ar') }}</label>
+                                    <p>{{ $data->drug_interactions_ar }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.drug_interactions_en') }}</label>
+                                    <p>{{ $data->drug_interactions_en }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.side_effects_ar') }}</label>
+                                    <p>{{ $data->side_effects_ar }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.side_effects_en') }}</label>
+                                    <p>{{ $data->side_effects_en }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.alternative_medicines_ar') }}</label>
+                                    <p>{{ $data->alternative_medicines_ar }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.alternative_medicines_en') }}</label>
+                                    <p>{{ $data->alternative_medicines_en }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.complementary_medicines_ar') }}</label>
+                                    <p>{{ $data->complementary_medicines_ar }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.complementary_medicines_en') }}</label>
+                                    <p>{{ $data->complementary_medicines_en }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-6">
+                    <!--begin::Pricing & Dates-->
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header h-auto py-4">
+                            <div class="card-title">
+                                <h3 class="card-label">{{ __('cms.pricing_and_dates') }}</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.basic_price') }}</label>
+                                    <p>{{ $data->basic_price }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.retail_price') }}</label>
+                                    <p>{{ $data->retail_price }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.expiration_date') }}</label>
+                                    <p>{{ $data->expiration_date }}</p>
+                                </div>
+                                <div class="col-md-6 mb-5">
+                                    <label class="font-weight-bold">{{ __('cms.quantity') }}</label>
+                                    <p>{{ $data->quantity }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Pricing & Dates-->
+                </div>
+            </div>
+
+            <!--begin::Product Images-->
+            <div class="row mt-5">
+                <div class="col-xl-12">
+                    <div class="card card-custom gutter-b">
+                        <div class="card-header h-auto py-4">
+                            <div class="card-title">
+                                <h3 class="card-label">{{ __('cms.product_images') }}</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 text-center">
+                                    <label class="font-weight-bold">{{ __('cms.product_image') }}</label>
+                                    <div class="image-input image-input-outline mt-2">
+                                        <img src="{{ Storage::url($data->image) }}" 
+                                             class="img-fluid" 
+                                             style="max-height: 250px;"
+                                             alt="product image">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <label class="font-weight-bold">{{ __('cms.leaflet_image') }}</label>
+                                    <div class="image-input image-input-outline mt-2">
+                                        <img src="{{ Storage::url($data->medication_leaflet_image) }}" 
+                                             class="img-fluid" 
+                                             style="max-height: 250px;"
+                                             alt="leaflet image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="{{ route('cms.employee.products.index') }}" class="btn btn-secondary">{{ __('cms.back') }}</a>
+                    @can('Update-Product')
+                        <a href="{{ route('cms.employee.products.edit', $data->id) }}" class="btn btn-primary">{{ __('cms.edit') }}</a>
+                    @endcan
+                </div>
+            </div>
         </div>
     </div>
     <!--end::Card-->
@@ -104,57 +327,7 @@
                     </h3>
                     
                 </div> --}}
-                <!--end::Header-->
-                <!--begin::Body-->
-                <div class="card-body pt-2 pb-0 mt-n3">
-                    <div class="tab-content mt-5" id="myTabTables11">
-                        <!--begin::Tap pane-->
-                        <div class="tab-pane fade show active" id="kt_tab_pane_11_1" role="tabpanel"
-                            aria-labelledby="kt_tab_pane_11_1">
-                            <!--begin::Table-->
-                            
-                            <div class="table-responsive">
-                                
-                                <table class="table table-borderless table-vertical-center">
-                                    <thead>
-                                        <tr class="text-uppercase">
-                                            <th style="min-width: 150px">{{ __('cms.name') }}</th>
-                                            <th style="min-width: 150px">{{ __('cms.add_date') }}</th>
-                                            <th style="min-width: 150px">{{ __('cms.amount') }}</th>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($data->studioProduct as $prd)
-                                        <tr>
-                                            <td class="pl-0">
-                                                <a
-                                                    class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">{{ $prd->studio->name }}</a>
-                                            </td>
-                                            <td class="pl-0">
-                                                <a
-                                                    class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">{{ Carbon::parse($prd->created_at)->format('Y/m/d') }}</a>
-                                            </td>
-                                            
-                                            <td class="pl-0">
-                                                <a
-                                                    class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">{{ $prd->amount }}</a>
-                                            </td>
-
-                                        </tr>
-                                        @endforeach
-
-                                </table>
-                            </div>
-
-                            <!--end::Table-->
-                        </div>
-                        <!--end::Tap pane-->
-                       
-
-                    </div>
-                </div>
-                <!--end::Body-->
+              
             </div>
             <!--end::Advance Table Widget 2-->
         </div>
