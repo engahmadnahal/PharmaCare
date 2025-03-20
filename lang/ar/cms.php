@@ -748,7 +748,48 @@ return [
     'product_image' => 'صورة المنتج',
     'leaflet_image' => 'صورة الرشتة المرفقة',
 
+    'payment_method' => 'طريقة الدفع',
+    'payment_status' => 'حالة الدفع',
+    'user_full_name' => 'اسم العميل',
+    'user_mobile' => 'رقم العميل',
+    'paid' => 'مدفوع',
+    'unpaid' => 'غير مدفوع',
+    'pending' => 'قيد الانتظار',
+    'processing' => 'قيد المعالجة',
+    'completed' => 'مكتمل',
+    'cancelled' => 'ملغي',
+
+    'order_details' => 'تفاصيل الطلب',
+    'order_number' => 'رقم الطلب',
+    'created_at' => 'تاريخ الاضافة',
+    'payment_method' => 'طريقة الدفع',
+    'payment_status' => 'حالة الدفع',
+    'status' => 'الحالة',
+    'update_status' => 'تعديل الحالة',
     
+    'cash' => 'نقدي',
+    'online' => 'عبر الانترنت',
+    
+    'pending' => 'قيد الانتظار',
+    'paid' => 'مدفوع',
+    'failed' => 'فشل',
+    'processing' => 'قيد المعالجة',
+    'completed' => 'مكتمل',
+    'cancelled' => 'ملغي',
+    
+    'customer_details' => 'تفاصيل العميل',
+    'customer_name' => 'اسم العميل',
+    'customer_email' => 'البريد الإلكتروني',
+    'customer_mobile' => 'رقم العميل',
+    'customer_address' => 'العنوان',
+    
+    'order_summary' => 'ملخص الطلب',
+    'shipping' => 'الشحن',
+    'coupon_discount' => 'الخصم',
+    'subtotal' => 'المجموع الفرعي',
+    'order_note' => 'ملاحظة الطلب',
+    'order_items' => 'عناصر الطلب',
+    'item' => ' العنصر',
 
 
 ];

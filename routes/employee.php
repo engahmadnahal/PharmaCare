@@ -5,6 +5,7 @@ use App\Http\Controllers\Employee\CouponController;
 use App\Http\Controllers\Employee\EmployeeController;
 use App\Http\Controllers\Employee\EmployeeRoleController;
 use App\Http\Controllers\Employee\EmployeeRolePermissionController;
+use App\Http\Controllers\Employee\OrderController;
 use App\Http\Controllers\Employee\ProductController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -65,5 +66,13 @@ Route::group([
             //  */
 
             Route::resource('products', ProductController::class);
+
+            // /**
+            //  * --------------------------------------------
+            //  *  Order Route Controller
+            //  * --------------------------------------------
+            //  */
+            Route::resource('orders', OrderController::class);
+            Route::put('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status.update');
         });
 });

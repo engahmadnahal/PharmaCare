@@ -178,9 +178,9 @@ class RouteService
                         'routes' => [
                             [
                                 'title' => __('cms.orders'),
-                                'route' => '/',
+                                'route' => route('cms.employee.orders.index'),
                                 'permission' => 'Read-Employee-Order',
-                                'active' => false,
+                                'active' => request()->routeIs('cms.employee.orders.index'),
                             ],
 
                         ],
