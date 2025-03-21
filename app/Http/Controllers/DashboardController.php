@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coupon;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\StudioBranch;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -60,19 +63,55 @@ class DashboardController extends Controller
 
     private function employee()
     {
-        return response()->view('cms.dashboard', [
-            'currency' => 'USD',
-            'orderChart' => 0,
-            'orderChart' => 0,
-            'todayAmount' => 0,
-            'weekAmount' => 0,
-            'monthAmount' => 0,
-            'totalAmount' => 0,
-            'todayOrder' => 0,
-            'weekOrder' => 0,
-            'monthOrder' => 0,
-            'totalOrder' => 0,
-        ]);
+        $data = [
+            // Basic Stats
+            'totalOrders' => Order::count(),
+            'totalUsers' => User::count(),
+            'totalProducts' => Product::count(),
+            'totalCoupons' => Coupon::count(),
+    
+            // Recent Orders
+            'recentOrders' => Order::with('user')
+                ->latest()
+                ->take(5)
+                ->get(),
+    
+            // Recent Products
+            'recentProducts' => Product::latest()
+                ->take(5)
+                ->get(),
+    
+            // Chart Data
+            'orderChartData' => Order::selectRaw('COUNT(*) as count, DATE(created_at) as date')
+                ->groupBy('date')
+                ->orderBy('date')
+                ->take(7)
+                ->pluck('count')
+                ->toArray(),
+    
+            'orderChartLabels' => Order::selectRaw('DATE(created_at) as date')
+                ->groupBy('date')
+                ->orderBy('date')
+                ->take(7)
+                ->pluck('date')
+                ->toArray(),
+    
+            'userChartData' => User::selectRaw('COUNT(*) as count, DATE(created_at) as date')
+                ->groupBy('date')
+                ->orderBy('date')
+                ->take(7)
+                ->pluck('count')
+                ->toArray(),
+    
+            'userChartLabels' => User::selectRaw('DATE(created_at) as date')
+                ->groupBy('date')
+                ->orderBy('date')
+                ->take(7)
+                ->pluck('date')
+                ->toArray(),
+        ];
+        
+        return response()->view('cms.indexes.employee', $data);
     }
 
 

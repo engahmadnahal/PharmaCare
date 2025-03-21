@@ -7,3 +7,4 @@ class PharmType
     const PARTNER = 'partner';
     const BENEFICIARY = 'beneficiary';
 }
+

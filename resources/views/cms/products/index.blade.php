@@ -78,7 +78,7 @@
 
                         <td>
                             <span
-                                class="label label-lg @if ($product->status) label-light-success @else label-light-warning @endif label-inline">{{ $product->status ? __('cms.active') : __('cms.inactive') }}</span>
+                                class="label label-lg @if ($product->available_without_prescription) label-light-success @else label-light-warning @endif label-inline">{{ $product->available_without_prescription ? __('cms.available_without_prescription') : __('cms.available_with_prescription') }}</span>
                         </td>
                         <td class="pr-0 text-right">
                             @can('Create-Employee-Product')

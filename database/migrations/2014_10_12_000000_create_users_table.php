@@ -15,16 +15,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('fcm_token')->nullable();
-            $table->string('name');
+            $table->foreignId('parent_id')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->string('full_name');
             $table->string('email')->unique();
             $table->string('mobile')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('password');
-            $table->boolean('isNotify')->default(true);
             $table->string('avater')->nullable();
-            $table->enum('status',['verefy','unVerefy','blocked'])->default('unVerefy');
-            $table->string('verification_code')->nullable();
+            $table->boolean('status')->default(true);
+            $table->date('date_of_birth');
             $table->rememberToken();
             $table->timestamps();
         });

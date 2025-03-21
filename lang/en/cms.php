@@ -755,5 +755,65 @@ return [
     'order_items' => 'Order Items',
     'item' => 'Item',
 
+    'total_orders' => 'Total Orders',
+    'total_users' => 'Total Users',
+    'total_products' => 'Total Products',
+    'total_coupons' => 'Total Coupons',
+    'orders_chart' => 'Orders Chart',
+    'users_chart' => 'Users Chart',
+    'recent_orders' => 'Recent Orders',
+    'recent_products' => 'Recent Products',
+    'order_number' => 'Order Number',
+    'customer' => 'Customer',
+    'stock' => 'Stock',
+    'product' => 'Product',
+    'available_without_prescription' => 'Available without prescription',
+    'available_with_prescription' => 'Available with prescription',
+
+    // User Information
+    'user_information' => 'User Information',
+    'medical_information' => 'Medical Information',
+    'blood_type' => 'Blood Type',
+    'width' => 'Width',
+    'length' => 'Length',
+    'allergies' => 'Allergies',
+    'genetic_diseases' => 'Genetic Diseases',
+    'no_allergies' => 'No Allergies',
+    'no_genetic_diseases' => 'No Genetic Diseases',
+
+    // Drugs
+    'drugs' => 'Drugs',
+    'dosage' => 'Dosage',
+    'diseases' => 'Diseases',
+    'duration' => 'Duration',
+    'type' => 'Type',
+    'permanent' => 'Permanent',
+    'temporary' => 'Temporary',
+
+    // Medical Records
+    'medical_records' => 'Medical Records',
+    'description' => 'Description',
+    'file' => 'File',
+    'view_file' => 'View File',
+
+    // Orders
+    'orders' => 'Orders',
+    'total_orders' => 'Total Orders',
+    'completed_orders' => 'Completed Orders',
+    'pending_orders' => 'Pending Orders',
+    'total_spent' => 'Total Spent',
+    'order_number' => 'Order Number',
+    'items_count' => 'Items Count',
+    'view' => 'View',
+
+    // General
+    'no_records' => 'No records found',
+
+    'medication' => 'medication',
+    'genetic' => 'genetic',
+    'both' => 'both',
+    'chronic' => 'chronic',
+
+
 
 ];

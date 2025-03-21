@@ -7,6 +7,7 @@ use App\Http\Controllers\Employee\EmployeeRoleController;
 use App\Http\Controllers\Employee\EmployeeRolePermissionController;
 use App\Http\Controllers\Employee\OrderController;
 use App\Http\Controllers\Employee\ProductController;
+use App\Http\Controllers\Employee\UserController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /*
@@ -74,5 +75,16 @@ Route::group([
             //  */
             Route::resource('orders', OrderController::class);
             Route::put('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status.update');
+
+            // /**
+            //  * --------------------------------------------
+            //  *  User Route Controller
+            //  * --------------------------------------------
+            //  */
+            Route::get('users', [UserController::class, 'index'])->name('users.index');
+            Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
+            Route::put('users/{user}/status', [UserController::class, 'updateStatus'])->name('users.status.update');
+
+
         });
 });

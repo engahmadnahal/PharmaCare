@@ -105,9 +105,9 @@ class RouteService
 
                             [
                                 'title' => __('cms.users'),
-                                'route' => route('users.index'),
+                                'route' => route('cms.employee.users.index'),
                                 'permission' => 'Read-Employee-User',
-                                'active' => request()->routeIs('users.index'),
+                                'active' => request()->routeIs('cms.employee.users.index'),
 
                             ],
 
@@ -228,44 +228,6 @@ class RouteService
                 ],
             ],
 
-
-            "order" => [
-                'permission_group' => [
-                    'Read-OrderSoftcopy',
-                    'Create-OrderSoftcopy',
-                    'Read-Order',
-                    'Create-Order',
-                    'Read-ServicesBookinStudio',
-                    'Read-Users',
-                    'Update-User'
-                ],
-                'route_group' => [
-                    [
-                        'groupTitle' => __('cms.order'),
-                        'permissions' => [
-                            'Read-OrderSoftcopy',
-                            'Create-OrderSoftcopy',
-                            'Read-Order',
-                            'Create-Order',
-                            'Read-ServicesBookinStudio'
-                        ],
-                        'routes' => [
-                            // [
-                            //     'title' => __('cms.delete_account_request'),
-                            //     'route' => route('delete_account_users.index'),
-                            //     'permission' => 'Read-Users',
-                            //     'active' => request()->routeIs('delete_account_users.index'),
-
-                            // ],
-
-
-                        ],
-                    ],
-
-
-
-                ],
-            ],
 
 
             "settings" => [

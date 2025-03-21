@@ -791,5 +791,64 @@ return [
     'order_items' => 'عناصر الطلب',
     'item' => ' العنصر',
 
+    'total_orders' => 'اجمالي الطلبات',
+    'total_users' => 'اجمالي المستخدمين',
+    'total_products' => 'اجمالي المنتجات',
+    'total_coupons' => 'اجمالي الكوبونات',
+    'orders_chart' => 'اجمالي الطلبات',
+    'users_chart' => 'اجمالي المستخدمين',
+    'recent_orders' => 'اجمالي الطلبات',
+    'recent_products' => 'اجمالي المنتجات',
+    'order_number' => 'رقم الطلب',
+    'customer' => 'العميل',
+    'stock' => 'المخزن',
+    'product' => 'المنتج',
+    'available_without_prescription' => 'متاح بدون وصفة',
+    'available_with_prescription' => 'متاح بوصفة',
+
+    // User Information
+    'user_information' => 'معلومات المستخدم',
+    'medical_information' => 'معلومات الطبية',
+    'blood_type' => 'نوع الدم',
+    'width' => 'العرض',
+    'length' => 'الطول',
+    'allergies' => 'الأعراض الحساسية',
+    'genetic_diseases' => 'الأعراض الوراثية',
+    'no_allergies' => 'لا يوجد أعراض حساسية',
+    'no_genetic_diseases' => 'لا يوجد أعراض وراثية',
+    
+    // Drugs
+    'drugs' => 'الأدوية',
+    'dosage' => 'الجرعة',
+    'diseases' => 'الأمراض',
+    'duration' => 'المدة',
+    'type' => 'النوع',
+    'permanent' => 'دائم',
+    'temporary' => 'مؤقت',
+    
+    // Medical Records
+    'medical_records' => 'السجلات الطبية',
+    'description' => 'الوصف',
+    'file' => 'الملف',
+    'view_file' => 'عرض الملف',
+    
+    // Orders
+    'orders' => 'الطلبات',
+    'total_orders' => 'اجمالي الطلبات',
+    'completed_orders' => 'اجمالي الطلبات المكتملة',
+    'pending_orders' => 'اجمالي الطلبات القيد الانتظار',
+    'total_spent' => 'اجمالي المبلغ المدفوع',
+    'order_number' => 'رقم الطلب',
+    'items_count' => 'عدد العناصر',
+    'view' => 'عرض',
+    
+    // General
+    'no_records' => 'لا يوجد سجلات',
+
+    'medication' => 'دواء',
+    'genetic' => 'وراثي',
+    'both' => 'الاثنان',
+    'chronic' => 'مزمن',
+
 
 ];
