@@ -116,6 +116,11 @@
             </table>
         </div>
         <!--end::Table-->
+        @if($data->hasPages())
+        <div class="card-footer">
+            {{ $data->links() }}
+        </div>
+        @endif
     </div>
     <!--end::Body-->
 </div>
