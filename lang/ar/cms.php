@@ -11,7 +11,6 @@ return [
     "roles" => "الصلاحيات",
     "permissions" => "الأذونات",
     "content_management" => "إدارة المحتوى",
-    "categories" => "الفئات",
     "settings" => "الإعدادات",
     "edit_profile" => "تعديل الحساب",
     "edit_password" => "تعديل كلمة المرور",
@@ -202,16 +201,7 @@ return [
 
 
     "shop_content_management" => "إداراة محتوى المتجر",
-    "categories" => "أصناف رئيسية",
     "icon" => "الأيقونة",
-
-
-    "sub_categories" => "الأصناف الفرعية",
-    "sub_sub_categories" => "الأصناف الفرعي للفرعية",
-
-    "trademark_company" => "شركة العلامات التجارية",
-
-    "trademark" => "العلامة التجارية",
 
 
 
@@ -628,7 +618,7 @@ return [
     'update_success' => 'تم تعديل الموظف بنجاح',
 
     'create_category' => 'إنشاء صنف',
-    'categories' => 'الصنف',
+    'categories' => 'التصنيف العلاجي',
     'name_ar' => 'الاسم بالعربية',
     'name_en' => 'الاسم بالانجليزية',
     'enter_name_ar' => 'أدخل الاسم بالعربية',
@@ -642,9 +632,9 @@ return [
     'edit' => 'تعديل',
     'update_success' => 'تم تعديل الصنف بنجاح',
     'update_error' => 'حدث خطأ أثناء تعديل الصنف',
-    'medicine_types' => 'انواع الأدوية',
-    'create_medicine_type' => 'إنشاء أنواع الأدوية',
-    'edit_medicine_type' => 'تعديل أنواع الأدوية',
+    'medicine_types' => 'الشكل الصيدلاني',
+    'create_medicine_type' => 'إنشاء الشكل الصيدلاني',
+    'edit_medicine_type' => 'تعديل الشكل الصيدلاني',
     'management' => 'الادارة',
     'promocodes' => 'اكواد الخصم',
     'create_promocode' => 'إنشاء اكواد الخصم',
@@ -688,14 +678,15 @@ return [
     'expiration_date' => 'تاريخ الانتهاء',
     'pharmacy_management' => 'ادارة الصيدلية',
 
-    'medicine_type' => 'انواع الأدوية',
-    'select_medicine_type' => 'اختر نوع الأدوية',
-    'select_category' => 'اختر الصنف',
-    'create_medicine_type' => 'إنشاء أنواع الأدوية',
-    'edit_medicine_type' => 'تعديل أنواع الأدوية',
-    'medicine_types' => 'انواع الأدوية',
-    'create_medicine_type' => 'إنشاء أنواع الأدوية',
-    'edit_medicine_type' => 'تعديل أنواع الأدوية',
+    'categories_title' => 'التصنيفات',
+    'medicine_type' => 'الشكل الصيدلاني',
+    'select_medicine_type' => 'اختر الشكل الصيدلاني',
+    'select_category' => 'اختر التصنيف العلاجي',
+    'create_medicine_type' => 'إنشاء الشكل الصيدلاني',
+    'edit_medicine_type' => 'تعديل الشكل الصيدلاني',
+    'medicine_types' => 'الشكل الصيدلاني',
+    'create_medicine_type' => 'إنشاء الشكل الصيدلاني',
+    'edit_medicine_type' => 'تعديل الشكل الصيدلاني',
     'concentration' => 'التركيز',
     'form' => 'الشكل',
     'side_effects' => 'الاضرار الجانبية',

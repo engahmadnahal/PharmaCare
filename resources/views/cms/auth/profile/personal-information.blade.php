@@ -11,11 +11,8 @@
                 <span class="text-muted font-weight-bold font-size-sm mt-1">---</span>
             </div>
             <div class="card-toolbar">
-                <button type="button" @if (auth('admin')->check())
+                <button type="button"
                     onclick="performEdit()"
-                    @else
-                    onclick="performEditStore()"
-                    @endif
                     class="btn btn-success mr-2">{{__('cms.save')}}</button>
                 <button type="reset" class="btn btn-secondary">{{__('cms.cancel')}}</button>
             </div>
@@ -38,25 +35,6 @@
                             value="{{$user->name}}" />
                     </div>
                 </div>
-                @if (auth('admin')->check())
-                <div class="form-group row">
-                    <label class="col-xl-3 col-lg-3 col-form-label">{{__('cms.user_name')}}</label>
-                    <div class="col-lg-9 col-xl-6">
-                        <input class="form-control form-control-lg form-control-solid" id="user_name" type="text"
-                            value="{{$user->user_name}}" />
-                    </div>
-                </div>
-
-                @else
-                <div class="form-group row">
-                    <label class="col-xl-3 col-lg-3 col-form-label">{{__('cms.address')}}</label>
-                    <div class="col-lg-9 col-xl-6">
-                        <input class="form-control form-control-lg form-control-solid" id="address" type="text"
-                            value="{{$user->address}}" />
-                    </div>
-                </div>
-                @endif
-
                 <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">{{__('cms.email')}}</label>
                     <div class="col-lg-9 col-xl-6">
@@ -84,28 +62,15 @@
 
 <script>
     var image = new KTImageInput('profile_image');
-   
-        function performEdit(){
-            let formData = new FormData();
-                formData.append('_method', 'PUT');
-                formData.append('name',document.getElementById('name').value);
-                formData.append('user_name',document.getElementById('user_name').value);
-                formData.append('email',document.getElementById('email').value);
-                store('/cms/admin/profile/personal', formData);
 
-       
-        }
-        function performEditStore(){
-               let formData = new FormData();
-                    formData.append('_method', 'PUT');
-                    formData.append('name',document.getElementById('name').value);
-                    formData.append('address',document.getElementById('address').value);
-                    formData.append('email',document.getElementById('email').value);
-                    store('/cms/admin/profile/personal', formData);
-                
-                
-                }
+    function performEdit() {
+        let formData = new FormData();
+        formData.append('_method', 'PUT');
+        formData.append('name', document.getElementById('name').value);
+        formData.append('email', document.getElementById('email').value);
+        store("/portal/profile/personal", formData);
 
-   
+
+    }
 </script>
 @endsection

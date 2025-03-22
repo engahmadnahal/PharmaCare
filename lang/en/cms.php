@@ -8,7 +8,6 @@ return [
     "roles" => "Roles",
     "permissions" => "Permissions",
     "content_management" => "Content Management",
-    "categories" => "Categories",
     "settings" => "Settings",
     "edit_profile" => "Edit Profile",
     "edit_password" => "Change Password",
@@ -199,17 +198,11 @@ return [
 
 
     "shop_content_management" => "Shop Content Management",
-    "categories" => "Categories",
     "icon" => "Icon",
-    "sub_categories" => "Sub Categories",
-    "sub_sub_categories" => "Sub Sub Categories",
-    "trademark_company" => "Trademark Company",
-    "trademark" => "Trademark",
 
     'products' => 'Products',
     'units' => 'Units',
     'product_status' => 'Product Status',
-
 
     'barcode' => 'Barcode',
     'unit_type' => 'Unit Type',
@@ -593,7 +586,7 @@ return [
     'view_current_certificate' => 'View Current Certificate',
     'update_success' => 'Employee updated successfully',
     'create_category' => 'Create Category',
-    'categories' => 'Categories',
+    'categories' => 'Therapeutic classification',
     'name_ar' => 'Arabic Name',
     'name_en' => 'English Name',
     'enter_name_ar' => 'Enter name in Arabic',
@@ -603,7 +596,7 @@ return [
     'inactive' => 'Inactive',
     'save' => 'Save',
     'cancel' => 'Cancel',
-
+    'categories_title' => 'Categories',
     'edit_category' => 'Edit Category',
     'edit' => 'Edit',
     'update_success' => 'Category updated successfully',

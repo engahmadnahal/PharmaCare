@@ -70,19 +70,19 @@ Route::group([
         //  *  Country Route Controller
         //  * --------------------------------------------
         //  */
-        Route::resource('countries', CountryController::class);
-        // /**
-        //  * --------------------------------------------
-        //  *  City Route Controller
-        //  * --------------------------------------------
-        //  */
-        Route::resource('cities', CityController::class);
-        // /**
-        //  * --------------------------------------------
-        //  *  Region Route Controller
-        //  * --------------------------------------------
-        //  */
-        Route::resource('regions', RegionController::class);
+        // Route::resource('countries', CountryController::class);
+        // // /**
+        // //  * --------------------------------------------
+        // //  *  City Route Controller
+        // //  * --------------------------------------------
+        // //  */
+        // Route::resource('cities', CityController::class);
+        // // /**
+        // //  * --------------------------------------------
+        // //  *  Region Route Controller
+        // //  * --------------------------------------------
+        // //  */
+        // Route::resource('regions', RegionController::class);
         // /**
         //  * --------------------------------------------
         //  *  Doctor Route Controller
@@ -101,7 +101,7 @@ Route::group([
         //  *  Contact Us Route Controller
         //  * --------------------------------------------
         //  */
-        Route::get('contact_us/{status?}', [ContactUsController::class, 'index'])->name('contact_us.index');
+        // Route::get('contact_us/{status?}', [ContactUsController::class, 'index'])->name('contact_us.index');
 
 
         // /**
@@ -126,7 +126,7 @@ Route::group([
          *  Setting Route Controller
          * --------------------------------------------
          */
-        Route::resource('settings', SettingController::class);
+        // Route::resource('settings', SettingController::class);
 
 
         /**
@@ -135,6 +135,6 @@ Route::group([
          * --------------------------------------------
          */
 
-        Route::resource('currencies', CurrencyController::class);
+        // Route::resource('currencies', CurrencyController::class);
     });
 });

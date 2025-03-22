@@ -15,7 +15,7 @@ class AuthController extends Controller
 {
     use CustomTrait;
 
-    
+
     public function showLogin(Request $request)
     {
 
@@ -27,7 +27,7 @@ class AuthController extends Controller
 
         if (!$validator->fails()) {
             session()->put('guard', $request->input('guard'));
-            return response()->view('cms.auth.signin',['guard' => $request->input('guard')]);
+            return response()->view('cms.auth.signin', ['guard' => $request->input('guard')]);
         }
 
         abort(404);
@@ -112,35 +112,15 @@ class AuthController extends Controller
     public function updateProfilePersonalInformation(Request $request)
     {
 
-
         $user = auth()->user();
-        if (auth('admin')->check()) {
-            $validator = Validator($request->all(), [
-                'name' => 'required|string|min:3',
-                'user_name' => "required|string|unique:admins,user_name," . $user->id,
-                'email' => "required|string|email|unique:admins,email," . $user->id,
-            ]);
-        } else {
-            $validator = Validator($request->all(), [
-                'name' => 'required|string|min:3',
-                'address' => "required|string|max:30",
-                'email' => "required|string|email|unique:admins,email," . $user->id,
-            ]);
-        }
-
+        $validator = Validator($request->all(), [
+            'name' => 'required|string|min:3',
+            'email' => "required|string|email|unique:admins,email," . $user->id,
+        ]);
 
         if (!$validator->fails()) {
-            if (auth('admin')->check()) {
 
-                $user->name = $request->get('name');
-                $user->user_name = $request->get('user_name');
-            } else {
-                // $user->address = $request->get('address');
-                // $user->translations()->update([
-                //     'name' => $request->input('name'),
-                //     'address' => $request->input('address'),
-                // ]);
-            }
+            $user->name = $request->get('name');
             $user->email = $request->get('email');
             $isSaved = $user->save();
 
@@ -152,7 +132,6 @@ class AuthController extends Controller
 
     public function profileAccountInformatiion(Request $request)
     {
-        // $guard = auth()->check() ? 'admin' : 'store';
         $user = auth()->user();
         return response()->view('cms.auth.profile.account-information', ['user' => $user]);
     }

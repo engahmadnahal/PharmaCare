@@ -7,6 +7,49 @@ class RouteService
     public static function routes()
     {
         return [
+
+
+            "categories" => [
+                'permission_group' => [
+                    'Read-Category',
+                    'Create-Category',
+                    'Read-Category',
+                    'Create-Category',
+                ],
+                'route_group' => [
+                    [
+                        'groupTitle' => __('cms.categories_title'),
+                        'permissions' => [
+                            'Read-Category',
+                            'Create-Category',
+                            'Update-Category',
+                            'Delete-Category',
+                        ],
+                        'routes' => [
+                            [
+                                'title' => __('cms.categories'),
+                                'route' => route('categories.index'),
+                                'permission' => 'Read-Category',
+                                'active' => request()->routeIs('categories.index'),
+                            ],
+
+                            [
+                                'title' => __('cms.medicine_types'),
+                                'route' => route('medicine-types.index'),
+                                'permission' => 'Read-Category',
+                                'active' => request()->routeIs('medicine-types.index'),
+                            ],
+
+
+
+                        ],
+                    ],
+
+                ],
+            ],
+
+
+
             "roles_permissions" => [
                 'permission_group' => ['Read-Roles', 'Create-Role', 'Read-Permissions', 'Read-Employee-Role', 'Create-Employee-Role',],
                 'route_group' => [
@@ -189,156 +232,116 @@ class RouteService
                 ],
             ],
 
-            "categories" => [
-                'permission_group' => [
-                    'Read-Category',
-                    'Create-Category',
-                    'Read-Category',
-                    'Create-Category',
-                ],
-                'route_group' => [
-                    [
-                        'groupTitle' => __('cms.categories'),
-                        'permissions' => [
-                            'Read-Category',
-                            'Create-Category',
-                            'Update-Category',
-                            'Delete-Category',
-                        ],
-                        'routes' => [
-                            [
-                                'title' => __('cms.categories'),
-                                'route' => route('categories.index'),
-                                'permission' => 'Read-Category',
-                                'active' => request()->routeIs('categories.index'),
-                            ],
 
-                            [
-                                'title' => __('cms.medicine_types'),
-                                'route' => route('medicine-types.index'),
-                                'permission' => 'Read-Category',
-                                'active' => request()->routeIs('medicine-types.index'),
-                            ],
+            // "settings" => [
+            //     'permission_group' => [
+            //         // 'Read-Countries',
+            //         // 'Create-Country',
+            //         // 'Update-Country',
+            //         // 'Delete-Country',
+            //         // 'Read-Cities',
+            //         // 'Create-City',
+            //         // 'Update-City',
+            //         // 'Delete-City',
+            //         // 'Read-Currency',
+            //         // 'Create-Currency'
+            //     ],
+            //     'route_group' => [
 
 
+            //         // [
+            //         //     'groupTitle' => __('cms.currency'),
+            //         //     'permissions' => [
+            //         //         'Read-Currency',
+            //         //         'Create-Currency',
+            //         //     ],
+            //         //     'routes' => [
+            //         //         [
+            //         //             'title' => __('cms.index'),
+            //         //             'route' => route('currencies.index'),
+            //         //             'permission' => 'Read-Currency',
+            //         //             'active' => request()->routeIs('currencies.index'),
 
-                        ],
-                    ],
+            //         //         ],
 
-                ],
-            ],
+            //         //     ],
+            //         // ],
 
+            //         // [
+            //         //     'groupTitle' => __('cms.countries'),
+            //         //     'permissions' => [
+            //         //         'Read-Countries',
+            //         //         'Create-Country',
+            //         //     ],
+            //         //     'routes' => [
+            //         //         [
+            //         //             'title' => __('cms.index'),
+            //         //             'route' => route('countries.index'),
+            //         //             'permission' => 'Read-Countries',
+            //         //             'active' => request()->routeIs('countries.index'),
 
+            //         //         ],
 
-            "settings" => [
-                'permission_group' => [
-                    // 'Read-Countries',
-                    // 'Create-Country',
-                    // 'Update-Country',
-                    // 'Delete-Country',
-                    // 'Read-Cities',
-                    // 'Create-City',
-                    // 'Update-City',
-                    // 'Delete-City',
-                    // 'Read-Currency',
-                    // 'Create-Currency'
-                ],
-                'route_group' => [
+            //         //     ],
+            //         // ],
 
+            //         // [
+            //         //     'groupTitle' => __('cms.cities'),
+            //         //     'permissions' => [
+            //         //         'Read-Cities',
+            //         //         'Create-City',
+            //         //     ],
+            //         //     'routes' => [
+            //         //         [
+            //         //             'title' => __('cms.index'),
+            //         //             'route' => route('cities.index'),
+            //         //             'permission' => 'Read-Cities',
+            //         //             'active' => request()->routeIs('cities.index'),
 
-                    // [
-                    //     'groupTitle' => __('cms.currency'),
-                    //     'permissions' => [
-                    //         'Read-Currency',
-                    //         'Create-Currency',
-                    //     ],
-                    //     'routes' => [
-                    //         [
-                    //             'title' => __('cms.index'),
-                    //             'route' => route('currencies.index'),
-                    //             'permission' => 'Read-Currency',
-                    //             'active' => request()->routeIs('currencies.index'),
+            //         //         ],
 
-                    //         ],
+            //         //     ],
+            //         // ],
 
-                    //     ],
-                    // ],
+            //         // [
+            //         //     'groupTitle' => __('cms.regions'),
+            //         //     'permissions' => [
+            //         //         'Read-Regions',
+            //         //         'Create-Region',
+            //         //     ],
+            //         //     'routes' => [
+            //         //         [
+            //         //             'title' => __('cms.index'),
+            //         //             'route' => route('regions.index'),
+            //         //             'permission' => 'Read-Regions',
+            //         //             'active' => request()->routeIs('regions.index'),
 
-                    // [
-                    //     'groupTitle' => __('cms.countries'),
-                    //     'permissions' => [
-                    //         'Read-Countries',
-                    //         'Create-Country',
-                    //     ],
-                    //     'routes' => [
-                    //         [
-                    //             'title' => __('cms.index'),
-                    //             'route' => route('countries.index'),
-                    //             'permission' => 'Read-Countries',
-                    //             'active' => request()->routeIs('countries.index'),
+            //         //         ],
 
-                    //         ],
+            //         //     ],
+            //         // ],
 
-                    //     ],
-                    // ],
+            //         [
+            //             'groupTitle' => __('cms.settings'),
+            //             'permissions' => [
+            //                 'Read-Setting',
+            //                 'Create-Setting',
+            //             ],
+            //             'routes' => [
+            //                 [
+            //                     'title' => __('cms.index'),
+            //                     'route' => route('settings.index'),
+            //                     'permission' => 'Read-Setting',
+            //                     'active' => request()->routeIs('settings.index'),
 
-                    // [
-                    //     'groupTitle' => __('cms.cities'),
-                    //     'permissions' => [
-                    //         'Read-Cities',
-                    //         'Create-City',
-                    //     ],
-                    //     'routes' => [
-                    //         [
-                    //             'title' => __('cms.index'),
-                    //             'route' => route('cities.index'),
-                    //             'permission' => 'Read-Cities',
-                    //             'active' => request()->routeIs('cities.index'),
+            //                 ],
 
-                    //         ],
-
-                    //     ],
-                    // ],
-
-                    // [
-                    //     'groupTitle' => __('cms.regions'),
-                    //     'permissions' => [
-                    //         'Read-Regions',
-                    //         'Create-Region',
-                    //     ],
-                    //     'routes' => [
-                    //         [
-                    //             'title' => __('cms.index'),
-                    //             'route' => route('regions.index'),
-                    //             'permission' => 'Read-Regions',
-                    //             'active' => request()->routeIs('regions.index'),
-
-                    //         ],
-
-                    //     ],
-                    // ],
-
-                    [
-                        'groupTitle' => __('cms.settings'),
-                        'permissions' => [
-                            'Read-Setting',
-                            'Create-Setting',
-                        ],
-                        'routes' => [
-                            [
-                                'title' => __('cms.index'),
-                                'route' => route('settings.index'),
-                                'permission' => 'Read-Setting',
-                                'active' => request()->routeIs('settings.index'),
-
-                            ],
-
-                        ],
-                    ],
+            //             ],
+            //         ],
 
 
-                ],
-            ],
+            //     ],
+            // ],
 
         ];
     }
