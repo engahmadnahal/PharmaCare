@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Coupon;
 use App\Models\Order;
+use App\Models\Pharmaceutical;
 use App\Models\Product;
 use App\Models\StudioBranch;
 use App\Models\User;
@@ -23,40 +24,6 @@ class DashboardController extends Controller
         }
 
         return $this->employee();
-    }
-
-
-    private function usersChart()
-    {
-        $data = DB::table('users')
-            ->selectRaw('month(created_at) as month')
-            ->selectRaw('count(*) as count')
-            ->whereYear('created_at', Carbon::now()->format('Y'))
-            ->groupBy('month')
-            ->orderBy('month')
-            // ->get();
-            ->pluck('count');
-        return $data;
-    }
-
-    private function orderChart()
-    {
-        $data = DB::table('orders')
-            ->selectRaw('month(created_at) as month')
-            ->selectRaw('count(*) as count')
-            ->where(function ($q) {
-                $q->where(function ($q) {
-                    $q->where('paid_status', true)
-                        ->orWhere('payment_way', 'on_receipt');
-                })
-                    ->orWhere('payment_way', 'on_receipt');
-            })
-            ->whereYear('created_at', Carbon::now()->format('Y'))
-            ->groupBy('month')
-            ->orderBy('month')
-            // ->get();
-            ->pluck('count');
-        return $data;
     }
 
 
@@ -117,65 +84,37 @@ class DashboardController extends Controller
 
     private function admin()
     {
-        $studios = 0;
-        $lastStudios = collect([]);
-        $lastUsers = collect([]);
-        $users = 0;
-        $contactUs = 0;
-        $product = 0;
-        $branches = 0;
-        $delivary = 0;
-        $servicesStudio = 0;
-        $storehouse = 0;
+         // Get counts
+    $counts = [
+        'orders' => Order::count(),
+        'pharmacies' => Pharmaceutical::count(),
+        'users' => User::count(),
+        'products' => Product::count(),
+    ];
 
-        $todayOrder = Order::whereDate('created_at', Carbon::today())->where(function ($q) {
-            $q->where('paid_status', true)
-                ->orWhere('payment_way', 'on_receipt');
-        })->count();
-        $weekOrder = Order::whereBetween('created_at', $this->thisWeek())->where(function ($q) {
-            $q->where('paid_status', true)
-                ->orWhere('payment_way', 'on_receipt');
-        })->count();;
-        $monthOrder = Order::whereBetween('created_at', $this->thisMonth())->where(function ($q) {
-            $q->where('paid_status', true)
-                ->orWhere('payment_way', 'on_receipt');
-        })->count();
-        $totalOrder = Order::where(function ($q) {
-            $q->where('paid_status', true)
-                ->orWhere('payment_way', 'on_receipt');
-        })->count();
+    // Calculate totals
+    $totals = [
+        'orders' => Order::sum('total'),
+        'discounts' => Order::sum('discount') + Order::sum('coupon_discount'),
+    ];
+
+    // Get latest records
+    $latestOrders = Order::with('user')
+        ->latest()
+        ->take(5)
+        ->get();
+
+    $latestUsers = User::latest()
+        ->take(5)
+        ->get();
 
 
-        return response()->view('cms.dashboard', [
-            'todayOrder' => $todayOrder,
-            'weekOrder' => $weekOrder,
-            'monthOrder' => $monthOrder,
-            'totalOrder' => $totalOrder,
-            'studios' => $studios,
-            'users' => $users,
-            'contactUs' => $contactUs,
-            'product' => $product,
-            'branches' => $branches,
-            'delivary' => $delivary,
-            'servicesStudio' => $servicesStudio,
-            'storehouse' => $storehouse,
-            'lastStudios' => $lastStudios,
-            'lastUsers' => $lastUsers,
-        ]);
-    }
-
-    private function thisWeek()
-    {
-        $startWeek = Carbon::now()->startOfWeek();
-        $endWeek = Carbon::now()->endOfWeek();
-        return [$startWeek, $endWeek];
-    }
-
-    private function thisMonth()
-    {
-        $startMonth = Carbon::now()->startOfMonth();
-        $endMonth = Carbon::now()->endOfMonth();
-        return [$startMonth, $endMonth];
+    return view('cms.indexes.admin', [
+        'counts' => $counts,
+        'totals' => $totals,
+        'latestOrders' => $latestOrders,
+        'latestUsers' => $latestUsers,
+    ]);
     }
 
     public function changeLanguage()

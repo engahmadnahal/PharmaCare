@@ -86,7 +86,7 @@
                             </div>
                         </td>
                         <td>
-                            <a href="{{ route('cms.employee.users.show', $user->id) }}" 
+                            <a href="{{ route('users.show', $user->id) }}" 
                                 class="btn btn-icon btn-light btn-hover-primary btn-sm">
                                 <span class="svg-icon svg-icon-primary svg-icon-2x">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

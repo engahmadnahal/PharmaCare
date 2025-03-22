@@ -68,6 +68,7 @@ Route::group([
 
             Route::resource('products', ProductController::class);
 
+
             // /**
             //  * --------------------------------------------
             //  *  Order Route Controller
@@ -81,10 +82,7 @@ Route::group([
             //  *  User Route Controller
             //  * --------------------------------------------
             //  */
-            Route::get('users', [UserController::class, 'index'])->name('users.index');
             Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
-            Route::put('users/{user}/status', [UserController::class, 'updateStatus'])->name('users.status.update');
-
 
         });
 });

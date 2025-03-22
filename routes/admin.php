@@ -11,6 +11,7 @@ use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MedicineTypeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PharmaceuticalController;
 use App\Http\Controllers\RegionController;
@@ -102,8 +103,22 @@ Route::group([
         //  */
         Route::get('contact_us/{status?}', [ContactUsController::class, 'index'])->name('contact_us.index');
 
-        Route::post('users/block', [UserController::class, 'blockUser']);
-        Route::resource('users', UserController::class);
+
+        // /**
+        //  * --------------------------------------------
+        //  *  User Route Controller
+        //  * --------------------------------------------
+        //  */
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
+        Route::put('users/{user}/status', [UserController::class, 'updateStatus'])->name('users.status.update');
+
+        // /**
+        //  * --------------------------------------------
+        //  *  Order Route Controller
+        //  * --------------------------------------------
+        //  */
+        Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 
 
         /**

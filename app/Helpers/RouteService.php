@@ -103,13 +103,13 @@ class RouteService
 
                             // employee routes
 
-                            [
-                                'title' => __('cms.users'),
-                                'route' => route('cms.employee.users.index'),
-                                'permission' => 'Read-Employee-User',
-                                'active' => request()->routeIs('cms.employee.users.index'),
+                            // [
+                            //     'title' => __('cms.users'),
+                            //     'route' => route('cms.employee.users.index'),
+                            //     'permission' => 'Read-Employee-User',
+                            //     'active' => request()->routeIs('cms.employee.users.index'),
 
-                            ],
+                            // ],
 
                             [
                                 'title' => __('cms.employees'),

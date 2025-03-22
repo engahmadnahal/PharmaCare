@@ -850,5 +850,27 @@ return [
     'both' => 'الاثنان',
     'chronic' => 'مزمن',
 
+      // Dashboard
+     
+      'total_orders' => 'اجمالي الطلبات',
+      'total_users' => 'اجمالي المستخدمين',
+      'total_pharmacies' => 'اجمالي الصيدليات',
+      'total_products' => 'اجمالي المنتجات',
+      'financial_summary' => 'الملخص المالي',
+      'total_sales' => 'اجمالي المبيعات',
+      'total_discounts' => 'اجمالي الخصومات',
+      'latest_orders' => 'اخر الطلبات',
+      'latest_users' => 'اخر المستخدمين',
+      'order_number' => 'رقم الطلب',
+      'customer' => 'العميل',
+      'total' => 'الاجمالي',
+      'status' => 'الحالة',
+      'name' => 'الاسم',
+      'email' => 'البريد الإلكتروني',
+      'mobile' => 'الهاتف',
+      'active' => 'مفعل',
+      'inactive' => 'غير مفعل',
+      'no_records' => 'لا يوجد سجلات',
+
 
 ];

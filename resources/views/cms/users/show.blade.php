@@ -262,7 +262,7 @@
                                 </span>
                             </td>
                             <td>
-                                <a href="{{ route('cms.employee.orders.show', $order->id) }}" class="btn btn-sm btn-light-primary">
+                                <a href="{{ route('orders.show', $order->id) }}" class="btn btn-sm btn-light-primary">
                                     {{ __('cms.view') }}
                                 </a>
                             </td>

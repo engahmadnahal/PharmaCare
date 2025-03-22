@@ -814,6 +814,29 @@ return [
     'both' => 'both',
     'chronic' => 'chronic',
 
+      // Dashboard
+      'dashboard' => 'Dashboard',
+      'home' => 'Home',
+      'total_orders' => 'Total Orders',
+      'total_users' => 'Total Users',
+      'total_pharmacies' => 'Total Pharmacies',
+      'total_products' => 'Total Products',
+      'financial_summary' => 'Financial Summary',
+      'total_sales' => 'Total Sales',
+      'total_discounts' => 'Total Discounts',
+      'latest_orders' => 'Latest Orders',
+      'latest_users' => 'Latest Users',
+      'order_number' => 'Order Number',
+      'customer' => 'Customer',
+      'total' => 'Total',
+      'status' => 'Status',
+      'name' => 'Name',
+      'email' => 'Email',
+      'mobile' => 'Mobile',
+      'active' => 'Active',
+      'inactive' => 'Inactive',
+      'no_records' => 'No records found',
+
 
 
 ];

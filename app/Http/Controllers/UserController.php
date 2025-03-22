@@ -1,13 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Employee;
+namespace App\Http\Controllers;
 
 use App\Helpers\ControllersService;
-use App\Http\Controllers\Controller;
 use App\Models\User;
 
 class UserController extends Controller
 {
+    // index
+    public function index()
+    {
+        $data = User::paginate(10);
+        return view('cms.users.index', ['data' => $data]);
+    }
+
 
     public function show(User $user)
     {
@@ -23,4 +29,9 @@ class UserController extends Controller
         return view('cms.users.show', ['user' => $user, 'orderStats' => $orderStats]);
     }
 
+    public function updateStatus(User $user)
+    {
+        $update = $user->update(['status' => !$user->status]);
+        return ControllersService::generateProcessResponse((bool) $update, 'UPDATE');
+    }
 }
