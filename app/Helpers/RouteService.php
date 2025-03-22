@@ -96,7 +96,7 @@ class RouteService
                             [
                                 'title' => __('cms.users'),
                                 'route' => route('users.index'),
-                                'permission' => 'Read-User',
+                                'permission' => 'Read-Users',
                                 'active' => request()->routeIs('users.index'),
 
                             ],
