@@ -828,15 +828,7 @@ return [
       'latest_users' => 'Latest Users',
       'order_number' => 'Order Number',
       'customer' => 'Customer',
-      'total' => 'Total',
-      'status' => 'Status',
-      'name' => 'Name',
-      'email' => 'Email',
-      'mobile' => 'Mobile',
-      'active' => 'Active',
-      'inactive' => 'Inactive',
       'no_records' => 'No records found',
-
 
 
 ];

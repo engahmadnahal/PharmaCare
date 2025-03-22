@@ -37,7 +37,6 @@
                         <th style="min-width: 150px">{{__('cms.email')}}</th>
                         <th style="min-width: 150px">{{__('cms.mobile')}}</th>
                         <th style="min-width: 120px">{{__('cms.type')}}</th>
-                        <th style="min-width: 120px">{{__('cms.country')}}</th>
                         <th style="min-width: 130px">{{__('cms.status')}}</th>
                         <th class="pr-0 text-right" style="min-width: 160px">{{__('cms.actions')}}</th>
                     </tr>
@@ -57,9 +56,7 @@
                         <td>
                             <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$pharmaceutical->type}}</span>
                         </td>
-                        <td>
-                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$pharmaceutical->country?->name}}</span>
-                        </td>
+                      
                         <td>
                             <span class="label label-lg @if($pharmaceutical->status) label-light-success @else label-light-danger @endif label-inline">
                                 {{$pharmaceutical->status ? 'Active' : 'Inactive'}}

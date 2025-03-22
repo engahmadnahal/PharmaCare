@@ -102,6 +102,39 @@
                             </div>
                         </div>
                     </div>
+               
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>{{__('cms.address')}}:</label>
+                                <input type="text" class="form-control" id="address" placeholder="{{__('cms.address')}}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{__('cms.status')}}:</label>
+                                <select class="form-control" id="status">
+                                    <option value="1">{{__('cms.active')}}</option>
+                                    <option value="0">{{__('cms.inactive')}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{__('cms.parent')}}:</label>
+                                <select class="form-control" id="parent_id">
+                                    <option value="">{{__('cms.select_parent')}}</option>
+                                    @foreach($pharmaceuticals as $pharmaceutical)
+                                        <option value="{{$pharmaceutical->id}}">{{$pharmaceutical->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+               
                 </div>
                 <div class="card-footer">
                     <div class="row">

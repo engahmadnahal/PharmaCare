@@ -53,9 +53,6 @@ class PharmaceuticalController extends Controller
             'tax_number' => 'required|string',
             'type' => 'required|string',
             'has_branch' => 'required|boolean',
-            'country_id' => 'required|exists:countries,id',
-            'city_id' => 'required|exists:cities,id',
-            'region_id' => 'required|exists:regions,id',
             'address' => 'required|string|max:255',
             'status' => 'required|boolean',
             'parent_id' => 'nullable|exists:pharmaceuticals,id'
@@ -75,9 +72,6 @@ class PharmaceuticalController extends Controller
         $pharmaceutical->tax_number = $request->input('tax_number');
         $pharmaceutical->type = $request->input('type');
         $pharmaceutical->has_branch = $request->input('has_branch');
-        $pharmaceutical->country_id = $request->input('country_id');
-        $pharmaceutical->city_id = $request->input('city_id');
-        $pharmaceutical->region_id = $request->input('region_id');
         $pharmaceutical->address = $request->input('address');
         $pharmaceutical->status = $request->input('status');
         $pharmaceutical->parent_id = $request->input('parent_id');
@@ -94,7 +88,7 @@ class PharmaceuticalController extends Controller
      */
     public function show(Pharmaceutical $pharmaceutical)
     {
-        
+
         return view('cms.pharma.show', ['pharmaceutical' => $pharmaceutical]);
     }
 
@@ -108,7 +102,7 @@ class PharmaceuticalController extends Controller
     {
         $pharmaceuticals = Pharmaceutical::where('status', true)->get();
 
-        return view('cms.pharma.edit', ['pharmaceutical' => $pharmaceutical, 'pharmaceuticals' => $pharmaceuticals, 'countries' => $countries, 'cities' => $cities, 'regions' => $regions]);
+        return view('cms.pharma.edit', ['pharmaceutical' => $pharmaceutical, 'pharmaceuticals' => $pharmaceuticals]);
     }
 
     /**
@@ -130,9 +124,6 @@ class PharmaceuticalController extends Controller
             'tax_number' => 'required|string',
             'type' => 'required|string',
             'has_branch' => 'required|boolean',
-            'country_id' => 'required|exists:countries,id',
-            'city_id' => 'required|exists:cities,id',
-            'region_id' => 'required|exists:regions,id',
             'address' => 'required|string|max:255',
             'status' => 'required|boolean',
             'parent_id' => 'nullable|exists:pharmaceuticals,id'
@@ -153,9 +144,6 @@ class PharmaceuticalController extends Controller
         $pharmaceutical->tax_number = $request->input('tax_number');
         $pharmaceutical->type = $request->input('type');
         $pharmaceutical->has_branch = $request->input('has_branch');
-        $pharmaceutical->country_id = $request->input('country_id');
-        $pharmaceutical->city_id = $request->input('city_id');
-        $pharmaceutical->region_id = $request->input('region_id');
         $pharmaceutical->address = $request->input('address');
         $pharmaceutical->status = $request->input('status');
         $pharmaceutical->parent_id = $request->input('parent_id');
