@@ -102,7 +102,7 @@
                             </div>
                         </div>
                     </div>
-
+<!-- 
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -134,7 +134,7 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                         <div class="col-md-12">
@@ -209,9 +209,6 @@
         formData.append('tax_number', document.getElementById('tax_number').value);
         formData.append('type', document.getElementById('type').value);
         formData.append('has_branch', document.getElementById('has_branch').value);
-        formData.append('country_id', document.getElementById('country_id').value);
-        formData.append('city_id', document.getElementById('city_id').value);
-        formData.append('region_id', document.getElementById('region_id').value);
         formData.append('address', document.getElementById('address').value);
         formData.append('status', document.getElementById('status').value);
         

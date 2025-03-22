@@ -28,9 +28,6 @@ return new class extends Migration
             $table->string('tax_number');
             $table->string('type');
             $table->boolean('has_branch')->default(false);
-            $table->foreignIdFor(Country::class)->constrained()->nullOnDelete();
-            $table->foreignIdFor(City::class)->constrained()->nullOnDelete();
-            $table->foreignIdFor(Region::class)->constrained()->nullOnDelete();
             $table->string('address');
             $table->boolean('status')->default(true);
             $table->timestamps();

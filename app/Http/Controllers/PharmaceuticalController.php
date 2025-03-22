@@ -30,11 +30,8 @@ class PharmaceuticalController extends Controller
      */
     public function create()
     {
-        $countries = Country::where('active', true)->get();
-        $cities = City::where('active', true)->get();
-        $regions = Region::where('active', true)->get();
         $pharmaceuticals = Pharmaceutical::where('status', true)->get();
-        return view('cms.pharma.create', ['countries' => $countries, 'cities' => $cities, 'regions' => $regions, 'pharmaceuticals' => $pharmaceuticals]);
+        return view('cms.pharma.create', ['pharmaceuticals' => $pharmaceuticals]);
     }
 
     /**
@@ -109,9 +106,6 @@ class PharmaceuticalController extends Controller
      */
     public function edit(Pharmaceutical $pharmaceutical)
     {
-        $countries = Country::where('active', true)->get();
-        $cities = City::where('active', true)->get();
-        $regions = Region::where('active', true)->get();
         $pharmaceuticals = Pharmaceutical::where('status', true)->get();
 
         return view('cms.pharma.edit', ['pharmaceutical' => $pharmaceutical, 'pharmaceuticals' => $pharmaceuticals, 'countries' => $countries, 'cities' => $cities, 'regions' => $regions]);
