@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\MedicineType;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 
 class ProductController extends Controller
 {
@@ -19,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(10);
+        $products = Product::where('pharmaceutical_id', auth('employee')->user()->pharmaceutical_id)->paginate(10);
         return view('cms.products.index', ['data' => $products]);
     }
 
@@ -89,6 +90,7 @@ class ProductController extends Controller
         $data = $validator->validated();
         $data['image'] = $this->uploadFile($request->file('image'), 'products');
         $data['medication_leaflet_image'] = $this->uploadFile($request->file('medication_leaflet_image'), 'products');
+        $data['pharmaceutical_id'] = auth('employee')->user()->pharmaceutical_id;
 
         $product = Product::create($data);
 
@@ -103,6 +105,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        if ($product->pharmaceutical_id != auth('employee')->user()->pharmaceutical_id) {
+            throw new UnauthorizedException('This action is unauthorized.');
+        }
+
         return view('cms.products.show', ['data' => $product]);
     }
 
@@ -114,6 +120,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        if ($product->pharmaceutical_id != auth('employee')->user()->pharmaceutical_id) {
+            throw new UnauthorizedException('This action is unauthorized.');
+        }
+
         $categories = Category::where('status', 1)->get();
         $medicineTypes = MedicineType::where('status', 1)->get();
         $concentrationUnits = ConcentrationUnit::getUnits();
@@ -129,6 +139,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        if ($product->pharmaceutical_id != auth('employee')->user()->pharmaceutical_id) {
+            throw new UnauthorizedException('This action is unauthorized.');
+        }
 
         $validator = Validator($request->all(), [
             'category_id' => 'required|exists:categories,id,status,1',
@@ -196,6 +209,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if ($product->pharmaceutical_id != auth('employee')->user()->pharmaceutical_id) {
+            throw new UnauthorizedException('This action is unauthorized.');
+        }
+
         $deleted = $product->delete();
         return ControllersService::generateProcessResponse((bool) $deleted, 'DELETE');
     }
