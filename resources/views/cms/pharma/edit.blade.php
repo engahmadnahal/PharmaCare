@@ -121,47 +121,6 @@
                         </div>
                     </div>
 
-                    <!-- <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>{{__('cms.country')}}:</label>
-                                <select class="form-control" id="country_id">
-                                    @foreach($countries as $country)
-                                    <option value="{{$country->id}}"
-                                        {{$pharmaceutical->country_id == $country->id ? 'selected' : ''}}>
-                                        {{$country->name}}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>{{__('cms.city')}}:</label>
-                                <select class="form-control" id="city_id">
-                                    @foreach($cities as $city)
-                                    <option value="{{$city->id}}"
-                                        {{$pharmaceutical->city_id == $city->id ? 'selected' : ''}}>
-                                        {{$city->name}}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>{{__('cms.region')}}:</label>
-                                <select class="form-control" id="region_id">
-                                    @foreach($regions as $region)
-                                    <option value="{{$region->id}}"
-                                        {{$pharmaceutical->region_id == $region->id ? 'selected' : ''}}>
-                                        {{$region->name}}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div> -->
 
                     <div class="row">
                         <div class="col-md-12">

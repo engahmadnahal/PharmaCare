@@ -110,30 +110,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>{{__('cms.country')}}:</label>
-                                <input type="text" class="form-control" 
-                                    value="{{$pharmaceutical->country->name}}" readonly disabled />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>{{__('cms.city')}}:</label>
-                                <input type="text" class="form-control" 
-                                    value="{{$pharmaceutical->city->name}}" readonly disabled />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>{{__('cms.region')}}:</label>
-                                <input type="text" class="form-control" 
-                                    value="{{$pharmaceutical->region->name}}" readonly disabled />
-                            </div>
-                        </div>
-                    </div>
-
+               
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">

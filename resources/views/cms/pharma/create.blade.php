@@ -31,13 +31,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{{__('cms.name_en')}}:</label>
-                                <input type="text" class="form-control" id="name_en" placeholder="{{__('cms.name_en')}}"/>
+                                <input type="text" class="form-control" id="name_en" placeholder="{{__('cms.name_en')}}" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{{__('cms.name_ar')}}:</label>
-                                <input type="text" class="form-control" id="name_ar" placeholder="{{__('cms.name_ar')}}"/>
+                                <input type="text" class="form-control" id="name_ar" placeholder="{{__('cms.name_ar')}}" />
                             </div>
                         </div>
                     </div>
@@ -46,19 +46,19 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>{{__('cms.email')}}:</label>
-                                <input type="email" class="form-control" id="email" placeholder="{{__('cms.email')}}"/>
+                                <input type="email" class="form-control" id="email" placeholder="{{__('cms.email')}}" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>{{__('cms.mobile')}}:</label>
-                                <input type="text" class="form-control" id="mobile" placeholder="{{__('cms.mobile')}}"/>
+                                <input type="text" class="form-control" id="mobile" placeholder="{{__('cms.mobile')}}" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>{{__('cms.phone')}}:</label>
-                                <input type="text" class="form-control" id="phone" placeholder="{{__('cms.phone')}}"/>
+                                <input type="text" class="form-control" id="phone" placeholder="{{__('cms.phone')}}" />
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{{__('cms.tax_number')}}:</label>
-                                <input type="text" class="form-control" id="tax_number" placeholder="{{__('cms.tax_number')}}"/>
+                                <input type="text" class="form-control" id="tax_number" placeholder="{{__('cms.tax_number')}}" />
                             </div>
                         </div>
                     </div>
@@ -98,71 +98,6 @@
                                 <select class="form-control" id="has_branch">
                                     <option value="1">{{__('cms.yes')}}</option>
                                     <option value="0">{{__('cms.no')}}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-<!-- 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>{{__('cms.country')}}:</label>
-                                <select class="form-control" id="country_id">
-                                    @foreach($countries as $country)
-                                        <option value="{{$country->id}}">{{$country->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>{{__('cms.city')}}:</label>
-                                <select class="form-control" id="city_id">
-                                    @foreach($cities as $city)
-                                        <option value="{{$city->id}}">{{$city->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>{{__('cms.region')}}:</label>
-                                <select class="form-control" id="region_id">
-                                    @foreach($regions as $region)
-                                        <option value="{{$region->id}}">{{$region->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>{{__('cms.address')}}:</label>
-                                <input type="text" class="form-control" id="address" placeholder="{{__('cms.address')}}"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{__('cms.status')}}:</label>
-                                <select class="form-control" id="status">
-                                    <option value="1">{{__('cms.active')}}</option>
-                                    <option value="0">{{__('cms.inactive')}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{__('cms.parent')}}:</label>
-                                <select class="form-control" id="parent_id">
-                                    <option value="">{{__('cms.select_parent')}}</option>
-                                    @foreach($pharmaceuticals as $pharmaceutical)
-                                        <option value="{{$pharmaceutical->id}}">{{$pharmaceutical->name}}</option>
-                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -192,14 +127,14 @@
 @section('scripts')
 <script>
     var cover = new KTImageInput('kt_image_6');
-    
+
     // Add this to handle file input label
     $('.custom-file-input').on('change', function() {
         let fileName = $(this).val().split('\\').pop();
         $(this).next('.custom-file-label').addClass("selected").html(fileName);
     });
 
-    function performStore(){
+    function performStore() {
         let formData = new FormData();
         formData.append('name_en', document.getElementById('name_en').value);
         formData.append('name_ar', document.getElementById('name_ar').value);
@@ -211,7 +146,7 @@
         formData.append('has_branch', document.getElementById('has_branch').value);
         formData.append('address', document.getElementById('address').value);
         formData.append('status', document.getElementById('status').value);
-        
+
         if (document.getElementById('parent_id').value) {
             formData.append('parent_id', document.getElementById('parent_id').value);
         }
@@ -223,17 +158,17 @@
         }
 
         axios.post('/cms/admin/pharmaceuticals', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-        .then(function (response) {
-            toastr.success(response.data.message);
-            window.location.href = '/cms/admin/pharmaceuticals';
-        })
-        .catch(function (error) {
-            toastr.error(error.response.data.message);
-        });
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(function(response) {
+                toastr.success(response.data.message);
+                window.location.href = '/cms/admin/pharmaceuticals';
+            })
+            .catch(function(error) {
+                toastr.error(error.response.data.message);
+            });
     }
 </script>
 @endsection
