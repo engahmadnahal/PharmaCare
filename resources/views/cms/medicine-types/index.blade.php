@@ -18,7 +18,7 @@
             <span class="card-label font-weight-bolder text-dark">{{__('cms.medicine_types')}}</span>
             <span class="text-muted mt-3 font-weight-bold font-size-sm"></span>
         </h3>
-        @can('Create-City')
+        @can('Create-Category')
         <div class="card-toolbar">
             <a href="{{route('medicine-types.create')}}"
                 class="btn btn-info font-weight-bolder font-size-sm mr-2">{{__('cms.create')}}</a>
@@ -38,7 +38,7 @@
                         <th class="pl-0" style="min-width: 100px">{{__('cms.name_ar')}}</th>
                         <th style="min-width: 150px">{{__('cms.name_en')}}</th>
                         <th style="min-width: 150px">{{__('cms.status')}}</th>
-                        @canany(['Update-City','Delete-City'])
+                        @canany(['Update-Category','Delete-Category'])
                         <th class="pr-0 text-right" style="min-width: 160px">{{__('cms.actions')}}</th>
                         @endcanany
                     </tr>
