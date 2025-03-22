@@ -95,7 +95,7 @@
         <!--end::Table-->
         @if($data->hasPages())
         <div class="card-footer">
-            {{ $data->links() }}
+            {{ $data->links('pagination::bootstrap-5') }}
         </div>
         @endif
     </div>
