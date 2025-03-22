@@ -50,6 +50,12 @@ class AuthController extends Controller
         $credentials = ['email' => $request->get('email'), 'password' => $request->get('password')];
 
         if (Auth::guard($guard)->attempt($credentials, $request->get('remember'))) {
+            // last_login
+            if ($guard == 'admin') {
+                $user = auth('admin')->user();
+                $user->last_login = now();
+                $user->save();
+            }
             return response()->json(['message' => 'Logged in successfully'], Response::HTTP_OK);
         }
 
