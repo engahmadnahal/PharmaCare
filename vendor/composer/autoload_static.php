@@ -687,6 +687,7 @@ class ComposerStaticInit34086acfb744749dacad1928b13c5b61
         'App\\Helpers\\RouteService' => __DIR__ . '/../..' . '/app/Helpers/RouteService.php',
         'App\\Http\\Controllers\\AboutUsController' => __DIR__ . '/../..' . '/app/Http/Controllers/AboutUsController.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
+        'App\\Http\\Controllers\\Api\\ApiAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ApiAuthController.php',
         'App\\Http\\Controllers\\Api\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/UserController.php',
         'App\\Http\\Controllers\\Auth\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthController.php',
         'App\\Http\\Controllers\\Auth\\EmailVerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/EmailVerificationController.php',

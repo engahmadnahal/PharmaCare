@@ -61,14 +61,16 @@ class ControllersService
 
 
     public
-    static function generateObjectSuccessResponse($model, $message, $key = "object")
+    static function successResponse($message, $data = null)
     {
-        return response()->json(array(
+        return response()->json([
             'status' => true,
             'message' => $message,
-            $key => $model
-        ), 200);
+            'data' => $data
+        ], 200);
     }
+
+
 
     public
     static function generateArraySuccessResponse($objectsArray, $message)

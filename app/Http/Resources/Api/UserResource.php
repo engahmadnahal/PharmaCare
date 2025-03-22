@@ -16,20 +16,18 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        
         return [
-            // 'code_active_debug' => $this->code_active_debug,
             'id' => $this->id,
-            'name' => $this->name,
+            'full_name' => $this->full_name,
             'email' => $this->email,
-            'isSelectedAddress' => $this->is_selected_address,
-            'isNotify' => boolval($this->isNotify),
-            'date' => $this->created_at->diffForHumans(),
             'mobile' => $this->mobile,
+            'gender' => $this->gender,
             'avater' => $this->avater != null ? Storage::url($this->avater) : asset('media/users/300_21.jpg'),
+            'date_of_birth' => $this->date_of_birth,
+            'status' => $this->status,
+            'is_parent' => $this->parent_id != null,
+            'created_at' => $this->created_at->diffForHumans(),
             'token' => $this->token,
-            // 'token_type' => $this->token_type
-            
         ];
     }
 }

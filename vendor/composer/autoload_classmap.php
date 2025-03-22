@@ -18,6 +18,7 @@ return array(
     'App\\Helpers\\RouteService' => $baseDir . '/app/Helpers/RouteService.php',
     'App\\Http\\Controllers\\AboutUsController' => $baseDir . '/app/Http/Controllers/AboutUsController.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
+    'App\\Http\\Controllers\\Api\\ApiAuthController' => $baseDir . '/app/Http/Controllers/Api/ApiAuthController.php',
     'App\\Http\\Controllers\\Api\\UserController' => $baseDir . '/app/Http/Controllers/Api/UserController.php',
     'App\\Http\\Controllers\\Auth\\AuthController' => $baseDir . '/app/Http/Controllers/Auth/AuthController.php',
     'App\\Http\\Controllers\\Auth\\EmailVerificationController' => $baseDir . '/app/Http/Controllers/Auth/EmailVerificationController.php',
