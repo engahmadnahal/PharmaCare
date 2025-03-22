@@ -47,7 +47,7 @@ class ApiAuthController extends Controller
                 return ControllersService::generateValidationErrorMessage(__('cms.error_password'));
             }
 
-            return $this->generateToken($request, $user);
+            return $this->generateToken($user);
         }
     }
 
@@ -59,7 +59,7 @@ class ApiAuthController extends Controller
 
             return ControllersService::successResponse(__('cms.success_login'), new UserResource($user));
         } catch (Exception $e) {
-            return ControllersService::generateValidationErrorMessage(__('cms.error_login') . ' ' . $e->getMessage());
+            return ControllersService::generateValidationErrorMessage(__('cms.error_login'));
         }
     }
 
