@@ -243,12 +243,13 @@ class ApiAuthController extends Controller
                 $admin = Admin::first();
                 if ($admin) {
                     $admin->notify(new SimpleNotificaion([
-                    'title' => __('cms.new_user_registration'),
-                    'body' => __('cms.new_user_registration_body', ['name' => $user->full_name])
+                        'title' => 'cms.new_user_registration',
+                        'body' => 'cms.new_user_registration_body',
                     ]));
                 }
-            } catch (\Exception $e) {}
-            return ControllersService::successResponse(__('cms.register_success'),[]);
+            } catch (\Exception $e) {
+            }
+            return ControllersService::successResponse(__('cms.register_success'), []);
         } catch (\Exception $e) {
             DB::rollBack();
             return ControllersService::generateValidationErrorMessage($e->getMessage());
