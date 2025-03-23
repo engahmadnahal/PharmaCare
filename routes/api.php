@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ApiAuthController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,10 @@ Route::middleware(['guest', 'locale'])->prefix('v1')->group(function () {
 });
 
 
-Route::prefix('v1')->middleware(['auth:user-api', 'locale'])->group(function () {});
+Route::prefix('v1')->middleware(['auth:user-api', 'locale'])->group(function () {
+
+    Route::controller(UserController::class)
+        ->group(function () {
+            Route::get('/profile', 'profile');
+        });
+});
