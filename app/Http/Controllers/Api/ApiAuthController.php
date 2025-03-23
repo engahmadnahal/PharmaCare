@@ -14,6 +14,8 @@ use App\Mail\SendCodeVerifiy;
 use App\Models\MobileToken;
 use App\Models\PasswordResetUser;
 use App\Models\User;
+use App\Models\UserDrug;
+use App\Models\UserInfo;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -77,7 +79,7 @@ class ApiAuthController extends Controller
             if (!Hash::check($request->input('code'), $user->verification_code)) {
                 return ControllersService::generateValidationErrorMessage(__('cms.password_reset_code_error'));
             }
-            
+
             return ControllersService::successResponse(__('cms.password_reset_code_correct'));
         }
 
@@ -149,7 +151,94 @@ class ApiAuthController extends Controller
     }
 
 
-    public function register(Request $request) {}
+    public function register(Request $request)
+    {
+        $validator = Validator($request->all(), [
+            'full_name' => 'required|string|min:3',
+            'gender' => 'required|string|in:male,female',
+            'date_of_birth' => 'required|date',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|confirmed|min:6',
+
+            // User Info validation
+            'width' => 'required|string',
+            'length' => 'required|string',
+            'blood_type' => 'nullable|string|in:A,B,AB,O',
+            'is_allergies' => 'required|boolean',
+            'is_genetic_diseases' => 'required|boolean',
+            'genetic_diseases' => 'nullable|string|in:genetic,chronic,both',
+            'allergies' => 'nullable|string|in:medication,food,both',
+
+            // User Drugs validation
+            'drugs' => 'required|array',
+            'drugs.*.name' => 'required|string|max:255',
+            'drugs.*.dosage' => 'required|string|max:255',
+            'drugs.*.diseases' => 'required|string|max:255',
+            'drugs.*.type' => 'required|string|in:permanent,temporary',
+            'drugs.*.duration' => 'nullable|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return ControllersService::generateValidationErrorMessage($validator->getMessageBag()->first());
+        }
+
+        DB::beginTransaction();
+        try {
+            // Create user
+            $user = new User();
+            $user->full_name = $request->full_name;
+            $user->gender = $request->gender;
+            $user->date_of_birth = $request->date_of_birth;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $save = $user->save();
+
+            if (!$save) {
+                throw new \Exception(__('cms.faild_create_user'));
+            }
+
+            // Create user info
+            $userInfo = new UserInfo();
+            $userInfo->user_id = $user->id;
+            $userInfo->width = $request->width;
+            $userInfo->length = $request->length;
+            $userInfo->blood_type = $request->blood_type;
+            $userInfo->is_allergies = $request->is_allergies;
+            $userInfo->is_genetic_diseases = $request->is_genetic_diseases;
+            $userInfo->genetic_diseases = $request->genetic_diseases;
+            $userInfo->allergies = $request->allergies;
+            $save = $userInfo->save();
+
+            if (!$save) {
+                throw new \Exception(__('cms.faild_create_user_info'));
+            }
+
+            // Create user drugs if provided
+            $userDrugs = [];
+            foreach ($request->drugs as $drug) {
+                $userDrugs[] = [
+                    'user_id' => $user->id,
+                    'name' => $drug['name'],
+                    'dosage' => $drug['dosage'],
+                    'diseases' => $drug['diseases'],
+                    'duration' => $drug['duration'] ?? null,
+                    'type' => $drug['type']
+                ];
+            }
+
+            $save = UserDrug::insert($userDrugs);
+
+            if (!$save) {
+                throw new \Exception(__('cms.faild_create_user_drug'));
+            }
+
+            DB::commit();
+            return ControllersService::successResponse(__('cms.register_success'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return ControllersService::generateValidationErrorMessage($e->getMessage());
+        }
+    }
 
 
     public function updateProfile(Request $request) {}
@@ -200,5 +289,4 @@ class ApiAuthController extends Controller
                 ]);
         }
     }
-
 }
