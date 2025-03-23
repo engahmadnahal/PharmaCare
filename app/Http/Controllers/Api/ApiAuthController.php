@@ -159,6 +159,7 @@ class ApiAuthController extends Controller
             'date_of_birth' => 'required|date',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|confirmed|min:6',
+            'mobile' => 'required|string|unique:users,mobile',
 
             // User Info validation
             'width' => 'required|string',
@@ -191,6 +192,7 @@ class ApiAuthController extends Controller
             $user->date_of_birth = $request->date_of_birth;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
+            $user->mobile = $request->mobile;
             $save = $user->save();
 
             if (!$save) {
@@ -222,7 +224,9 @@ class ApiAuthController extends Controller
                     'dosage' => $drug['dosage'],
                     'diseases' => $drug['diseases'],
                     'duration' => $drug['duration'] ?? null,
-                    'type' => $drug['type']
+                    'type' => $drug['type'],
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ];
             }
 
