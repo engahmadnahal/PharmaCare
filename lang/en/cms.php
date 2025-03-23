@@ -823,5 +823,7 @@ return [
       'customer' => 'Customer',
       'no_records' => 'No records found',
 
+      'new_user_registration' => 'New User Registration',
+      'new_user_registration_body' => 'A new user has registered with the email: :name',
 
 ];

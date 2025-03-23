@@ -856,4 +856,6 @@ return [
       'customer' => 'العميل',
       'no_records' => 'لا يوجد سجلات',
 
+      'new_user_registration' => 'تسجيل جديد',
+      'new_user_registration_body' => 'تم تسجيل جديد بواسطة :name',
 ];

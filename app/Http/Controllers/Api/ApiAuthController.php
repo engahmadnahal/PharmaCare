@@ -11,11 +11,13 @@ use App\Http\Resources\Api\UserResource;
 use App\Http\Resources\UserWithOutTokenResource;
 use App\Http\Trait\CustomTrait;
 use App\Mail\SendCodeVerifiy;
+use App\Models\Admin;
 use App\Models\MobileToken;
 use App\Models\PasswordResetUser;
 use App\Models\User;
 use App\Models\UserDrug;
 use App\Models\UserInfo;
+use App\Notifications\SimpleNotificaion;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -237,6 +239,15 @@ class ApiAuthController extends Controller
             }
 
             DB::commit();
+            try {
+                $admin = Admin::first();
+                if ($admin) {
+                    $admin->notify(new SimpleNotificaion([
+                    'title' => __('cms.new_user_registration'),
+                    'body' => __('cms.new_user_registration_body', ['name' => $user->full_name])
+                    ]));
+                }
+            } catch (\Exception $e) {}
             return ControllersService::successResponse(__('cms.register_success'));
         } catch (\Exception $e) {
             DB::rollBack();
