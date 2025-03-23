@@ -248,7 +248,7 @@ class ApiAuthController extends Controller
                     ]));
                 }
             } catch (\Exception $e) {}
-            return ControllersService::successResponse(__('cms.register_success'));
+            return ControllersService::successResponse(__('cms.register_success'),[]);
         } catch (\Exception $e) {
             DB::rollBack();
             return ControllersService::generateValidationErrorMessage($e->getMessage());

@@ -21,10 +21,10 @@
     <link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
 
     @if (App::isLocale('ar'))
-        <link href="{{ asset('assets/css/style.bundle.rtl.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/style.bundle.rtl.css') }}" rel="stylesheet" type="text/css" />
     @else
-        {{-- {{dd('en');}} --}}
-        <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    {{-- {{dd('en');}} --}}
+    <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     @endif
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
@@ -108,47 +108,44 @@
 						<!--end::Item--> --}}
 
                         @foreach (auth()->user()->unreadNotifications as $notf)
-                            <a href="@if ($notf->data['type'] == 'softcopy') {{ route('order.softcopy.detials', $notf->data['order_id']) }}@else{{ route('order_studios.show', $notf->data['order_id']) }} @endif"
-								
-                                class="navi-item">
-                                <div class="navi-link rounded">
-                                    <div class="symbol symbol-50 mr-3">
-                                        <div class="symbol-label">
-                                            <i class="flaticon2-supermarket text-warning icon-lg"></i>
-                                        </div>
-                                    </div>
-                                    <div class="navi-text">
-                                        <div class="font-weight-bold font-size-lg">
-                                            {{ __('cms.' . $notf->data['title']) }}</div>
-                                        @if ($notf->data['type'] == 'softcopy')
-                                            <div class="text-muted">{{ __('cms.' . $notf->data['body']) }}</div>
-                                        @else
-                                            <div class="text-muted">{{ __('cms.' . $notf->data['body']) }}
-                                                {{ $notf->data['total'] }}</div>
-                                        @endif
-                                        <div class="text-muted">{{ Carbon::parse($notf->created_at)->diffForHumans() }}
-                                        </div>
+                        <a href="#"
+
+                            class="navi-item">
+                            <div class="navi-link rounded">
+                                <div class="symbol symbol-50 mr-3">
+                                    <div class="symbol-label">
+                                        <i class="flaticon2-supermarket text-warning icon-lg"></i>
                                     </div>
                                 </div>
-                            </a>
-                        @endforeach
+                                <div class="navi-text">
+                                    <div class="font-weight-bold font-size-lg">
+                                        {{ __('cms.' . $notf->data['title']) }}
+                                    </div>
+                                    <div class="text-muted">{{ __('cms.' . $notf->data['body']) }}</div>
+                                </div>
+                                <div class="text-muted">{{ Carbon::parse($notf->created_at)->diffForHumans() }}
+                                </div>
+                            </div>
+                    </div>
+                    </a>
+                    @endforeach
 
 
-                    </div>
-                    <!--end::Nav-->
-                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                    </div>
-                    <div class="ps__rail-y" style="top: 0px; right: 0px; height: 216px;">
-                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 51px;"></div>
-                    </div>
                 </div>
-                <!--end::Tabpane-->
-                <!--begin::Tabpane-->
-
+                <!--end::Nav-->
+                <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                </div>
+                <div class="ps__rail-y" style="top: 0px; right: 0px; height: 216px;">
+                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 51px;"></div>
+                </div>
             </div>
+            <!--end::Tabpane-->
+            <!--begin::Tabpane-->
+
         </div>
-        <!--end::Content-->
+    </div>
+    <!--end::Content-->
     </div>
 
     <!--begin::Header Mobile-->
@@ -310,7 +307,7 @@
                                         <!--end::Svg Icon-->
                                     </span>
                                     @if (auth()->user()->unreadNotifications->count() > 0)
-                                        <span class="pulse-ring"></span>
+                                    <span class="pulse-ring"></span>
                                     @endif
                                 </div>
                             </div>
@@ -322,7 +319,7 @@
                                     <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
                                         <img class="h-20px w-20px rounded-sm"
                                             @if (App::isLocale('en')) src="{{ asset('assets/media/svg/flags/226-united-states.svg') }}" @else
-											src="{{ asset('assets/media/svg/flags/008-saudi-arabia.svg') }}" @endif
+                                            src="{{ asset('assets/media/svg/flags/008-saudi-arabia.svg') }}" @endif
                                             alt="" />
                                     </div>
                                 </div>
@@ -523,41 +520,41 @@
             <!--end::Separator-->
             <!--begin::Nav-->
             @if (auth('admin')->check())
-                <div class="navi navi-spacer-x-0 p-0">
-                    <!--begin::Item-->
-                    <a href="{{ route('cms.profile.personal-information') }}" class="navi-item">
-                        <div class="navi-link">
-                            <div class="symbol symbol-40 bg-light mr-3">
-                                <div class="symbol-label">
-                                    <span class="svg-icon svg-icon-md svg-icon-success">
-                                        <!--begin::Svg Icon | path:assets/media/svg/icons/General/Notification2.svg-->
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
-                                            viewBox="0 0 24 24" version="1.1">
-                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <rect x="0" y="0" width="24" height="24" />
-                                                <path
-                                                    d="M13.2070325,4 C13.0721672,4.47683179 13,4.97998812 13,5.5 C13,8.53756612 15.4624339,11 18.5,11 C19.0200119,11 19.5231682,10.9278328 20,10.7929675 L20,17 C20,18.6568542 18.6568542,20 17,20 L7,20 C5.34314575,20 4,18.6568542 4,17 L4,7 C4,5.34314575 5.34314575,4 7,4 L13.2070325,4 Z"
-                                                    fill="#000000" />
-                                                <circle fill="#000000" opacity="0.3" cx="18.5" cy="5.5"
-                                                    r="2.5" />
-                                            </g>
-                                        </svg>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="navi-text">
-                                <div class="font-weight-bold">{{ __('cms.edit_profile') }}</div>
-                                {{-- <div class="text-muted">Account settings and more --}}
-                                {{-- <span
-									class="label label-light-danger label-inline font-weight-bold">{{__('cms.update')}}</span>
-								--}}
+            <div class="navi navi-spacer-x-0 p-0">
+                <!--begin::Item-->
+                <a href="{{ route('cms.profile.personal-information') }}" class="navi-item">
+                    <div class="navi-link">
+                        <div class="symbol symbol-40 bg-light mr-3">
+                            <div class="symbol-label">
+                                <span class="svg-icon svg-icon-md svg-icon-success">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/General/Notification2.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                        viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect x="0" y="0" width="24" height="24" />
+                                            <path
+                                                d="M13.2070325,4 C13.0721672,4.47683179 13,4.97998812 13,5.5 C13,8.53756612 15.4624339,11 18.5,11 C19.0200119,11 19.5231682,10.9278328 20,10.7929675 L20,17 C20,18.6568542 18.6568542,20 17,20 L7,20 C5.34314575,20 4,18.6568542 4,17 L4,7 C4,5.34314575 5.34314575,4 7,4 L13.2070325,4 Z"
+                                                fill="#000000" />
+                                            <circle fill="#000000" opacity="0.3" cx="18.5" cy="5.5"
+                                                r="2.5" />
+                                        </g>
+                                    </svg>
+                                    <!--end::Svg Icon-->
+                                </span>
                             </div>
                         </div>
-                </div>
-                </a>
-                <!--end:Item-->
+                        <div class="navi-text">
+                            <div class="font-weight-bold">{{ __('cms.edit_profile') }}</div>
+                            {{-- <div class="text-muted">Account settings and more --}}
+                            {{-- <span
+									class="label label-light-danger label-inline font-weight-bold">{{__('cms.update')}}</span>
+                            --}}
+                        </div>
+                    </div>
+            </div>
+            </a>
+            <!--end:Item-->
         </div>
         @endif
 
@@ -670,10 +667,10 @@
     <script src="{{ asset('js/axios.js') }}"></script>
     <script src="{{ asset('js/crud.js?n=8') }}"></script>
     <script>
-        @if (App::getLocale() == 'ar')
-            toastr.options = {
-                "positionClass": "toast-top-left",
-            }
+        @if(App::getLocale() == 'ar')
+        toastr.options = {
+            "positionClass": "toast-top-left",
+        }
         @endif
 
         function markRead() {
