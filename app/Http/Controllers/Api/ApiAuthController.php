@@ -161,7 +161,7 @@ class ApiAuthController extends Controller
             'date_of_birth' => 'required|date',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|confirmed|min:6',
-            'mobile' => 'required|string|unique:users,mobile',
+            'mobile' => 'required|string|max:11|unique:users,mobile',
 
             // User Info validation
             'width' => 'required|string',

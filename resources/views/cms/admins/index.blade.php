@@ -15,11 +15,11 @@
     <!--begin::Header-->
     <div class="card-header border-0 py-5">
         <h3 class="card-title align-items-start flex-column">
-            <span class="card-label font-weight-bolder text-dark">{{__('cms.doctors')}}</span>
+            <span class="card-label font-weight-bolder text-dark">{{__('cms.admins')}}</span>
             <span class="text-muted mt-3 font-weight-bold font-size-sm"></span>
         </h3>
         <div class="card-toolbar">
-            <a href="{{route('employees.create')}}"
+            <a href="{{route('admins.create')}}"
                 class="btn btn-info font-weight-bolder font-size-sm mr-2">{{__('cms.create')}}</a>
             
 
@@ -121,7 +121,7 @@
 <script src="{{asset('assets/js/pages/widgets.js')}}"></script>
 <script>
     function performDestroy(id,reference) {
-        confirmDestroy('/cms/admin/doctors', id, reference);
+        confirmDestroy('/cms/admin/admins', id, reference);
     }
 </script>
 @endsection
