@@ -11,12 +11,12 @@
 
 @section('content')
 <div class="card card-custom">
-    <div class="card-header">
+                <div class="card-header">
         <h3 class="card-title">{{__('cms.create_product')}}</h3>
-    </div>
-    <!--begin::Form-->
-    <form id="create-form">
-        <div class="card-body">
+                </div>
+                <!--begin::Form-->
+                <form id="create-form">
+                    <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -36,9 +36,9 @@
                             <option value="">{{__('cms.select_medicine_type')}}</option>
                             @foreach($medicineTypes as $type)
                             <option value="{{$type->id}}">{{$type->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                                        @endforeach
+                                    </select>
+                                </div>
                 </div>
             </div>
 
@@ -48,7 +48,7 @@
                         <label>{{__('cms.barcode')}}:<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="barcode" />
                     </div>
-                </div>
+                            </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>{{__('cms.concentration')}}:<span class="text-danger">*</span></label>
@@ -259,9 +259,9 @@
                     <div class="form-group">
                         <label>{{__('cms.retail_price')}}:<span class="text-danger">*</span></label>
                         <input type="number" class="form-control" id="retail_price" min="1" />
-                    </div>
-                </div>
-            </div>
+                                </div>
+                            </div>
+                        </div>
 
             <!-- Date and Prescription -->
             <div class="row">
@@ -275,17 +275,17 @@
                     <div class="form-group">
                         <label>{{__('cms.prescription_required')}}:</label>
                         <div class="switch switch-outline switch-icon switch-primary">
-                            <label>
+                                    <label>
                                 <input type="checkbox" id="available_without_prescription" />
-                                <span></span>
-                            </label>
+                                        <span></span>
+                                    </label>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Images -->
-            <div class="row">
+                        <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>{{__('cms.product_image')}}:<span class="text-danger">*</span></label>
@@ -293,8 +293,8 @@
                             <input type="file" class="custom-file-input" id="image" accept="image/*" />
                             <label class="custom-file-label">{{__('cms.choose_file')}}</label>
                         </div>
-                    </div>
-                </div>
+                            </div>
+                            </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>{{__('cms.leaflet_image')}}:<span class="text-danger">*</span></label>
@@ -312,18 +312,18 @@
             <button type="reset" class="btn btn-secondary">{{__('cms.cancel')}}</button>
         </div>
     </form>
-</div>
+    </div>
 @endsection
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
+    <script>
     $('.custom-file-input').on('change', function() {
         let fileName = $(this).val().split('\\').pop();
         $(this).next('.custom-file-label').addClass("selected").html(fileName);
     });
 
-    function performStore() {
+        function performStore() {
         Swal.fire({
             title: "{{__('cms.are_you_sure')}}",
             text: "{{__('cms.submit_form_message')}}",
@@ -347,7 +347,7 @@
                     }
                 });
 
-                let formData = new FormData();
+            let formData = new FormData();
                 formData.append('category_id', document.getElementById('category_id').value);
                 formData.append('medicine_type_id', document.getElementById('medicine_type_id').value);
                 formData.append('barcode', document.getElementById('barcode').value);
@@ -426,6 +426,6 @@
                     });
             }
         });
-    }
-</script>
+        }
+    </script>
 @endsection

@@ -826,4 +826,9 @@ return [
       'new_user_registration' => 'New User Registration',
       'new_user_registration_body' => 'A new user has registered',
 
+      'available_quantity' => 'Available Quantity',
+      'insufficient_stock' => 'Insufficient stock',
+      'product_added_to_cart' => 'Product added to cart',
+      'cart_quantity' => 'Cart Quantity',
+
 ];

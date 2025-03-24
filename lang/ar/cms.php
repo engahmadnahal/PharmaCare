@@ -858,4 +858,9 @@ return [
 
       'new_user_registration' => 'تسجيل جديد',
       'new_user_registration_body' => 'تم تسجيل جديد  ',
+
+      'available_quantity' => 'الكمية المتاحة',
+      'insufficient_stock' => 'لا يوجد كمية متاحة لهذا المنتج',
+      'product_added_to_cart' => 'تم إضافة المنتج إلى العربة',
+      'cart_quantity' => ' كمية السلة الحالية',
 ];
