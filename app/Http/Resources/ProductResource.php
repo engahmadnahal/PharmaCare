@@ -14,8 +14,9 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'name' =>  $this->tradeName,
             'description' =>  $this->drugDescription,
-            'price' => $this->retail_price,
-            'old_price' => $this->basic_price,
+            'basic_price' => $this->basic_price,
+            'retail_price' => $this->retail_price,
+            'discount' => $this->basic_price - $this->retail_price,
             'image' => Storage::url($this->image),
             'is_favorite' => (bool) $this->isFavorited,
             'category' => $this->category?->name,
@@ -24,6 +25,4 @@ class ProductResource extends JsonResource
             'expiration_date' => $this->expiration_date,
         ];
     }
-
-
 }

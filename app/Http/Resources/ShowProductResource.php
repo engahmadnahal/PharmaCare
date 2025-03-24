@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Product;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,6 +17,11 @@ class ShowProductResource extends JsonResource
     public function toArray($request)
     {
         $discount = $this->retail_price - $this->basic_price;
+        $relatedProducts = Product::where('category_id', $this->category_id)
+            ->where('id', '!=', $this->id)
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
 
         return [
             'id' => $this->id,
@@ -83,6 +89,8 @@ class ShowProductResource extends JsonResource
                 ],
             ],
             'product_ratings' => ProductRateResource::collection($this->rateProducts),
+            'related_products' => ProductResource::collection($relatedProducts),
+
         ];
     }
 }
