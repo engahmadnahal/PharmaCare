@@ -61,7 +61,7 @@ class ControllersService
 
 
     public
-    static function successResponse($message, $data = null)
+    static function successResponse($message, $data = [])
     {
         return response()->json([
             'status' => true,

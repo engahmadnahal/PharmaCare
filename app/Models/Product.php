@@ -25,7 +25,7 @@ class Product extends Model
     }
 
 
-   
+
     public function tradeName(): Attribute
     {
         return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->trade_name_ar : $this->trade_name_en);
@@ -74,5 +74,32 @@ class Product extends Model
     public function complementaryMedicines(): Attribute
     {
         return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->complementary_medicines_ar : $this->complementary_medicines_en);
+    }
+
+    public function favoriteProducts()
+    {
+        return $this->hasMany(FavoriteProduct::class);
+    }
+
+    public function rateProducts()
+    {
+        return $this->hasMany(RateProduct::class);
+    }
+
+    public function pharmaceutical()
+    {
+        return $this->belongsTo(Pharmaceutical::class);
+    }
+
+    public function isFavorited(): Attribute
+    {
+        return new Attribute(
+            get: function () {
+                if (auth('user-api')->check()) {
+                    return $this->favoriteProducts()->where('user_id', auth('user-api')->id())->exists();
+                }
+                return false;
+            }
+        );
     }
 }
