@@ -15,4 +15,9 @@ class Category extends Model
     {
         return new Attribute(get: fn() => App::getLocale() == 'ar' ? $this->name_ar : $this->name_en);
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

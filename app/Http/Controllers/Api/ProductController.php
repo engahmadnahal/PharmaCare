@@ -8,18 +8,15 @@ use App\Http\Resources\ProductResource;
 use App\Http\Resources\ShowProductResource;
 use App\Models\FavoriteProduct;
 use App\Models\Product;
-use App\Models\ProductFavorite;
-use App\Models\ProductRating;
 use App\Models\RateProduct;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
     public function index()
     {
         try {
-            $products = Product::get();
+            $products = Product::with(['category', 'medicineType', 'pharmaceutical'])->get();
 
             return ControllersService::successResponse(
                 __('cms.products_retrieved_successfully'),
