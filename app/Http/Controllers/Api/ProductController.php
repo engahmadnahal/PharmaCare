@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function show($id)
     {
         try {
-            $product = Product::with(['category', 'medicineType', 'pharmaceutical', 'ratings'])
+            $product = Product::with(['category', 'medicineType', 'pharmaceutical', 'rateProducts'])
                 ->findOrFail($id);
 
             return ControllersService::successResponse(
