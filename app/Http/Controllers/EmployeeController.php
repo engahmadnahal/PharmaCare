@@ -34,7 +34,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $roles = Role::where('guard_name', 'employee')->get();
+        $roles = Role::where('guard_name', 'employee')->whereNull('guard_id')->get();
         $pharmaceuticals = Pharmaceutical::where('status', true)->get();
 
         return view('cms.employees.create', ['roles' => $roles, 'pharmaceuticals' => $pharmaceuticals]);
@@ -57,7 +57,7 @@ class EmployeeController extends Controller
             'national_id' => 'required|string|unique:employees,national_id',
             'certificate' => 'required|file|mimes:pdf',
             'dob' => 'required|date',
-            'role_id' => 'required|integer|exists:roles,id',
+            'role_id' => 'required|integer|exists:roles,id,guard_id,null',
             'pharmaceutical_id' => 'required|exists:pharmaceuticals,id',
         ]);
         if ($validator->fails()) {
@@ -102,7 +102,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        $roles = Role::where('guard_name', 'employee')->get();
+        $roles = Role::where('guard_name', 'employee')->whereNull('guard_id')->get();
         $assignedRole = $employee->roles()->first();
         $pharmaceuticals = Pharmaceutical::where('status', true)->get();
 
@@ -132,7 +132,7 @@ class EmployeeController extends Controller
             'avater' => 'nullable|image|mimes:png,jpg',
             'certificate' => 'nullable|file|mimes:pdf',
             'national_id' => 'required|string|unique:employees,national_id,' . $employee->id,
-            'role_id' => 'required|integer|exists:roles,id',
+            'role_id' => 'required|integer|exists:roles,id,guard_id,null',
             'pharmaceutical_id' => 'required|exists:pharmaceuticals,id',
         ]);
         if (!$validator->fails()) {
