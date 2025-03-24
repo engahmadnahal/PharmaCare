@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -30,7 +31,7 @@ class CategoryController extends Controller
     public function products(Category $category)
     {
         try {
-            $products = $category->products();
+            $products = Product::where('category_id', $category->id)->get();
 
             return ControllersService::successResponse(
                 __('cms.category_products_retrieved_successfully'),
