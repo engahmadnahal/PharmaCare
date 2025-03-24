@@ -36,18 +36,18 @@ class DashboardController extends Controller
             'totalUsers' => User::count(),
             'totalProducts' => Product::count(),
             'totalCoupons' => Coupon::count(),
-    
+
             // Recent Orders
             'recentOrders' => Order::with('user')
                 ->latest()
                 ->take(5)
                 ->get(),
-    
+
             // Recent Products
             'recentProducts' => Product::latest()
                 ->take(5)
                 ->get(),
-    
+
             // Chart Data
             'orderChartData' => Order::selectRaw('COUNT(*) as count, DATE(created_at) as date')
                 ->groupBy('date')
@@ -55,21 +55,21 @@ class DashboardController extends Controller
                 ->take(7)
                 ->pluck('count')
                 ->toArray(),
-    
+
             'orderChartLabels' => Order::selectRaw('DATE(created_at) as date')
                 ->groupBy('date')
                 ->orderBy('date')
                 ->take(7)
                 ->pluck('date')
                 ->toArray(),
-    
+
             'userChartData' => User::selectRaw('COUNT(*) as count, DATE(created_at) as date')
                 ->groupBy('date')
                 ->orderBy('date')
                 ->take(7)
                 ->pluck('count')
                 ->toArray(),
-    
+
             'userChartLabels' => User::selectRaw('DATE(created_at) as date')
                 ->groupBy('date')
                 ->orderBy('date')
@@ -77,44 +77,44 @@ class DashboardController extends Controller
                 ->pluck('date')
                 ->toArray(),
         ];
-        
+
         return response()->view('cms.indexes.employee', $data);
     }
 
 
     private function admin()
     {
-         // Get counts
-    $counts = [
-        'orders' => Order::count(),
-        'pharmacies' => Pharmaceutical::count(),
-        'users' => User::count(),
-        'products' => Product::count(),
-    ];
+        // Get counts
+        $counts = [
+            'orders' => Order::count(),
+            'pharmacies' => Pharmaceutical::count(),
+            'users' => User::count(),
+            'products' => Product::count(),
+        ];
 
-    // Calculate totals
-    $totals = [
-        'orders' => Order::sum('total'),
-        'discounts' => Order::sum('discount') + Order::sum('coupon_discount'),
-    ];
+        // Calculate totals
+        $totals = [
+            'orders' => Order::sum('total'),
+            'discounts' => Order::sum('discount') + Order::sum('coupon_discount'),
+        ];
 
-    // Get latest records
-    $latestOrders = Order::with('user')
-        ->latest()
-        ->take(5)
-        ->get();
+        // Get latest records
+        $latestOrders = Order::with('user')
+            ->latest()
+            ->take(5)
+            ->get();
 
-    $latestUsers = User::latest()
-        ->take(5)
-        ->get();
+        $latestUsers = User::latest()
+            ->take(5)
+            ->get();
 
 
-    return view('cms.indexes.admin', [
-        'counts' => $counts,
-        'totals' => $totals,
-        'latestOrders' => $latestOrders,
-        'latestUsers' => $latestUsers,
-    ]);
+        return view('cms.indexes.admin', [
+            'counts' => $counts,
+            'totals' => $totals,
+            'latestOrders' => $latestOrders,
+            'latestUsers' => $latestUsers,
+        ]);
     }
 
     public function changeLanguage()

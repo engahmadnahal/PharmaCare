@@ -90,26 +90,8 @@
                     id="kt_quick_panel_notifications" role="tabpanel" style="height: 216px; overflow: hidden;">
                     <!--begin::Nav-->
                     <div class="navi navi-icon-circle navi-spacer-x-0">
-
-                        {{-- <!--begin::Item-->
-						<a href="#" class="navi-item">
-							<div class="navi-link rounded">
-								<div class="symbol symbol-50 mr-3">
-									<div class="symbol-label">
-										<i class="flaticon-bell text-success icon-lg"></i>
-									</div>
-								</div>
-								<div class="navi-text">
-									<div class="font-weight-bold font-size-lg">5 new user generated report</div>
-									<div class="text-muted">Reports based on sales</div>
-								</div>
-							</div>
-						</a>
-						<!--end::Item--> --}}
-
                         @foreach (auth()->user()->unreadNotifications as $notf)
                         <a href="#"
-
                             class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
@@ -119,33 +101,29 @@
                                 </div>
                                 <div class="navi-text">
                                     <div class="font-weight-bold font-size-lg">
-                                        {{ __('cms.' . $notf->data['title']) }}
+                                        {{ __( $notf->data['title']) }}
                                     </div>
-                                    <div class="text-muted">{{ __('cms.' . $notf->data['body']) }}</div>
+                                    <div class="text-muted">{{ __( $notf->data['body']) }}</div>
                                 </div>
-                                <div class="text-muted">{{ Carbon::parse($notf->created_at)->diffForHumans() }}
+                                <div class="text-muted">
+                                    {{ Carbon::parse($notf->created_at)->diffForHumans() }}
                                 </div>
                             </div>
+                        </a>
+                        @endforeach
                     </div>
-                    </a>
-                    @endforeach
+                    <!--end::Nav-->
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; right: 0px; height: 216px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 51px;"></div>
+                    </div>
+                </div>
 
-
-                </div>
-                <!--end::Nav-->
-                <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                </div>
-                <div class="ps__rail-y" style="top: 0px; right: 0px; height: 216px;">
-                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 51px;"></div>
-                </div>
             </div>
-            <!--end::Tabpane-->
-            <!--begin::Tabpane-->
-
         </div>
-    </div>
-    <!--end::Content-->
+        <!--end::Content-->
     </div>
 
     <!--begin::Header Mobile-->
