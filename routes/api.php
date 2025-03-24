@@ -31,7 +31,25 @@ Route::prefix('v1')->middleware(['auth:user-api', 'locale'])->group(function () 
     Route::controller(UserController::class)
         ->prefix('user')
         ->group(function () {
+            // Profile
             Route::get('/profile', 'profile');
             Route::post('/profile/update', 'updateProfile');
+            // Childrens
+            Route::post('/childrens', 'addChild');
+            Route::get('/childrens', 'getChildren');
+            Route::put('/childrens/{id}', 'updateChild');
+            // Orders
+            Route::get('/orders', 'orders');
+            // Medical Records
+            Route::get('/disease-type', 'getDiseaseType');
+            Route::post('medical-records', 'createMedicalRecord');
+            Route::get('medical-records', 'getMedicalRecords');
+            Route::post('medical-records/{id}', 'updateMedicalRecord');
+            Route::delete('medical-records/{id}', 'deleteMedicalRecord');
+            // Drugs
+            Route::post('drugs', 'createDrug');
+            Route::get('drugs', 'getDrugs');
+            Route::post('drugs/{id}', 'updateDrug');
+            Route::delete('drugs/{id}', 'deleteDrug');
         });
 });

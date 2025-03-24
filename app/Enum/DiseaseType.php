@@ -18,4 +18,9 @@ class DiseaseType
             self::CHRONIC_DISEASE,
         ];
     }
+    // get types for validation type1 , type2 , type3
+    public static function getTypesForValidation()
+    {
+        return implode(',', self::getTypes());
+    }
 }
