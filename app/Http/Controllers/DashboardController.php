@@ -33,7 +33,6 @@ class DashboardController extends Controller
         $data = [
             // Basic Stats
             'totalOrders' => Order::count(),
-            'totalUsers' => User::count(),
             'totalProducts' => Product::count(),
             'totalCoupons' => Coupon::count(),
 

@@ -46,23 +46,6 @@
             </div>
         </div>
 
-        <!-- Users Stats -->
-        <div class="col-xl-3">
-            <div class="card card-custom bg-success card-stretch gutter-b">
-                <div class="card-body">
-                    <span class="svg-icon svg-icon-white svg-icon-3x">
-                        <!-- Users Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" stroke="white" stroke-width="2" />
-                            <path d="M20 21C20 17.134 16.866 14 13 14H11C7.13401 14 4 17.134 4 21" stroke="white" stroke-width="2" />
-                        </svg>
-                    </span>
-                    <div class="text-white font-weight-bolder font-size-h2 mt-3">{{ $totalUsers }}</div>
-                    <a href="#" class="text-white font-weight-bold font-size-lg mt-1">{{ __('cms.total_users') }}</a>
-                </div>
-            </div>
-        </div>
-
         <!-- Products Stats -->
         <div class="col-xl-3">
             <div class="card card-custom bg-warning card-stretch gutter-b">
