@@ -319,6 +319,7 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     // File input handler
     $('.custom-file-input').on('change', function() {
@@ -327,63 +328,108 @@
     });
 
     function performUpdate() {
-        let formData = new FormData();
-        formData.append('_method', 'PUT');
-        formData.append('category_id', document.getElementById('category_id').value);
-        formData.append('medicine_type_id', document.getElementById('medicine_type_id').value);
-        formData.append('barcode', document.getElementById('barcode').value);
-        formData.append('trade_name_ar', document.getElementById('trade_name_ar').value);
-        formData.append('trade_name_en', document.getElementById('trade_name_en').value);
-        formData.append('scientific_name_ar', document.getElementById('scientific_name_ar').value);
-        formData.append('scientific_name_en', document.getElementById('scientific_name_en').value);
-        formData.append('drug_description_ar', document.getElementById('drug_description_ar').value);
-        formData.append('drug_description_en', document.getElementById('drug_description_en').value);
-        formData.append('indications_for_use_ar', document.getElementById('indications_for_use_ar').value);
-        formData.append('indications_for_use_en', document.getElementById('indications_for_use_en').value);
-        formData.append('recommended_dosage_ar', document.getElementById('recommended_dosage_ar').value);
-        formData.append('recommended_dosage_en', document.getElementById('recommended_dosage_en').value);
-        formData.append('how_to_use_ar', document.getElementById('how_to_use_ar').value);
-        formData.append('how_to_use_en', document.getElementById('how_to_use_en').value);
-        formData.append('drug_interactions_ar', document.getElementById('drug_interactions_ar').value);
-        formData.append('drug_interactions_en', document.getElementById('drug_interactions_en').value);
-        formData.append('side_effects_ar', document.getElementById('side_effects_ar').value);
-        formData.append('side_effects_en', document.getElementById('side_effects_en').value);
-        formData.append('alternative_medicines_ar', document.getElementById('alternative_medicines_ar').value);
-        formData.append('alternative_medicines_en', document.getElementById('alternative_medicines_en').value);
-        formData.append('complementary_medicines_ar', document.getElementById('complementary_medicines_ar').value);
-        formData.append('complementary_medicines_en', document.getElementById('complementary_medicines_en').value);
-        formData.append('concentration_value', document.getElementById('concentration_value').value);
-        formData.append('concentration_unit', document.getElementById('concentration_unit').value);
-        formData.append('num_units_in_package', document.getElementById('num_units_in_package').value);
-        formData.append('available_without_prescription', document.getElementById('available_without_prescription').checked ? 1 : 0);
-        formData.append('quantity', document.getElementById('quantity').value);
-        formData.append('basic_price', document.getElementById('basic_price').value);
-        formData.append('retail_price', document.getElementById('retail_price').value);
-        formData.append('expiration_date', document.getElementById('expiration_date').value);
-        formData.append('weight', document.getElementById('weight').value);
+        Swal.fire({
+            title: "{{__('cms.are_you_sure')}}",
+            text: "{{__('cms.update_form_message')}}",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "{{__('cms.yes_update')}}",
+            cancelButtonText: "{{__('cms.cancel')}}",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Show loading state
+                Swal.fire({
+                    title: "{{__('cms.please_wait')}}",
+                    text: "{{__('cms.updating_data')}}",
+                    icon: "info",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
 
-        let imageFile = document.getElementById('image').files[0];
-        let leafletFile = document.getElementById('medication_leaflet_image').files[0];
-        
-        if (imageFile) {    
-            formData.append('image', imageFile);
-        }
-        
-        if (leafletFile) {
-            formData.append('medication_leaflet_image', leafletFile);
-        }
+                let formData = new FormData();
+                formData.append('_method', 'PUT');
+                formData.append('category_id', document.getElementById('category_id').value);
+                formData.append('medicine_type_id', document.getElementById('medicine_type_id').value);
+                formData.append('barcode', document.getElementById('barcode').value);
+                formData.append('trade_name_ar', document.getElementById('trade_name_ar').value);
+                formData.append('trade_name_en', document.getElementById('trade_name_en').value);
+                formData.append('scientific_name_ar', document.getElementById('scientific_name_ar').value);
+                formData.append('scientific_name_en', document.getElementById('scientific_name_en').value);
+                formData.append('drug_description_ar', document.getElementById('drug_description_ar').value);
+                formData.append('drug_description_en', document.getElementById('drug_description_en').value);
+                formData.append('indications_for_use_ar', document.getElementById('indications_for_use_ar').value);
+                formData.append('indications_for_use_en', document.getElementById('indications_for_use_en').value);
+                formData.append('recommended_dosage_ar', document.getElementById('recommended_dosage_ar').value);
+                formData.append('recommended_dosage_en', document.getElementById('recommended_dosage_en').value);
+                formData.append('how_to_use_ar', document.getElementById('how_to_use_ar').value);
+                formData.append('how_to_use_en', document.getElementById('how_to_use_en').value);
+                formData.append('drug_interactions_ar', document.getElementById('drug_interactions_ar').value);
+                formData.append('drug_interactions_en', document.getElementById('drug_interactions_en').value);
+                formData.append('side_effects_ar', document.getElementById('side_effects_ar').value);
+                formData.append('side_effects_en', document.getElementById('side_effects_en').value);
+                formData.append('alternative_medicines_ar', document.getElementById('alternative_medicines_ar').value);
+                formData.append('alternative_medicines_en', document.getElementById('alternative_medicines_en').value);
+                formData.append('complementary_medicines_ar', document.getElementById('complementary_medicines_ar').value);
+                formData.append('complementary_medicines_en', document.getElementById('complementary_medicines_en').value);
+                formData.append('concentration_value', document.getElementById('concentration_value').value);
+                formData.append('concentration_unit', document.getElementById('concentration_unit').value);
+                formData.append('num_units_in_package', document.getElementById('num_units_in_package').value);
+                formData.append('available_without_prescription', document.getElementById('available_without_prescription').checked ? 1 : 0);
+                formData.append('quantity', document.getElementById('quantity').value);
+                formData.append('basic_price', document.getElementById('basic_price').value);
+                formData.append('retail_price', document.getElementById('retail_price').value);
+                formData.append('expiration_date', document.getElementById('expiration_date').value);
+                formData.append('weight', document.getElementById('weight').value);
 
-        axios.post('/cms/employee/products/{{$data->id}}', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
+                let imageFile = document.getElementById('image').files[0];
+                let leafletFile = document.getElementById('medication_leaflet_image').files[0];
+                
+                if (imageFile) {    
+                    formData.append('image', imageFile);
+                }
+                
+                if (leafletFile) {
+                    formData.append('medication_leaflet_image', leafletFile);
+                }
+
+                axios.post('/cms/employee/products/{{$data->id}}', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(function (response) {
+                    // Close loading state
+                    Swal.close();
+                    
+                    // Show success message
+                    Swal.fire({
+                        title: "{{__('cms.success')}}",
+                        text: response.data.message,
+                        icon: "success",
+                        confirmButtonText: "{{__('cms.ok')}}",
+                    }).then((result) => {
+                        // Redirect after clicking OK
+                        window.location.href = '/cms/employee/products';
+                    });
+                })
+                .catch(function (error) {
+                    // Close loading state
+                    Swal.close();
+                    
+                    // Show error message
+                    Swal.fire({
+                        title: "{{__('cms.error')}}",
+                        text: error.response.data.message,
+                        icon: "error",
+                        confirmButtonText: "{{__('cms.ok')}}",
+                    });
+                });
             }
-        })
-        .then(function (response) {
-            toastr.success(response.data.message);
-            window.location.href = '/cms/employee/products';
-        })
-        .catch(function (error) {
-            toastr.error(error.response.data.message);
         });
     }
 
