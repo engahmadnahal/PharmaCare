@@ -36,11 +36,8 @@ class CartController extends Controller
                 return ControllersService::generateValidationErrorMessage(__('cms.product_not_found'));
             }
 
-            if ($product->quantity > 0) {
-                return response()->json([
-                    'status' => false,
-                    'message' => __('messages.product_out_of_stock')
-                ], 400);
+            if ($request->quantity > $product->quantity) {
+                return ControllersService::generateValidationErrorMessage(__('cms.insufficient_stock', ['available_quantity' => $product->quantity]));
             }
 
             DB::beginTransaction();
