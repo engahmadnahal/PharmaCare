@@ -16,7 +16,7 @@ class ProductResource extends JsonResource
             'description' =>  $this->drugDescription,
             'basic_price' => $this->basic_price,
             'retail_price' => $this->retail_price,
-            'discount' => $this->basic_price > 0 ? (($this->basic_price - $this->retail_price) / $this->basic_price) * 100 : 0,
+            'discount' => $this->basic_price > 0 ? round((($this->basic_price - $this->retail_price) / $this->basic_price) * 100, 2) : 0,
             'image' => Storage::url($this->image),
             'is_favorite' => (bool) $this->isFavorited,
             'category' => $this->category?->name,
