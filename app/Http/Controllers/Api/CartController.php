@@ -89,7 +89,6 @@ class CartController extends Controller
                 ->where('user_id', auth()->id())
                 ->get();
 
-
             $basicPrice = $cartItems->sum(function ($item) {
                 return $item->quantity * $item->product->basic_price;
             });
@@ -102,7 +101,7 @@ class CartController extends Controller
 
             $summary = [
                 'items_count' => $cartItems->sum('quantity'),
-                'sub_total' => $retailPrice,
+                'sub_total' => $basicPrice,
                 'discount' => $discountAmount,
                 'total' => $retailPrice,
             ];
