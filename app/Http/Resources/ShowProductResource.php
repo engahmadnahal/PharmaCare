@@ -16,7 +16,7 @@ class ShowProductResource extends JsonResource
      */
     public function toArray($request)
     {
-        $discount = $this->basic_price - $this->retail_price;
+        $discount = $this->basic_price > 0 ? (($this->basic_price - $this->retail_price) / $this->basic_price) * 100 : 0;
         $relatedProducts = Product::where('category_id', $this->category_id)
             ->where('id', '!=', $this->id)
             ->inRandomOrder()
