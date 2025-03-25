@@ -105,6 +105,10 @@ class ProductController extends Controller
                 ['rate' => $request->rate]
             );
 
+            $product->update([
+                'rate' => $product->rateProducts()->avg('rate')
+            ]);
+
             return ControllersService::successResponse(
                 __('cms.product_rated_successfully'),
                 new ProductResource($product)

@@ -16,10 +16,14 @@ class ShowProductResource extends JsonResource
      */
     public function toArray($request)
     {
-        $discount = $this->retail_price - $this->basic_price;
+        $discount = $this->basic_price - $this->retail_price;
         $relatedProducts = Product::where('category_id', $this->category_id)
             ->where('id', '!=', $this->id)
             ->inRandomOrder()
+            ->take(4)
+            ->get();
+
+        $mostRatedProducts = Product::orderBy('rate', 'desc')
             ->take(4)
             ->get();
 
@@ -90,7 +94,7 @@ class ShowProductResource extends JsonResource
             ],
             'product_ratings' => ProductRateResource::collection($this->rateProducts),
             'related_products' => ProductResource::collection($relatedProducts),
-
+            'most_rated_products' => ProductResource::collection($mostRatedProducts),
         ];
     }
 }
