@@ -89,11 +89,22 @@ class CartController extends Controller
                 ->where('user_id', auth()->id())
                 ->get();
 
+
+            $basicPrice = $cartItems->sum(function ($item) {
+                return $item->quantity * $item->product->basic_price;
+            });
+
+            $retailPrice = $cartItems->sum(function ($item) {
+                return $item->quantity * $item->product->retail_price;
+            });
+
+            $discountAmount = $basicPrice - $retailPrice;
+
             $summary = [
                 'items_count' => $cartItems->sum('quantity'),
-                'sub_total' => $cartItems->sum(function ($item) {
-                    return $item->quantity * $item->product->retail_price;
-                }),
+                'sub_total' => $retailPrice,
+                'discount' => $discountAmount,
+                'total' => $retailPrice,
             ];
 
             return ControllersService::successResponse(__('messages.cart_retrieved_successfully'), [
@@ -217,9 +228,14 @@ class CartController extends Controller
             });
 
             // Calculate discount
-            $discountAmount = ($cartTotal * $coupon->discount) / 100;
-            $totalAfterDiscount = $cartTotal - $discountAmount;
+            $discountPercentage = $coupon->discount / 100;
+            $discountAmount = $cartTotal * $discountPercentage; // after discount amount coupon
 
+            $productDiscount = $cartItems->sum(function ($item) {
+                return $item->quantity * ($item->product->basic_price - $item->product->retail_price);
+            }); // after discount amount product
+
+            $totalAfterDiscount = $cartTotal - $discountAmount; // after discount amount coupon and product
 
             return ControllersService::successResponse(
                 __('messages.coupon_applied_successfully'),
@@ -227,6 +243,7 @@ class CartController extends Controller
                     'cart_summary' => [
                         'sub_total' => round($cartTotal, 2),
                         'discount_amount' => round($discountAmount, 2),
+                        'product_discount' => round($productDiscount, 2),
                         'total_after_discount' => round($totalAfterDiscount, 2),
                     ]
                 ]
