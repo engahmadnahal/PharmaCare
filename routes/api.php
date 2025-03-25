@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ApiAuthController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\PharmaController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
@@ -56,32 +57,38 @@ Route::prefix('v1')->middleware(['auth:user-api', 'locale'])->group(function () 
             Route::delete('drugs/{id}', 'deleteDrug');
         });
 
-        Route::controller(ProductController::class)
-            ->prefix('products')
-            ->group(function () {
-                Route::get('/', 'index');
-                Route::post('toggle-favorite/{id}', 'toggleFavorite');
-                Route::post('rate/{id}', 'rateProduct');
-                Route::get('favorites', 'getFavorites');
-                Route::get('{id}', 'show');
-            });
+    Route::controller(ProductController::class)
+        ->prefix('products')
+        ->group(function () {
+            Route::get('/', 'index');
+            Route::post('toggle-favorite/{id}', 'toggleFavorite');
+            Route::post('rate/{id}', 'rateProduct');
+            Route::get('favorites', 'getFavorites');
+            Route::get('{id}', 'show');
+        });
 
-        Route::controller(CategoryController::class)
-            ->prefix('categories')
-            ->group(function () {
-                Route::get('/', 'index');
-                Route::get('{category}/products', 'products');
-            });
+    Route::controller(CategoryController::class)
+        ->prefix('categories')
+        ->group(function () {
+            Route::get('/', 'index');
+            Route::get('{category}/products', 'products');
+        });
 
-            Route::controller(CartController::class)
-                ->prefix('cart')
-                ->group(function () {
-                    Route::get('/', 'showCart');
-                    Route::post('add', 'addToCart');
-                    Route::delete('remove-item/{id}', 'removeFromCart');
-                    Route::put('update-quantity/{id}', 'updateCartQuantity');
-                    Route::delete('clear', 'clearCart');
-                    Route::post('apply-coupon', 'applyCoupon');
-                    Route::post('checkout', 'checkout');
-                });
+    Route::controller(CartController::class)
+        ->prefix('cart')
+        ->group(function () {
+            Route::get('/', 'showCart');
+            Route::post('add', 'addToCart');
+            Route::delete('remove-item/{id}', 'removeFromCart');
+            Route::put('update-quantity/{id}', 'updateCartQuantity');
+            Route::delete('clear', 'clearCart');
+            Route::post('apply-coupon', 'applyCoupon');
+            Route::post('checkout', 'checkout');
+        });
+
+    Route::controller(PharmaController::class)
+        ->prefix('pharmacies')
+        ->group(function () {
+            Route::get('/', 'index');
+        });
 });

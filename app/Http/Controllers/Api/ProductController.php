@@ -13,8 +13,18 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
+        $validator = Validator($request->all(), [
+            'category_id' => 'nullable|exists:categories,id',
+            'pharmaceutical_id' => 'nullable|exists:pharmaceuticals,id',
+        ]);
+
+        if ($validator->fails()) {
+            return ControllersService::generateValidationErrorMessage($validator->getMessageBag()->first());
+        }
+
         try {
             $products = Product::with(['category', 'medicineType', 'pharmaceutical'])->get();
 
@@ -119,4 +129,6 @@ class ProductController extends Controller
             return ControllersService::generateValidationErrorMessage($e->getMessage());
         }
     }
+
+    
 }

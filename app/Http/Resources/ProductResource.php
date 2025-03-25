@@ -23,6 +23,7 @@ class ProductResource extends JsonResource
             'medicine_type' => $this->medicineType?->name,
             'concentration' => $this->concentration_value . ' ' . $this->concentration_unit,
             'expiration_date' => $this->expiration_date,
+            'pharmacy' => $this->pharmaceutical?->name,
         ];
     }
 }
