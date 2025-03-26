@@ -265,6 +265,10 @@ class CartController extends Controller
             return ControllersService::generateValidationErrorMessage($validator->getMessageBag()->first());
         }
 
+        if ($request->payment_method == 'online') {
+            return ControllersService::generateValidationErrorMessage(__('cms.online_payment_not_allowed_now'));
+        }
+
         try {
             DB::beginTransaction();
 
