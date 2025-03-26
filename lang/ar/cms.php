@@ -940,4 +940,7 @@ return [
 
   // General
   'something_went_wrong' => 'حدث خطأ ما',
+
+  // Cart
+  'cart_is_empty' => 'السلة فارغة',
 ];

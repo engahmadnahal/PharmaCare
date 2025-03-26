@@ -837,4 +837,77 @@ return [
   'cart_cleared_successfully' => 'Cart cleared successfully',
   'coupon_applied_successfully' => 'Coupon applied successfully',
   'online_payment_not_allowed_now' => 'Online payment is not allowed now',
+
+
+  // Auth related
+  'acount_not_found' => 'Account not found',
+  'error_password' => 'Invalid password',
+  'success_login' => 'Logged in successfully',
+  'error_login' => 'Login failed',
+  'password_reset_code_error' => 'Invalid reset code',
+  'password_reset_code_correct' => 'Reset code is correct',
+  'forget_password_success' => 'Reset code sent successfully',
+  'reset_password_success' => 'Password reset successfully',
+  'no_password_reset_code' => 'No reset code found',
+  'current_password_error' => 'Current password is incorrect',
+  'change_password_success' => 'Password changed successfully',
+  'logged_out_successfully' => 'Logged out successfully',
+
+  // Registration & Profile
+  'faild_create_user' => 'Failed to create user',
+  'faild_create_user_info' => 'Failed to create user information',
+  'faild_create_user_drug' => 'Failed to create user drug',
+  'register_success' => 'Registration completed successfully',
+  'failed_update_user' => 'Failed to update user',
+  'profile_updated_successfully' => 'Profile updated successfully',
+  'profile_retrieved_successfully' => 'Profile retrieved successfully',
+  'child_not_found' => 'Child not found',
+  'children_retrieved_successfully' => 'Children retrieved successfully',
+
+  // Products
+  'products_retrieved_successfully' => 'Products retrieved successfully',
+  'product_retrieved_successfully' => 'Product retrieved successfully',
+  'product_not_found' => 'Product not found',
+  'product_removed_from_favorites' => 'Product removed from favorites',
+  'product_added_to_favorites' => 'Product added to favorites',
+  'product_rated_successfully' => 'Product rated successfully',
+  'favorites_retrieved_successfully' => 'Favorites retrieved successfully',
+
+  // Categories
+  'categories_retrieved_successfully' => 'Categories retrieved successfully',
+  'category_products_retrieved_successfully' => 'Category products retrieved successfully',
+
+  // Orders
+  'orders_retrieved_successfully' => 'Orders retrieved successfully',
+  'online_payment_not_allowed_now' => 'Online payment is not available now',
+  'success_checkout' => 'Order placed successfully',
+
+  // Medical Records
+  'failed_create_medical_record' => 'Failed to create medical record',
+  'medical_record_created_successfully' => 'Medical record created successfully',
+  'medical_record_not_found' => 'Medical record not found',
+  'failed_update_medical_record' => 'Failed to update medical record',
+  'medical_record_updated_successfully' => 'Medical record updated successfully',
+  'medical_records_retrieved_successfully' => 'Medical records retrieved successfully',
+  'failed_delete_medical_record' => 'Failed to delete medical record',
+  'medical_record_deleted_successfully' => 'Medical record deleted successfully',
+  'disease_type_retrieved_successfully' => 'Disease types retrieved successfully',
+
+  // Drugs
+  'failed_create_drug' => 'Failed to create drug',
+  'drug_created_successfully' => 'Drug created successfully',
+  'drug_not_found' => 'Drug not found',
+  'failed_update_drug' => 'Failed to update drug',
+  'drug_updated_successfully' => 'Drug updated successfully',
+  'drugs_retrieved_successfully' => 'Drugs retrieved successfully',
+  'failed_delete_drug' => 'Failed to delete drug',
+  'drug_deleted_successfully' => 'Drug deleted successfully',
+
+  // Pharmacies
+  'pharmacies_retrieved_successfully' => 'Pharmacies retrieved successfully',
+
+  // General
+  'something_went_wrong' => 'Something went wrong',
+
+  'cart_is_empty' => 'Cart is empty',
 ];
