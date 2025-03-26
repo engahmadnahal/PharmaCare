@@ -345,8 +345,8 @@ class CartController extends Controller
                     'order_id' => $order->id,
                     'product_id' => $item->product_id,
                     'quantity' => $item->quantity,
-                    'price' => $item->product->retail_price,
-                    'total' => $item->quantity * $item->product->retail_price,
+                    'unit_price' => $item->product->retail_price,
+                    'total_price' => $item->quantity * $item->product->retail_price,
                 ]);
 
                 // Update product quantity
