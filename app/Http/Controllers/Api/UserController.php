@@ -75,8 +75,6 @@ class UserController extends Controller
             'full_name' => 'required|string|min:3',
             'gender' => 'required|string|in:male,female',
             'date_of_birth' => 'required|date',
-            'email' => 'required|email|unique:users,email',
-            'mobile' => 'required|string|max:11|unique:users,mobile',
 
             // User Info validation
             'width' => 'required|string',
@@ -107,9 +105,6 @@ class UserController extends Controller
             $user->full_name = $request->full_name;
             $user->gender = $request->gender;
             $user->date_of_birth = $request->date_of_birth;
-            $user->email = $request->email;
-            $user->password = Hash::make('password');
-            $user->mobile = $request->mobile;
             $user->parent_id = $request->user()->id;
             $save = $user->save();
 
@@ -174,8 +169,6 @@ class UserController extends Controller
             'full_name' => 'required|string|min:3',
             'gender' => 'required|string|in:male,female',
             'date_of_birth' => 'required|date',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'mobile' => 'required|string|max:11|unique:users,mobile,' . $id,
 
             // User Info validation
             'width' => 'required|string',
@@ -210,9 +203,6 @@ class UserController extends Controller
             $user->full_name = $request->full_name;
             $user->gender = $request->gender;
             $user->date_of_birth = $request->date_of_birth;
-            $user->email = $request->email;
-            $user->password = Hash::make('password');
-            $user->mobile = $request->mobile;
             $user->parent_id = $request->user()->id;
             $save = $user->save();
 

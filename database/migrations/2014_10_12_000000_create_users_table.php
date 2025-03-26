@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('parent_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->string('full_name');
-            $table->string('email')->unique();
-            $table->string('mobile')->unique();
+            $table->string('email')->nullable()->unique();
+            $table->string('mobile')->nullable()->unique();
             $table->enum('gender', ['male', 'female'])->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('avater')->nullable();
             $table->boolean('status')->default(true);
             $table->date('date_of_birth');

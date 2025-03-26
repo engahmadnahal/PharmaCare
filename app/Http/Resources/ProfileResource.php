@@ -12,8 +12,8 @@ class ProfileResource extends JsonResource
         return [
             'id' => $this->id,
             'full_name' => $this->full_name,
-            'email' => $this->email,
-            'mobile' => $this->mobile,
+            'email' => $this->email ?? 'none',
+            'mobile' => $this->mobile ?? 'none',
             'gender' => $this->gender,
             'date_of_birth' => $this->date_of_birth,
             'created_at' => $this->created_at->format('Y-m-d'),
