@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Enum\DiseaseType;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 
@@ -49,7 +50,7 @@ class ProfileResource extends JsonResource
                     'id' => $record->id,
                     'name' => $record->name,
                     'description' => $record->description,
-                    'type' => $record->type,
+                    'type' => DiseaseType::getTextType($record->type),
                     'file' => $record->file ? Storage::url($record->file) : null,
                 ];
             }),
