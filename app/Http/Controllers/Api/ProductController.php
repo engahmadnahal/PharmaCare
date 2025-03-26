@@ -19,6 +19,7 @@ class ProductController extends Controller
         $validator = Validator($request->all(), [
             'category_id' => 'nullable|exists:categories,id',
             'pharmaceutical_id' => 'nullable|exists:pharmaceuticals,id',
+            'is_favorite' => 'nullable|boolean',
         ]);
 
         if ($validator->fails()) {
@@ -32,6 +33,11 @@ class ProductController extends Controller
             })
             ->when(!is_null($request->pharmaceutical_id), function ($query) use ($request) {
                 return $query->where('pharmaceutical_id', $request->pharmaceutical_id);
+            })
+            ->when(!is_null($request->is_favorite), function ($query) use ($request) {
+                return $query->whereHas('favoriteProducts', function ($query) use ($request) {
+                    $query->where('user_id', auth('user-api')->id());
+                });
             })
             ->get();
 
