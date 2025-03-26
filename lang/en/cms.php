@@ -910,4 +910,5 @@ return [
   'something_went_wrong' => 'Something went wrong',
 
   'cart_is_empty' => 'Cart is empty',
+  'product_added_to_cart' => 'Product added to cart',
 ];

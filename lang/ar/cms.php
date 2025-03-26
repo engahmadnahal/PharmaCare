@@ -943,4 +943,5 @@ return [
 
   // Cart
   'cart_is_empty' => 'السلة فارغة',
+  'product_added_to_cart' => 'تم إضافة المنتج إلى السلة',
 ];
