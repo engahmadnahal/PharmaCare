@@ -16,6 +16,8 @@ class ProfileResource extends JsonResource
             'mobile' => $this->mobile ?? 'none',
             'gender' => $this->gender,
             'date_of_birth' => $this->date_of_birth,
+            'is_parent' => (bool) is_null($this->parent_id),
+            'child_count' => is_null($this->parent_id) ? $this->childrens->count() : 0,
             'created_at' => $this->created_at->format('Y-m-d'),
 
             // Medical Info
