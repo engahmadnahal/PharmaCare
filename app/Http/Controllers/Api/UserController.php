@@ -23,7 +23,7 @@ class UserController extends Controller
     public function profile(Request $request)
     {
         try {
-            $user = $request->user()->load(['info', 'drugs', 'medicalRecords']);
+            $user = User::with(['info', 'drugs', 'medicalRecords'])->find($request->user()->id);
 
             return ControllersService::successResponse(__('cms.profile_retrieved_successfully'), new ProfileResource($user));
         } catch (\Exception $e) {

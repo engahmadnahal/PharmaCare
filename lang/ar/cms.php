@@ -944,4 +944,7 @@ return [
   // Cart
   'cart_is_empty' => 'السلة فارغة',
   'product_added_to_cart' => 'تم إضافة المنتج إلى السلة',
+
+  'are_you_sure' => 'هل أنت متأكد؟',
+  'update_form_message' => 'يرجى التاكد من صحة البيانات المدخلة قبل التحديث',
 ];

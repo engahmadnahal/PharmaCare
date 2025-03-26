@@ -911,4 +911,7 @@ return [
 
   'cart_is_empty' => 'Cart is empty',
   'product_added_to_cart' => 'Product added to cart',
+
+  'are_you_sure' => 'Are you sure?',
+  'update_form_message' => 'Please check the data entered before updating',
 ];
