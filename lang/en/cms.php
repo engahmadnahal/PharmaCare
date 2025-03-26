@@ -916,8 +916,8 @@ return [
   'update_form_message' => 'Please check the data entered before updating',
 
   // Disease Type
-  'genetic_disease' => 'Show Genetic Diseases',
-  'allergy' => 'Show Allergies',
-  'general_disease' => 'Show General Diseases',
-  'chronic_disease' => 'Show Chronic Diseases',
+  'genetic_disease' => 'Genetic Disease',
+  'allergy' => 'Allergy',
+  'general_disease' => 'General Disease',
+  'chronic_disease' => 'Chronic Disease',
 ];
