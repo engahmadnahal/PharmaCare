@@ -947,4 +947,10 @@ return [
 
   'are_you_sure' => 'هل أنت متأكد؟',
   'update_form_message' => 'يرجى التاكد من صحة البيانات المدخلة قبل التحديث',
+
+  // Disease Type
+  'genetic_disease' => 'عرض الأعراض الوراثية',
+  'allergy' => 'عرض الأعراض الحساسية',
+  'general_disease' => 'عرض الأعراض العامة',
+  'chronic_disease' => 'عرض الأعراض المزمنة',
 ];

@@ -914,4 +914,10 @@ return [
 
   'are_you_sure' => 'Are you sure?',
   'update_form_message' => 'Please check the data entered before updating',
+
+  // Disease Type
+  'genetic_disease' => 'Show Genetic Diseases',
+  'allergy' => 'Show Allergies',
+  'general_disease' => 'Show General Diseases',
+  'chronic_disease' => 'Show Chronic Diseases',
 ];

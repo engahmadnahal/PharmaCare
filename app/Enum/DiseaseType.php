@@ -23,4 +23,15 @@ class DiseaseType
     {
         return implode(',', self::getTypes());
     }
+
+    // get text type for show read user type
+    public static function getTextType($type)
+    {
+        return match ($type) {
+            self::GENETIC_DISEASE => __('cms.genetic_disease'),
+            self::ALLERGY => __('cms.allergy'),
+            self::GENERAL_DISEASE => __('cms.general_disease'),
+            self::CHRONIC_DISEASE => __('cms.chronic_disease'),
+        };
+    }
 }
