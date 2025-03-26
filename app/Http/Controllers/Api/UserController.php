@@ -264,7 +264,7 @@ class UserController extends Controller
             $user = $request->user();
 
             $orders = $user->orders()
-                ->select('id', 'order_num', 'created_at', 'status', 'total', 'discount', 'coupon_discount')
+                ->select('id', 'order_num', 'created_at', 'status', 'total', 'discount', 'coupon_discount', 'payment_method', 'payment_status')
                 ->latest()
                 ->get();
 
