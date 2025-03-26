@@ -26,7 +26,14 @@ class ProductController extends Controller
         }
 
         try {
-            $products = Product::with(['category', 'medicineType', 'pharmaceutical'])->get();
+            $products = Product::with(['category', 'medicineType', 'pharmaceutical'])
+            ->when(!is_null($request->category_id), function ($query) use ($request) {
+                return $query->where('category_id', $request->category_id);
+            })
+            ->when(!is_null($request->pharmaceutical_id), function ($query) use ($request) {
+                return $query->where('pharmaceutical_id', $request->pharmaceutical_id);
+            })
+            ->get();
 
             return ControllersService::successResponse(
                 __('cms.products_retrieved_successfully'),
