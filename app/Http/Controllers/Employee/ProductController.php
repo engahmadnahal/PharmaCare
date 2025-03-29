@@ -78,8 +78,8 @@ class ProductController extends Controller
             'basic_price' => 'required|integer|min:1',
             'retail_price' => 'required|integer|min:1',
             'expiration_date' => 'required|date',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'medication_leaflet_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp,avif|max:2048',
+            'medication_leaflet_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp,avif|max:2048',
             'weight' => 'required|integer|min:1',
         ]);
 
@@ -175,8 +175,8 @@ class ProductController extends Controller
             'basic_price' => 'required|integer|min:1',
             'retail_price' => 'required|integer|min:1',
             'expiration_date' => 'required|date',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'medication_leaflet_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp,avif|max:2048',
+            'medication_leaflet_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp,avif|max:2048',
             'weight' => 'required|integer|min:1',
         ]);
 
