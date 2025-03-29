@@ -209,11 +209,15 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if ($product->pharmaceutical_id != auth('employee')->user()->pharmaceutical_id) {
-            throw new UnauthorizedException('This action is unauthorized.');
-        }
+        try {
+            if ($product->pharmaceutical_id != auth('employee')->user()->pharmaceutical_id) {
+                throw new UnauthorizedException('This action is unauthorized.');
+            }
 
-        $deleted = $product->delete();
-        return ControllersService::generateProcessResponse((bool) $deleted, 'DELETE');
+            $deleted = $product->delete();
+            return ControllersService::generateProcessResponse((bool) $deleted, 'DELETE');
+        } catch (\Exception $e) {
+            return ControllersService::generateProcessResponse(false, 'DELETE');
+        }
     }
 }
