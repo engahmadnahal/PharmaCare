@@ -34,7 +34,7 @@ class ProductController extends Controller
             ->when(!is_null($request->pharmaceutical_id), function ($query) use ($request) {
                 return $query->where('pharmaceutical_id', $request->pharmaceutical_id);
             })
-            ->when(!is_null($request->is_favorite), function ($query) use ($request) {
+            ->when(!is_null($request->is_favorite) && $request->is_favorite == 1, function ($query) use ($request) {
                 return $query->whereHas('favoriteProducts', function ($query) use ($request) {
                     $query->where('user_id', auth('user-api')->id());
                 });
