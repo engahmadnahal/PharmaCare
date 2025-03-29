@@ -39,6 +39,11 @@ class ProductController extends Controller
                     $query->where('user_id', auth('user-api')->id());
                 });
             })
+            ->when(!is_null($request->is_favorite) && $request->is_favorite == 0, function ($query) use ($request) {
+                return $query->whereDoesntHave('favoriteProducts', function ($query) use ($request) {
+                    $query->where('user_id', auth('user-api')->id());
+                });
+            })
             ->get();
 
             return ControllersService::successResponse(
