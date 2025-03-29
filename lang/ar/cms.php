@@ -953,4 +953,23 @@ return [
   'allergy' => 'حساسية',
   'general_disease' => 'مرض عام',
   'chronic_disease' => 'مرض مزمن',
+
+  // Order Status
+  'order_status' => [
+    'pending' => 'قيد الانتظار',
+    'processing' => 'قيد المعالجة',
+    'completed' => 'مكتمل',
+    'cancelled' => 'ملغي',
+  ],
+
+  // Payment Method
+  'cash' => 'نقدي',
+  'online' => 'عبر الانترنت',
+
+  // Payment Status
+  'payment_status' => [
+    'pending' => 'قيد الانتظار',
+    'paid' => 'مدفوع',
+    'failed' => 'فشل',
+  ],
 ];

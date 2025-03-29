@@ -32,6 +32,8 @@ Route::middleware(['guest', 'locale'])->prefix('v1')->group(function () {
 
 Route::prefix('v1')->middleware(['auth:user-api', 'locale'])->group(function () {
 
+    Route::post('/auth/logout', [ApiAuthController::class, 'logout']);
+
     Route::controller(UserController::class)
         ->prefix('user')
         ->group(function () {

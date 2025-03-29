@@ -54,6 +54,13 @@ class ProfileResource extends JsonResource
                     'file' => $record->file ? Storage::url($record->file) : null,
                 ];
             }),
+            'orders' => $this->orders->map(function ($order) {
+                return [
+                    'id' => $order->id,
+                    'total_price' => $order->total_price,
+                    'status' => $order->status,
+                ];
+            }),
         ];
     }
 }
