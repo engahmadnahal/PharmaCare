@@ -920,4 +920,6 @@ return [
   'allergy' => 'Allergy',
   'general_disease' => 'General Disease',
   'chronic_disease' => 'Chronic Disease',
+  'submit_form_message' => 'Are you sure you want to perform the action?',
+
 ];
