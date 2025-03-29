@@ -57,7 +57,7 @@ class EmployeeController extends Controller
             'national_id' => 'required|string|unique:employees,national_id',
             'certificate' => 'required|file|mimes:pdf',
             'dob' => 'required|date',
-            'role_id' => 'required|integer|exists:roles,id,guard_id,null',
+            'role_id' => 'required|integer|exists:roles,id,guard_id,NULL',
             'pharmaceutical_id' => 'required|exists:pharmaceuticals,id',
         ]);
         if ($validator->fails()) {
@@ -132,7 +132,7 @@ class EmployeeController extends Controller
             'avater' => 'nullable|image|mimes:png,jpg',
             'certificate' => 'nullable|file|mimes:pdf',
             'national_id' => 'required|string|unique:employees,national_id,' . $employee->id,
-            'role_id' => 'required|integer|exists:roles,id,guard_id,null',
+            'role_id' => 'required|integer|exists:roles,id,guard_id,NULL',
             'pharmaceutical_id' => 'required|exists:pharmaceuticals,id',
         ]);
         if (!$validator->fails()) {

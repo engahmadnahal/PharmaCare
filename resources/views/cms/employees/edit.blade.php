@@ -209,10 +209,7 @@
                 window.location.href = '/cms/admin/employees';
             })
             .catch(function(error) {
-                let errors = error.response.data.errors;
-                for (let key in errors) {
-                    toastr.error(errors[key][0]);
-                }
+                toastr.error(error.response.data.message);
             });
     }
 </script>
