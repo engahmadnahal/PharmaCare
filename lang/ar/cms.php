@@ -955,21 +955,16 @@ return [
   'chronic_disease' => 'مرض مزمن',
 
   // Order Status
-  'order_status' => [
-    'pending' => 'قيد الانتظار',
-    'processing' => 'قيد المعالجة',
-    'completed' => 'مكتمل',
-    'cancelled' => 'ملغي',
-  ],
+  'processing' => 'قيد المعالجة',
+  'completed' => 'مكتمل',
+  'cancelled' => 'ملغي',
 
   // Payment Method
   'cash' => 'نقدي',
   'online' => 'عبر الانترنت',
 
   // Payment Status
-  'payment_status' => [
-    'pending' => 'قيد الانتظار',
-    'paid' => 'مدفوع',
-    'failed' => 'فشل',
-  ],
+  'pending' => 'قيد الانتظار',
+  'paid' => 'مدفوع',
+  'failed' => 'فشل',
 ];
