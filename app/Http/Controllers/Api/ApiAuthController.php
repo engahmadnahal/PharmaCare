@@ -284,7 +284,7 @@ class ApiAuthController extends Controller
     public function logout(Request $request)
     {
         $token = auth('user-api')->user()->token();
-        $token->revoke();
+        // $token->revoke();
         return ControllersService::successResponse(__('cms.logged_out_successfully'));
     }
 
