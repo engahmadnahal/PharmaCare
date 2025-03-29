@@ -58,7 +58,7 @@ class CartController extends Controller
                 $cartItem->quantity = $totalQuantity;
                 $cartItem->save();
 
-                $message = __('messages.cart_quantity_updated');
+                $message = __('cms.cart_quantity_updated');
             } else {
                 if ($requestedQuantity > $product->quantity) {
                     return ControllersService::generateValidationErrorMessage(__('cms.insufficient_stock', ['available_quantity' => $product->quantity]));
@@ -70,7 +70,7 @@ class CartController extends Controller
                     'quantity' => $requestedQuantity
                 ]);
 
-                $message = __('messages.product_added_to_cart');
+                $message = __('cms.product_added_to_cart');
             }
 
             DB::commit();
@@ -106,7 +106,7 @@ class CartController extends Controller
                 'total' => $retailPrice,
             ];
 
-            return ControllersService::successResponse(__('messages.cart_retrieved_successfully'), [
+            return ControllersService::successResponse(__('cms.cart_retrieved_successfully'), [
                 'summary' => $summary,
                 'items' => CartResource::collection($cartItems),
             ]);
@@ -128,7 +128,7 @@ class CartController extends Controller
 
             $cartItem->delete();
 
-            return ControllersService::successResponse(__('messages.item_removed_from_cart'));
+            return ControllersService::successResponse(__('cms.item_removed_from_cart'));
         } catch (\Exception $e) {
             return ControllersService::generateValidationErrorMessage(__('cms.something_went_wrong'));
         }
@@ -162,7 +162,7 @@ class CartController extends Controller
             $cartItem->quantity = $request->quantity;
             $cartItem->save();
 
-            return ControllersService::successResponse(__('messages.cart_quantity_updated'));
+            return ControllersService::successResponse(__('cms.cart_quantity_updated'));
         } catch (\Exception $e) {
             return ControllersService::generateValidationErrorMessage(__('cms.something_went_wrong'));
         }
@@ -172,7 +172,7 @@ class CartController extends Controller
     {
         try {
             Cart::where('user_id', auth()->id())->delete();
-            return ControllersService::successResponse(__('messages.cart_cleared_successfully'));
+            return ControllersService::successResponse(__('cms.cart_cleared_successfully'));
         } catch (\Exception $e) {
             return ControllersService::generateValidationErrorMessage(__('cms.something_went_wrong'));
         }
@@ -237,7 +237,7 @@ class CartController extends Controller
             $totalAfterDiscount = $cartTotal - $discountAmount; // after discount amount coupon and product
 
             return ControllersService::successResponse(
-                __('messages.coupon_applied_successfully'),
+                __('cms.coupon_applied_successfully'),
                 [
                     'cart_summary' => [
                         'sub_total' => round($cartTotal, 2),
