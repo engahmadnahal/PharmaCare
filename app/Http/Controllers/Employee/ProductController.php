@@ -79,7 +79,7 @@ class ProductController extends Controller
             'retail_price' => 'required|integer|min:1',
             'expiration_date' => 'required|date',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp,avif|max:2048',
-            'medication_leaflet_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp,avif|max:2048',
+            'medication_leaflet_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp,avif|max:2048',
             'weight' => 'required|integer|min:1',
         ]);
 
@@ -89,7 +89,9 @@ class ProductController extends Controller
 
         $data = $validator->validated();
         $data['image'] = $this->uploadFile($request->file('image'), 'products');
-        $data['medication_leaflet_image'] = $this->uploadFile($request->file('medication_leaflet_image'), 'products');
+        if ($request->hasFile('medication_leaflet_image')) {
+            $data['medication_leaflet_image'] = $this->uploadFile($request->file('medication_leaflet_image'), 'products');
+        }
         $data['pharmaceutical_id'] = auth('employee')->user()->pharmaceutical_id;
 
         $product = Product::create($data);

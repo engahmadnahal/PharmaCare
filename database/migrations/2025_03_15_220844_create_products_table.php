@@ -49,8 +49,8 @@ return new class extends Migration
             $table->integer('basic_price')->comment('Basic price of the medicine');
             $table->integer('retail_price')->comment('Retail price of the medicine');
             $table->date('expiration_date')->comment('Expiration date of the medicine');
-            $table->string('image');
-            $table->string('medication_leaflet_image')->comment('Medication leaflet image of the medicine');
+            $table->string('image')->comment('Image of the medicine');
+            $table->string('medication_leaflet_image')->nullable()->comment('Medication leaflet image of the medicine');
             $table->integer('weight')->comment('Weight of the medicine');
             $table->timestamps();
         });
