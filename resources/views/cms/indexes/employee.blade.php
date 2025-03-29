@@ -19,7 +19,7 @@
                     <h4 class="font-weight-bold">{{ auth()->user()->name }}</h4>
                     <div class="text-muted">{{ auth()->user()->email }}</div>
                     <div class="mt-2">
-                        <span class="label label-light-primary font-weight-bold label-inline">{{ auth()->user()->roles->first()?->nam ?? '-' }}</span>
+                        <span class="label label-light-primary font-weight-bold label-inline">{{ auth()->user()->roles->first()?->name ?? '-' }}</span>
                     </div>
                 </div>
             </div>
