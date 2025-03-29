@@ -19,18 +19,18 @@
             <span class="text-muted mt-3 font-weight-bold font-size-sm">Manage Roles</span>
         </h3>
         @if(isset($guard_name) && $guard_name == 'employee')
-       
-       <div class="card-toolbar">
-           <a href="{{route('cms.employee.roles.create')}}"
-               class="btn btn-info font-weight-bolder font-size-sm">{{__('cms.create')}}</a>
-       </div>
-       @else
-       <div class="card-toolbar">
-           <a href="{{route('roles.create')}}"
-               class="btn btn-info font-weight-bolder font-size-sm">{{__('cms.create')}}</a>
-       </div>
-       
-       @endif
+
+        <div class="card-toolbar">
+            <a href="{{route('cms.employee.roles.create')}}"
+                class="btn btn-info font-weight-bolder font-size-sm">{{__('cms.create')}}</a>
+        </div>
+        @else
+        <div class="card-toolbar">
+            <a href="{{route('roles.create')}}"
+                class="btn btn-info font-weight-bolder font-size-sm">{{__('cms.create')}}</a>
+        </div>
+
+        @endif
     </div>
     <!--end::Header-->
     <!--begin::Body-->
@@ -127,7 +127,14 @@
 <script src="{{asset('assets/js/pages/widgets.js')}}"></script>
 <script>
     function performDestroy(id, reference) {
+        @if(isset($guard_name) && $guard_name == 'employee')
+        confirmDestroy('/cms/employee/roles', id, reference);
+
+        @else
+
         confirmDestroy('/cms/admin/roles', id, reference);
+
+        @endif
     }
 </script>
 @endsection
